@@ -6,7 +6,7 @@ public class movement : MonoBehaviour
 {
     
     Rigidbody2D rb;
-    bool canJump = false;
+    public bool canJump = false;
     float jump_init_v = 20f;
     
     void Start() {
