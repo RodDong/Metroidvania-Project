@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class movement : MonoBehaviour
 {
+    
     Rigidbody2D rb;
     bool canJump = false;
     float jump_init_v = 20f;
@@ -20,6 +21,7 @@ public class movement : MonoBehaviour
 
 
     void Update() {
+        rb.freezeRotation = true;
         processInput();
     }
 
@@ -31,5 +33,6 @@ public class movement : MonoBehaviour
         }
         v.x = Input.GetAxisRaw("Horizontal") * 10f;
         rb.velocity = v;
+        
     }
 }
