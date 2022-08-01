@@ -8,12 +8,14 @@ public class movement : MonoBehaviour
     Rigidbody2D rb;
     public Vector3 position;
     GameObject[] swords;
+    GameObject[] anchors;
     
     public bool canJump = false;
     float jump_init_v = 20f;
     
     void Start() {
         swords = GameObject.FindGameObjectsWithTag("sword");
+        anchors = GameObject.FindGameObjectsWithTag("anchors");
         
         rb = GetComponent<Rigidbody2D>();
 
@@ -34,12 +36,18 @@ public class movement : MonoBehaviour
     }
 
     void updateSwordPos(){
-        foreach(GameObject sword in swords){
+        /*foreach(GameObject sword in swords){
             Vector2 swordPos = sword.transform.position;
             swordPos.x = rb.transform.position.x + 2;
             swordPos.y = rb.transform.position.y + 2;
             sword.transform.position = swordPos;
+        }*/
 
+        foreach(GameObject anchor in anchors){
+            Vector2 swordPos = anchor.transform.position;
+            swordPos.x = rb.transform.position.x;
+            swordPos.y = rb.transform.position.y;
+            anchor.transform.position = swordPos;
         }
     }
 
@@ -56,11 +64,11 @@ public class movement : MonoBehaviour
         //Process Player attack
         if(Input.GetMouseButton(0)){
             Debug.Log(rb.transform.position.x+" "+rb.transform.position.y);
-            foreach(GameObject sword in swords){
-                sword.transform.RotateAround(new Vector2(0,0), Vector3.forward, 100*Time.deltaTime);
+            foreach(GameObject anchor in anchors){
+                anchor.transform.RotateAround(anchor.transform.localPosition, Vector3.back, 100*Time.deltaTime);
+                //Quaternion target = Quaternion.Euler(0, 0, -90);
+                //anchor.transform.rotation = Quaternion.Slerp(anchor.transform.rotation, target,  Time.deltaTime * 5.0f);
             }
         }
-        
-        
     }
 }
