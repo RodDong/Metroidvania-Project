@@ -6,39 +6,30 @@ public class movement : MonoBehaviour
 {
     Rigidbody2D rb;
     bool canJump = false;
+    float jump_init_v = 20f;
     
-    Vector2 vertical = new Vector2(0f, 20f);
-    Vector2 horizontal = new Vector2(0f, 0f);
     void Start() {
         rb = GetComponent<Rigidbody2D>();
-        
-        
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        if(other.gameObject.tag == "ground"){
-            Debug.Log(1);
+        if(other.gameObject.tag == "ground") {
             canJump = true;
         }
-        
     }
 
 
-    void Update()
-    {
+    void Update() {
         processInput();
-        
     }
 
-    void processInput(){
-        if(Input.GetKeyDown(KeyCode.Space) && canJump){
-            vertical.x = rb.velocity.x;
-            rb.velocity = vertical;
+    void processInput() {
+        Vector2 v = rb.velocity;
+        if(Input.GetKeyDown(KeyCode.Space) && canJump) {
+            v.y = jump_init_v;
             canJump = false;
         }
-        float xInput = Input.GetAxisRaw("Horizontal");
-        horizontal.x = xInput*10f;
-        horizontal.y = rb.velocity.y;
-        rb.velocity = horizontal;
+        v.x = Input.GetAxisRaw("Horizontal") * 10f;
+        rb.velocity = v;
     }
 }
