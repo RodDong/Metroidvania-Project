@@ -13,16 +13,14 @@ public class colliderHandeler : MonoBehaviour
         m = GameObject.FindGameObjectWithTag("player").GetComponent<movement>();
     }
     private void OnTriggerEnter2D(Collider2D other) {
+        bool isPushed = false;
         if(other.gameObject.tag == "attackArea"){
-            //Debug.Log(m.isPushed);
-            if(m.isRight && m.isPushed){
-                
-                enemy.AddForce(new Vector2(5,0), ForceMode2D.Impulse);
-                m.isPushed = false;
-            }else if(!m.isRight && m.isPushed){
-                Debug.Log("Push left");
-                enemy.AddForce(new Vector2(-5,0), ForceMode2D.Impulse);
-                m.isPushed = false;
+            if(m.isRight && !isPushed){
+                enemy.AddForce(new Vector2(10,0), ForceMode2D.Impulse);
+                isPushed = true;
+            }else if(!m.isRight && !isPushed){
+                enemy.AddForce(new Vector2(-10,0), ForceMode2D.Impulse);
+                isPushed = true;
             }
             
         }

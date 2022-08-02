@@ -11,7 +11,6 @@ public class movement : MonoBehaviour
     Collider2D attackCollider;
 
     public bool isRight;
-    public bool isPushed;
 
 
     
@@ -29,8 +28,6 @@ public class movement : MonoBehaviour
         //initialize player rigidbody 
         rb = GetComponent<Rigidbody2D>();
         isRight = true;
-        isPushed = false;
-
     }
 
     //Update frames in game
@@ -38,8 +35,6 @@ public class movement : MonoBehaviour
         position = rb.transform.position;
         rb.freezeRotation = true;
         processInput();
-        Debug.Log(isPushed);
-
     }
 
     //Collision handler for bool canJump
@@ -80,9 +75,8 @@ public class movement : MonoBehaviour
         }
 
         //Process left mouse click for player attack
-        if(Input.GetMouseButton(0)){
+        if(Input.GetMouseButtonDown(0)){
             attackCollider.enabled = true;
-            isPushed = true;
             Invoke("disableAttackCollider", 0.1f);
         }
     }
