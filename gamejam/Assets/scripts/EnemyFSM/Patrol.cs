@@ -12,13 +12,21 @@ public class Patrol : MonoBehaviour
 
     public Transform groundDetection;
 
+    
+
+    void Start()
+    {
+        
+    }
+
     private void Update()
     {
+        
         transform.Translate(Vector2.right * patrolSpeed * Time.deltaTime);
 
         RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, raycastDistance);
 
-        if (groundInfo.collider == false)
+        if (groundInfo.collider == null)
         {
             if (movingRight == true)
             {

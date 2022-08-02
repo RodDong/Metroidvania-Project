@@ -10,6 +10,9 @@ public class movement : MonoBehaviour
     [SerializeField] GameObject attackArea;
     Collider2D attackCollider;
 
+    public bool isRight;
+    public bool isPushed;
+
 
     
     //Jump vars
@@ -22,8 +25,11 @@ public class movement : MonoBehaviour
         //initialize AttackArea collider
         attackCollider = attackArea.GetComponent<Collider2D>();
         attackCollider.enabled = false;
+
         //initialize player rigidbody 
         rb = GetComponent<Rigidbody2D>();
+        isRight = true;
+        isPushed = false;
 
     }
 
@@ -32,8 +38,7 @@ public class movement : MonoBehaviour
         position = rb.transform.position;
         rb.freezeRotation = true;
         processInput();
-        updateSwordPos();
-
+        Debug.Log(isPushed);
 
     }
 
@@ -46,17 +51,6 @@ public class movement : MonoBehaviour
 
     
 
-    //update swords' position relative to the player
-    void updateSwordPos(){
-        /*foreach(GameObject sword in swords){
-            Vector2 swordPos = sword.transform.position;
-            swordPos.x = rb.transform.position.x + 2;
-            swordPos.y = rb.transform.position.y + 2;
-            sword.transform.position = swordPos;
-        }*/
-
-        
-    }
 
     //process movements via inputs 
     void processInput() {
@@ -69,10 +63,27 @@ public class movement : MonoBehaviour
         v.x = Input.GetAxisRaw("Horizontal") * 10f;
         rb.velocity = v;
 
+        //Player rotation based on input 
+        if(Input.GetKeyDown(KeyCode.A)){
+            if(isRight){
+                transform.localRotation = Quaternion.Euler(0, 180, 0);
+            }
+            isRight = false;
+        }
+
+        if(Input.GetKeyDown(KeyCode.D)){
+            if(!isRight){
+                transform.localRotation = Quaternion.Euler(0, 0, 0);
+            }
+            
+            isRight = true;
+        }
+
         //Process left mouse click for player attack
         if(Input.GetMouseButton(0)){
             attackCollider.enabled = true;
-            Invoke("disableAttackCollider", 10);
+            isPushed = true;
+            Invoke("disableAttackCollider", 0.1f);
         }
     }
 
