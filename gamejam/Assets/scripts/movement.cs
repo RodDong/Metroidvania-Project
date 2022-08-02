@@ -5,20 +5,18 @@ using UnityEngine;
 public class movement : MonoBehaviour
 {
     //game Objects
-    Rigidbody2D rb;
-    public Vector3 position;
     [SerializeField] GameObject attackArea;
-    Collider2D attackCollider;
 
+    public Vector3 position;
     public bool isRight;
-    public bool isPushed;
-
-
-    
     //Jump vars
     public bool canJump = false;
+    private float attackRate = 2f;
+    private float nextAttck;
     float jump_init_v = 20f;
-    
+    Collider2D attackCollider;
+    Rigidbody2D rb;
+
     //Game initialization
     void Start() {
 
@@ -29,8 +27,6 @@ public class movement : MonoBehaviour
         //initialize player rigidbody 
         rb = GetComponent<Rigidbody2D>();
         isRight = true;
-        isPushed = false;
-
     }
 
     //Update frames in game
@@ -38,8 +34,7 @@ public class movement : MonoBehaviour
         position = rb.transform.position;
         rb.freezeRotation = true;
         processInput();
-        Debug.Log(isPushed);
-
+        processAttack();
     }
 
     //Collision handler for bool canJump
@@ -48,9 +43,6 @@ public class movement : MonoBehaviour
             canJump = true;
         }
     }
-
-    
-
 
     //process movements via inputs 
     void processInput() {
@@ -78,11 +70,14 @@ public class movement : MonoBehaviour
             
             isRight = true;
         }
+    }
 
-        //Process left mouse click for player attack
-        if(Input.GetMouseButton(0)){
+    //Process left mouse click for player attack
+    void processAttack() {
+        if(Input.GetMouseButtonDown(0) && Time.time > nextAttck){
+            nextAttck = Time.time + attackRate;
+            Debug.Log(nextAttck);
             attackCollider.enabled = true;
-            isPushed = true;
             Invoke("disableAttackCollider", 0.1f);
         }
     }
