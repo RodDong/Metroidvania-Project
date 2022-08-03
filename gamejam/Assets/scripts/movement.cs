@@ -14,8 +14,11 @@ public class movement : MonoBehaviour
     private float attackRate = 2f;
     private float nextAttck;
     float jump_init_v = 20f;
+    //attack vars
+    public bool attacking = false;
     Collider2D attackCollider;
     Rigidbody2D rb;
+    
 
     //Game initialization
     void Start() {
@@ -31,6 +34,7 @@ public class movement : MonoBehaviour
 
     //Update frames in game
     void Update() {
+        attacking = false;
         position = rb.transform.position;
         rb.freezeRotation = true;
         processInput();
@@ -75,14 +79,16 @@ public class movement : MonoBehaviour
     //Process left mouse click for player attack
     void processAttack() {
         if(Input.GetMouseButtonDown(0) && Time.time > nextAttck){
+            attacking = true;
             nextAttck = Time.time + attackRate;
             Debug.Log(nextAttck);
             attackCollider.enabled = true;
-            Invoke("disableAttackCollider", 0.1f);
+            Invoke("disableAttackCollider", 0.15f);
         }
     }
 
     void disableAttackCollider(){
+        
         attackCollider.enabled = false;
     }
 }
