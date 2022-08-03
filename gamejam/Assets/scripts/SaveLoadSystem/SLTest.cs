@@ -27,4 +27,5 @@ public class SLTest : MonoBehaviour, IDataManager
     public void SaveData(ref GameData data) {
         data.playerPosition = this.playerPosition;
     }
+    
 }
