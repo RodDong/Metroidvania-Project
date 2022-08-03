@@ -9,6 +9,7 @@ TagManager:
   - sword
   - anchors
   - attackArea
+  - enemy_mouse
   layers:
   - Default
   - TransparentFX

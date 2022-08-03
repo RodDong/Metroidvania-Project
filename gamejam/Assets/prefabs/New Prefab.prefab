@@ -141,6 +141,7 @@ GameObject:
   - component: {fileID: 7345341706318968725}
   - component: {fileID: 104105784747513901}
   - component: {fileID: 104105784747513899}
+  - component: {fileID: 5762588846603558749}
   - component: {fileID: 6825712493935442333}
   - component: {fileID: 1412358188}
   - component: {fileID: 5652234647086345453}
@@ -242,6 +243,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5762588846603558749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1050406819815322775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0c0f07eb7eae0b43a9c863b7a642763, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  numHearts: 0
+  hearts: []
+  fullHeart: {fileID: 21300000, guid: 31ba3f941b89f0043ad715e14e76507b, type: 3}
+  halfHeart: {fileID: 21300000, guid: de8714b43ebdd0e4f94508fc410300e9, type: 3}
+  emptyHeart: {fileID: 21300000, guid: e0ab7a256356fed49bc1409c959eaadb, type: 3}
 --- !u!114 &6825712493935442333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,10 +273,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ea1ea3dcd76cb1409b11eec8da4237c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  position: {x: 0, y: 0, z: 0}
   attackArea: {fileID: 79113505274088711}
+  position: {x: 0, y: 0, z: 0}
   isRight: 0
-  isPushed: 0
   canJump: 0
 --- !u!61 &1412358188
 BoxCollider2D:
