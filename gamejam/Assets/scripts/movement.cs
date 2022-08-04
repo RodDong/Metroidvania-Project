@@ -11,7 +11,7 @@ public class movement : MonoBehaviour
     public bool isRight;
     //Jump vars
     public bool canJump = false;
-    private float attackRate = 2f;
+    private float attackRate = 0f;
     private float nextAttck;
     float jump_init_v = 20f;
     //attack vars
@@ -81,7 +81,6 @@ public class movement : MonoBehaviour
         if(Input.GetMouseButtonDown(0) && Time.time > nextAttck){
             attacking = true;
             nextAttck = Time.time + attackRate;
-            Debug.Log(nextAttck);
             attackCollider.enabled = true;
             Invoke("disableAttackCollider", 0.15f);
         }
