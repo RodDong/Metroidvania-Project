@@ -14,13 +14,13 @@ public class OnewayPlatform : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyUp(KeyCode.S)) {
-            waitTime = 0.5f;
+            waitTime = 0.2f;
         }
 
         if (Input.GetKey(KeyCode.S)) {
             if (waitTime <= 0) {
                 effector.rotationalOffset = 180f;
-                waitTime = 0.5f;
+                waitTime = 0.2f;
             } else {
                 waitTime -= Time.deltaTime;
             }

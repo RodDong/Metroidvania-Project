@@ -26,7 +26,6 @@ public class moveRelativeToPlayer : MonoBehaviour
     void Update()
     {
         if(m.attacking){
-            attackAnimation.SetTrigger("attack");
             attackAnimation.SetTrigger("attack2");
         }
 
