@@ -8,8 +8,9 @@ public class moveRelativeToPlayer : MonoBehaviour
     private Rigidbody2D playerRb;
     private Animator attackAnimation;
     Quaternion playerRotation;
-    Vector3 offsetR = new Vector3(2.5f,1f,0f);
-    Vector3 offsetL = new Vector3(-2.5f,1f,0f);
+    [SerializeField]Vector3 offsetR = new Vector3(2.5f,1.5f,0f);
+    [SerializeField]Vector3 offsetL = new Vector3(-2.5f,1.5f,0f);
+    [SerializeField] int rotation = 0;
     movement m;
     
     // Start is called before the first frame update
@@ -26,14 +27,15 @@ public class moveRelativeToPlayer : MonoBehaviour
     {
         if(m.attacking){
             attackAnimation.SetTrigger("attack");
+            attackAnimation.SetTrigger("attack2");
         }
 
         if(!m.isRight){
             gameObject.transform.position = playerRb.transform.position + offsetL;
-            gameObject.transform.localRotation = Quaternion.Euler(0,180,-70);
+            gameObject.transform.localRotation = Quaternion.Euler(0,180,-rotation);
         }else{
             gameObject.transform.position = playerRb.transform.position + offsetR;
-            gameObject.transform.localRotation = Quaternion.Euler(0,0,-70);
+            gameObject.transform.localRotation = Quaternion.Euler(0,0,-rotation);
         }
         
 
