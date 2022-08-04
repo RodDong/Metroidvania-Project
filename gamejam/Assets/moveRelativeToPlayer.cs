@@ -26,7 +26,14 @@ public class moveRelativeToPlayer : MonoBehaviour
     void Update()
     {
         if(m.attacking){
-            attackAnimation.SetTrigger("attack2");
+            
+            if(attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("Transition1")&&!attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("coolDown")){
+                attackAnimation.SetTrigger("attack1");
+            }else if(attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("Idle")){
+                attackAnimation.SetTrigger("attack");
+            }
+            
+
         }
 
         if(!m.isRight){

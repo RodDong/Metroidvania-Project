@@ -11,7 +11,7 @@ public class movement : MonoBehaviour
     public bool isRight;
     //Jump vars
     public bool canJump = false;
-    private float attackRate = 0f;
+    private float attackRate = 0.75f;
     private float nextAttck;
     float jump_init_v = 20f;
     //attack vars
@@ -26,6 +26,7 @@ public class movement : MonoBehaviour
         //initialize AttackArea collider
         attackCollider = attackArea.GetComponent<Collider2D>();
         attackCollider.enabled = false;
+        
 
         //initialize player rigidbody 
         rb = GetComponent<Rigidbody2D>();
@@ -78,16 +79,17 @@ public class movement : MonoBehaviour
 
     //Process left mouse click for player attack
     void processAttack() {
-        if(Input.GetMouseButtonDown(0) && Time.time > nextAttck){
+        if(Input.GetMouseButtonDown(0) && !statusVar.isCoolDown){
             attacking = true;
-            nextAttck = Time.time + attackRate;
+            // nextAttck = Time.time + attackRate;
             attackCollider.enabled = true;
+            attackArea.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
             Invoke("disableAttackCollider", 0.15f);
         }
     }
 
     void disableAttackCollider(){
-        
+        attackArea.GetComponent<Renderer>().material.SetColor("_Color", Color.blue);
         attackCollider.enabled = false;
     }
 }
