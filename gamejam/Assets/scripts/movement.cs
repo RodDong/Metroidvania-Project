@@ -11,7 +11,6 @@ public class movement : MonoBehaviour
     public bool isRight;
     //Jump vars
     public bool canJump = false;
-    private float attackRate = 0.75f;
     private float nextAttck;
     float jump_init_v = 20f;
     //attack vars
