@@ -4,50 +4,44 @@ using UnityEngine;
 
 public class movement : MonoBehaviour
 {
-    Rigidbody2D rb;
-    bool canJump = false;
-<<<<<<<<< Temporary merge branch 1
-    
-    Vector2 vertical = new Vector2(0f, 20f);
-    Vector2 horizontal = new Vector2(0f, 0f);
-    void Start() {
-        rb = GetComponent<Rigidbody2D>();
-        
-        
-    }
+    //game Objects
+    [SerializeField] GameObject attackArea;
 
-    private void OnCollisionEnter2D(Collision2D other) {
-        if(other.gameObject.tag == "ground"){
-            Debug.Log(1);
-            canJump = true;
-        }
-        
-    }
-
-
-    void Update()
-    {
-        processInput();
-        
-    }
-
-    void processInput(){
-        if(Input.GetKeyDown(KeyCode.Space) && canJump){
-            vertical.x = rb.velocity.x;
-            rb.velocity = vertical;
-            canJump = false;
-        }
-        float xInput = Input.GetAxisRaw("Horizontal");
-        horizontal.x = xInput*10f;
-        horizontal.y = rb.velocity.y;
-        rb.velocity = horizontal;
-=========
+    public Vector3 position;
+    public bool isRight;
+    //Jump vars
+    public bool canJump = false;
+    private float nextAttck;
     float jump_init_v = 20f;
+    //attack vars
+    public bool attacking = false;
+    Collider2D attackCollider;
+    Rigidbody2D rb;
     
+
+    //Game initialization
     void Start() {
+
+        //initialize AttackArea collider
+        attackCollider = attackArea.GetComponent<Collider2D>();
+        attackCollider.enabled = false;
+        
+
+        //initialize player rigidbody 
         rb = GetComponent<Rigidbody2D>();
+        isRight = true;
     }
 
+    //Update frames in game
+    void Update() {
+        attacking = false;
+        position = rb.transform.position;
+        rb.freezeRotation = true;
+        processInput();
+        processAttack();
+    }
+
+    //Collision handler for bool canJump
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.tag == "ground") {
             canJump = true;
@@ -64,6 +58,37 @@ public class movement : MonoBehaviour
         }
         v.x = Input.GetAxisRaw("Horizontal") * 10f;
         rb.velocity = v;
->>>>>>>>> Temporary merge branch 2
+
+        //Player rotation based on input 
+        if(Input.GetKeyDown(KeyCode.A)){
+            if(isRight){
+                transform.localRotation = Quaternion.Euler(0, 180, 0);
+            }
+            isRight = false;
+        }
+
+        if(Input.GetKeyDown(KeyCode.D)){
+            if(!isRight){
+                transform.localRotation = Quaternion.Euler(0, 0, 0);
+            }
+            
+            isRight = true;
+        }
+    }
+
+    //Process left mouse click for player attack
+    void processAttack() {
+        if(Input.GetMouseButtonDown(0) && !statusVar.isCoolDown){
+            attacking = true;
+            // nextAttck = Time.time + attackRate;
+            attackCollider.enabled = true;
+            attackArea.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+            Invoke("disableAttackCollider", 0.15f);
+        }
+    }
+
+    void disableAttackCollider(){
+        attackArea.GetComponent<Renderer>().material.SetColor("_Color", Color.blue);
+        attackCollider.enabled = false;
     }
 }
