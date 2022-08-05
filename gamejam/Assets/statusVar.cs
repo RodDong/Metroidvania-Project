@@ -10,7 +10,7 @@ public class statusVar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        animation_attack = GameObject.FindGameObjectWithTag("animation_attack").GetComponent<Animator>();
+        animation_attack = GameObject.FindGameObjectWithTag("attackAnimator").GetComponent<Animator>();
         isCoolDown = false;
     }
 
