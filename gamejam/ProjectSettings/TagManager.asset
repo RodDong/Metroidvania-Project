@@ -10,6 +10,7 @@ TagManager:
   - anchors
   - attackArea
   - enemy_mouse
+  - OneWayPlatform
   layers:
   - Default
   - TransparentFX
@@ -17,11 +18,11 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Enemy
+  - Ground
+  - Wall
+  - Platform
   - 
   - 
   - 
