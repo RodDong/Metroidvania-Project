@@ -1328,7 +1328,7 @@ GameObject:
   - component: {fileID: 236114062}
   - component: {fileID: 236114061}
   - component: {fileID: 236114060}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: platform_3
   m_TagString: OneWayPlatform
   m_Icon: {fileID: 0}
@@ -1500,7 +1500,7 @@ PlatformEffector2D:
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1024
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
@@ -2464,7 +2464,7 @@ GameObject:
   - component: {fileID: 1535906343}
   - component: {fileID: 1535906346}
   - component: {fileID: 1535906347}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: platform_1
   m_TagString: OneWayPlatform
   m_Icon: {fileID: 0}
@@ -2549,7 +2549,7 @@ PlatformEffector2D:
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1024
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
@@ -4012,7 +4012,7 @@ GameObject:
   - component: {fileID: 2009947241}
   - component: {fileID: 2009947240}
   - component: {fileID: 2009947239}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: platform_2
   m_TagString: OneWayPlatform
   m_Icon: {fileID: 0}
@@ -4184,7 +4184,7 @@ PlatformEffector2D:
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1024
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0

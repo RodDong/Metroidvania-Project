@@ -13,7 +13,7 @@ public class Health : MonoBehaviour
     public Sprite emptyHeart;
 
     private void OnCollisionEnter2D(Collision2D other) {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy")) {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy") || other.gameObject.layer == LayerMask.NameToLayer("Projectile")) {
             TakeDamage();
         }
     }
