@@ -60,6 +60,7 @@ public class Gator : MonoBehaviour
         Quaternion arrow_quaternion = new Quaternion();
         arrow_quaternion.eulerAngles = new Vector3(0,0,arrow_rotation);
         arrowObj = Instantiate(arrow, gameObject.transform.position, arrow_quaternion);
+        arrow.layer = LayerMask.NameToLayer("Enemy");
         arrowObj.transform.SetParent(arrowContainer.transform);
         arrowObj.GetComponent<Rigidbody2D>().AddForce(new Vector3(x, y, 0)*50);
     }
