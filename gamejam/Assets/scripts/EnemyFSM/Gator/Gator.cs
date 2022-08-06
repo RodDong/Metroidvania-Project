@@ -11,9 +11,6 @@ public class Gator : MonoBehaviour
     private Animator attackAnimation;
     [SerializeField] GameObject arrow;
     [SerializeField] GameObject arrowContainer;
-    Quaternion rotation;
-    Vector3 temp_rotation;
-    Vector3 angle;
     bool isRight;
 
     // Start is called before the first frame update
@@ -21,21 +18,12 @@ public class Gator : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("player");
         attackAnimation = gameObject.GetComponent<Animator>();
-        rotation = gameObject.transform.rotation;
         isRight = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!isRight) {
-            temp_rotation = gameObject.transform.eulerAngles;
-            temp_rotation.y += 180;
-            rotation.eulerAngles = temp_rotation;
-        } else {
-            rotation = gameObject.transform.rotation;
-        }
-        angle = rotation.eulerAngles;
         float distance = Vector3.Distance(player.transform.position, gameObject.transform.position);
         float xDistance = player.transform.position.x - gameObject.transform.position.x;
         float yDistance = player.transform.position.y - gameObject.transform.position.y;
@@ -52,9 +40,6 @@ public class Gator : MonoBehaviour
         
         if (distance < attackRange)
         {
-            angle.z += Mathf.Acos(phi)*Mathf.Rad2Deg;
-            rotation.eulerAngles = angle;
-            Debug.Log(rotation.eulerAngles);
             //Debug.Log(gameObject.transform.rotation);
             attackAnimation.SetTrigger("attack");
             if (attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("aiming") && !attackCoolDown) {
@@ -68,7 +53,13 @@ public class Gator : MonoBehaviour
     }
 
     void instantiateArrow(float x, float y){
-        arrowObj = Instantiate(arrow, gameObject.transform.position, rotation);
+        float arrow_rotation = Mathf.Atan(y/x) * Mathf.Rad2Deg;
+        if (isRight) {
+            arrow_rotation += 180f;
+        } 
+        Quaternion arrow_quaternion = new Quaternion();
+        arrow_quaternion.eulerAngles = new Vector3(0,0,arrow_rotation);
+        arrowObj = Instantiate(arrow, gameObject.transform.position, arrow_quaternion);
         arrowObj.transform.SetParent(arrowContainer.transform);
         arrowObj.GetComponent<Rigidbody2D>().AddForce(new Vector3(x, y, 0)*50);
     }
