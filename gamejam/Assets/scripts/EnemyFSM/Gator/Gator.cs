@@ -30,45 +30,57 @@ public class Gator : MonoBehaviour
         float phi = xDistance / distance;
 
         //update isRight
-        if(player.transform.position.x - gameObject.transform.position.x > 0){
+        if (player.transform.position.x - gameObject.transform.position.x > 0)
+        {
             isRight = true;
-        }else{
+        }
+        else
+        {
             isRight = false;
         }
 
         rotateRelativeToPlayer();
-        
+
         if (distance < attackRange)
         {
             //Debug.Log(gameObject.transform.rotation);
             attackAnimation.SetTrigger("attack");
-            if (attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("aiming") && !attackCoolDown) {
+            if (attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("aiming") && !attackCoolDown)
+            {
                 instantiateArrow(xDistance, yDistance);
                 attackCoolDown = true;
             }
-            if (attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("shooting")) {
+            if (attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("shooting"))
+            {
                 attackCoolDown = false;
             }
         }
     }
 
-    void instantiateArrow(float x, float y){
-        float arrow_rotation = Mathf.Atan(y/x) * Mathf.Rad2Deg;
-        if (isRight) {
+    void instantiateArrow(float x, float y)
+    {
+        float arrow_rotation = Mathf.Atan(y / x) * Mathf.Rad2Deg;
+        if (isRight)
+        {
             arrow_rotation += 180f;
-        } 
+        }
         Quaternion arrow_quaternion = new Quaternion();
-        arrow_quaternion.eulerAngles = new Vector3(0,0,arrow_rotation);
-        arrowObj = Instantiate(arrow, gameObject.transform.position, arrow_quaternion);
+        arrow_quaternion.eulerAngles = new Vector3(0, 0, arrow_rotation);
+        //arrowObj = Instantiate(arrow, gameObject.transform.position, arrow_quaternion);
+        arrowObj = ObjectPool.Instance.Spawn(gameObject.transform.position, arrow_quaternion);
         arrow.layer = LayerMask.NameToLayer("Projectile");
-        arrowObj.transform.SetParent(arrowContainer.transform);
-        arrowObj.GetComponent<Rigidbody2D>().AddForce(new Vector3(x, y, 0)*600/(Mathf.Sqrt(x*x+y*y)));
+        //arrowObj.transform.SetParent(arrowContainer.transform);
+        arrowObj.GetComponent<Rigidbody2D>().AddForce(new Vector3(x, y, 0) * 600 / (Mathf.Sqrt(x * x + y * y)));
     }
 
-    void rotateRelativeToPlayer(){
-        if(isRight){
+    void rotateRelativeToPlayer()
+    {
+        if (isRight)
+        {
             gameObject.transform.localRotation = Quaternion.Euler(0, 180, 0);
-        }else{
+        }
+        else
+        {
             gameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
     }

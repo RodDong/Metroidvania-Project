@@ -2253,8 +2253,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1201011750}
+  - component: {fileID: 1201011751}
   m_Layer: 0
-  m_Name: arrows
+  m_Name: Object Pool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2275,6 +2276,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1201011751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201011749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3e0ab17566e2ec4a812b2ade8698cc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 551375371596192601, guid: 849e045e6ee51974199c14ce2fc1e379, type: 3}
+  defaultCount: 10
+  maxCount: 50
 --- !u!1 &1357311733
 GameObject:
   m_ObjectHideFlags: 0
