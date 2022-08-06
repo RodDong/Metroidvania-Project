@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gator : EnemyBase
+public class Gator : MonoBehaviour
 {
     float attackRange = 50f;
     bool attackCoolDown = false;
@@ -55,8 +55,6 @@ public class Gator : EnemyBase
                 attackCoolDown = false;
             }
         }
-
-        ProcessDeath();
     }
 
     void instantiateArrow(float x, float y)
@@ -75,12 +73,6 @@ public class Gator : EnemyBase
         arrowObj.GetComponent<Rigidbody2D>().AddForce(new Vector3(x, y, 0) * 600 / (Mathf.Sqrt(x * x + y * y)));
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if (other.tag == "attackArea") {
-            ProcessDamage();
-        }
-    }
-
     void rotateRelativeToPlayer()
     {
         if (isRight)
@@ -90,16 +82,6 @@ public class Gator : EnemyBase
         else
         {
             gameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
-        }
-    }
-
-    private void ProcessDamage() {
-        damage(FindObjectOfType<movement>().playerDamage);
-    }
-
-    private void ProcessDeath() {
-        if (getHP() <= 0) {
-            Destroy(this.gameObject);
         }
     }
 }

@@ -16,11 +16,9 @@ public class colliderHandeler : MonoBehaviour
         bool isPushed = false;
         if(other.gameObject.tag == "attackArea"){
             if(m.isRight && !isPushed){
-                Debug.Log("push right");
                 enemy.AddForce(new Vector2(10,0), ForceMode2D.Impulse);
                 isPushed = true;
             }else if(!m.isRight && !isPushed){
-                Debug.Log("push left");
                 enemy.AddForce(new Vector2(-10,0), ForceMode2D.Impulse);
                 isPushed = true;
             }
