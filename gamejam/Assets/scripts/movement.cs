@@ -43,7 +43,7 @@ public class movement : MonoBehaviour
 
     //Collision handler for bool canJump
     private void OnCollisionEnter2D(Collision2D other) {
-        if(other.gameObject.tag == "ground") {
+        if(other.gameObject.tag == "ground" || other.gameObject.tag == "OneWayPlatform") {
             canJump = true;
         }
     }
