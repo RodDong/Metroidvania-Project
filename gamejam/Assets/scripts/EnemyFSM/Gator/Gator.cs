@@ -84,4 +84,5 @@ public class Gator : MonoBehaviour
             gameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
     }
+
 }

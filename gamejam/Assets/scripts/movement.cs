@@ -56,6 +56,7 @@ public class movement : MonoBehaviour
             v.y = jump_init_v;
             canJump = false;
         }
+        
         v.x = Input.GetAxisRaw("Horizontal") * 10f;
         rb.velocity = v;
 
