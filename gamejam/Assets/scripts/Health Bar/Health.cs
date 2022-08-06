@@ -19,6 +19,13 @@ public class Health : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D other) {
+        Debug.Log(LayerMask.LayerToName(other.gameObject.layer));
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy")) {
+            TakeDamage();
+        }
+    }
+
     void TakeDamage() {
         for (int i = 0; i < hearts.Length; i++) {
             if (hearts[i].sprite.name == "heart_half") {
