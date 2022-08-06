@@ -48,6 +48,14 @@ public class Mouse : EnemyBase
     private void Update()
     {
         stateMachine.StateMachineUpdate();
+
+        ProcessDeath();
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.tag == "attackArea") {
+            ProcessDamage();
+        }
     }
 
     public StateMachine<Mouse> GetStateMachine()
@@ -96,4 +104,13 @@ public class Mouse : EnemyBase
 
     #endregion
 
+    private void ProcessDamage() {
+        damage(FindObjectOfType<movement>().playerDamage);
+    }
+
+    private void ProcessDeath() {
+        if (getHP() <= 0) {
+            Destroy(this.gameObject);
+        }
+    }
 }
