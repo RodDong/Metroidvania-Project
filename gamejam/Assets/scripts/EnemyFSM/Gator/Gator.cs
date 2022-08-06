@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Gator : MonoBehaviour
 {
-    float attackRange = 15f;
+    float attackRange = 50f;
     bool attackCoolDown = false;
     GameObject player;
     GameObject arrowObj;
@@ -60,9 +60,9 @@ public class Gator : MonoBehaviour
         Quaternion arrow_quaternion = new Quaternion();
         arrow_quaternion.eulerAngles = new Vector3(0,0,arrow_rotation);
         arrowObj = Instantiate(arrow, gameObject.transform.position, arrow_quaternion);
-        arrow.layer = LayerMask.NameToLayer("Enemy");
+        arrow.layer = LayerMask.NameToLayer("Projectile");
         arrowObj.transform.SetParent(arrowContainer.transform);
-        arrowObj.GetComponent<Rigidbody2D>().AddForce(new Vector3(x, y, 0)*50);
+        arrowObj.GetComponent<Rigidbody2D>().AddForce(new Vector3(x, y, 0)*600/(Mathf.Sqrt(x*x+y*y)));
     }
 
     void rotateRelativeToPlayer(){

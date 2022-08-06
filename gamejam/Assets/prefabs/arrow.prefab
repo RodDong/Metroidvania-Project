@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5813598070846339779}
   - component: {fileID: 8914711431562228167}
   - component: {fileID: 8105302789505769865}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
