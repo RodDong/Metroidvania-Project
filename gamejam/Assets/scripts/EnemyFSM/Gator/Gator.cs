@@ -62,7 +62,7 @@ public class Gator : MonoBehaviour
         arrowObj = Instantiate(arrow, gameObject.transform.position, arrow_quaternion);
         arrow.layer = LayerMask.NameToLayer("Enemy");
         arrowObj.transform.SetParent(arrowContainer.transform);
-        arrowObj.GetComponent<Rigidbody2D>().AddForce(new Vector3(x, y, 0)*50);
+        arrowObj.GetComponent<Rigidbody2D>().AddForce(new Vector3(x, y, 0)*600/(Mathf.Sqrt(x*x+y*y)));
     }
 
     void rotateRelativeToPlayer(){
