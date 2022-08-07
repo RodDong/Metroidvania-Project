@@ -9,8 +9,11 @@ public class EnemyDamage : EnemyBase
     [SerializeField]
     GameObject player;
     Color c;
-    private void Update() {
-        
+
+    private void Start() {
+        c = this.gameObject.GetComponent<Renderer>().material.color;
+    }
+    private void Update() { 
         ProcessDeath();
     }
 
@@ -21,17 +24,15 @@ public class EnemyDamage : EnemyBase
     }
     
     private void ProcessDamage() { 
-        if(getHP() > 0){
-            c = this.gameObject.GetComponent<Renderer>().material.color;
+        if(this.getHP() > 0){
             this.gameObject.GetComponent<Renderer>().material.SetColor("_Color",new Color(1f,0.6f,0.6f,1f));
             Invoke("resetColor", 0.15f);
         }
         damage(FindObjectOfType<movement>().playerDamage);
-        
     }
 
     private void ProcessDeath() {
-        if (getHP() <= 0) {
+        if (this.getHP() <= 0) {
             if (this.gameObject.tag != "enemy_mouse") {
                 gameObject.GetComponent<Animator>().SetTrigger("death");
             }
@@ -45,6 +46,6 @@ public class EnemyDamage : EnemyBase
     }
 
     private void resetColor(){
-        this.gameObject.GetComponent<Renderer>().material.SetColor("_Color",c);
+        this.gameObject.GetComponent<Renderer>().material.SetColor("_Color", c);
     }
 }
