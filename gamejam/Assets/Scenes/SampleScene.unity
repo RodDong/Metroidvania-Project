@@ -5019,9 +5019,45 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3483702086957211342, guid: 1fef3b6273ff5a147bdd275da09a80d0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -6.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 3483702086957211377, guid: 1fef3b6273ff5a147bdd275da09a80d0, type: 3}
+      propertyPath: m_Size.x
+      value: 10.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 3483702086957211377, guid: 1fef3b6273ff5a147bdd275da09a80d0, type: 3}
+      propertyPath: m_Size.y
+      value: 9.14
+      objectReference: {fileID: 0}
     - target: {fileID: 3483702086957211377, guid: 1fef3b6273ff5a147bdd275da09a80d0, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3483702086957211378, guid: 1fef3b6273ff5a147bdd275da09a80d0, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3483702086957211378, guid: 1fef3b6273ff5a147bdd275da09a80d0, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 10.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 3483702086957211378, guid: 1fef3b6273ff5a147bdd275da09a80d0, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 9.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 3483702086957211378, guid: 1fef3b6273ff5a147bdd275da09a80d0, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 10.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 3483702086957211378, guid: 1fef3b6273ff5a147bdd275da09a80d0, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 9.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 3483702086957211379, guid: 1fef3b6273ff5a147bdd275da09a80d0, type: 3}
+      propertyPath: m_Constraints
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3483702086957211381, guid: 1fef3b6273ff5a147bdd275da09a80d0, type: 3}
       propertyPath: HP

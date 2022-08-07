@@ -22,7 +22,12 @@ public class EnemyDamage : EnemyBase
 
     private void ProcessDeath() {
         if (getHP() <= 0) {
-            Destroy(this.gameObject);
+            gameObject.GetComponent<Animator>().SetTrigger("death");
+            Invoke("destroyEnemy", 1.25f);
         }
+    }
+
+    private void destroyEnemy(){
+        Destroy(this.gameObject);
     }
 }
