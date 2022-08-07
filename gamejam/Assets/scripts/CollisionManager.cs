@@ -9,8 +9,11 @@ public class CollisionManager : MonoBehaviour
         int enemyLayer = LayerMask.NameToLayer("Enemy");
         int projectileLayer = LayerMask.NameToLayer("Projectile");
         int platformLayer = LayerMask.NameToLayer("Platform");
+        int attactLayer = LayerMask.NameToLayer("AttackArea");
+        int detectLayer = LayerMask.NameToLayer("DetectArea");
         Physics2D.IgnoreLayerCollision(enemyLayer, enemyLayer);
         Physics2D.IgnoreLayerCollision(enemyLayer, projectileLayer);
         Physics2D.IgnoreLayerCollision(projectileLayer, platformLayer);
+        Physics2D.IgnoreLayerCollision(attactLayer, detectLayer);
     }
 }
