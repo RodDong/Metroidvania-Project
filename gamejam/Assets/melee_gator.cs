@@ -54,9 +54,6 @@ public class melee_gator : MonoBehaviour
             Invoke("fireSpearCollider", 0.46f);
         }
         animator.SetTrigger("attack");
-
-        
-        
     }
 
     void fireSpearCollider(){

@@ -2317,6 +2317,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 30
+  deathDuration: 2
+  player: {fileID: 1071473489}
 --- !u!1001 &946199382
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3336,6 +3338,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 25
+  deathDuration: 2
+  player: {fileID: 1071473489}
 --- !u!1 &1753965269
 GameObject:
   m_ObjectHideFlags: 0
@@ -3951,6 +3955,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 10
+  deathDuration: 0
+  player: {fileID: 1071473489}
 --- !u!1 &2009947237
 GameObject:
   m_ObjectHideFlags: 0
@@ -5062,6 +5068,10 @@ PrefabInstance:
     - target: {fileID: 3483702086957211381, guid: 1fef3b6273ff5a147bdd275da09a80d0, type: 3}
       propertyPath: HP
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3483702086957211381, guid: 1fef3b6273ff5a147bdd275da09a80d0, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3483702086957211381, guid: 1fef3b6273ff5a147bdd275da09a80d0, type: 3}
       propertyPath: arrowContainer

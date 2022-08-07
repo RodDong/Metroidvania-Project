@@ -85,9 +85,10 @@ public class movement : MonoBehaviour
 
     //Process left mouse click for player attack
     void processAttack() {
-        if(Input.GetMouseButtonDown(0) && !statusVar.isCoolDown){
+        if(Input.GetMouseButtonDown(0) && !statusVar.isCoolDown
+        && !attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("attackAnimation")
+        && !attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("attackAnimation1")) {
             attacking = true;
-            // nextAttck = Time.time + attackRate;
             attackCollider.enabled = true;
             attackArea.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
             Invoke("disableAttackCollider", 0.15f);

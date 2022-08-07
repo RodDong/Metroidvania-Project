@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class EnemyDamage : EnemyBase
 {
+    [SerializeField]
+    float deathDuration;
+    [SerializeField]
+    GameObject player;
     private void Update() {
         
         ProcessDeath();
@@ -16,14 +20,16 @@ public class EnemyDamage : EnemyBase
     }
     
     private void ProcessDamage() {
-        Debug.Log(this.getHP());
         damage(FindObjectOfType<movement>().playerDamage);
     }
 
     private void ProcessDeath() {
         if (getHP() <= 0) {
-            gameObject.GetComponent<Animator>().SetTrigger("death");
-            Invoke("destroyEnemy", 1.25f);
+            if (this.gameObject.tag != "enemy_mouse") {
+                gameObject.GetComponent<Animator>().SetTrigger("death");
+            }
+            Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), player.GetComponent<Collider2D>());
+            Invoke("destroyEnemy", deathDuration);
         }
     }
 
