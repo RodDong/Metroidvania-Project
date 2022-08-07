@@ -23,11 +23,11 @@ AnimationClip:
       value: {fileID: 21300000, guid: f93a89f290fc1774f991642f84ab9237, type: 3}
     - time: 0.1
       value: {fileID: 21300000, guid: f36685886e7d58541be874d4c80c971d, type: 3}
-    - time: 0.18333334
+    - time: 0.2
       value: {fileID: 21300000, guid: f166a9c4b9efabc42a099f272b493e19, type: 3}
     - time: 0.3
       value: {fileID: 21300000, guid: b13a9d22e9796cc42a45d37f18b0e428, type: 3}
-    - time: 0.4
+    - time: 0.38333333
       value: {fileID: 21300000, guid: a6a786647632a8f469dd888087cf6e7a, type: 3}
     - time: 0.48333332
       value: {fileID: 21300000, guid: d6b7a0f4a16a4e24984ba299916e3290, type: 3}
