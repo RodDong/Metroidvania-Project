@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyDamage : EnemyBase
 {
     private void Update() {
+        
         ProcessDeath();
     }
 
@@ -15,6 +16,7 @@ public class EnemyDamage : EnemyBase
     }
     
     private void ProcessDamage() {
+        Debug.Log(this.getHP());
         damage(FindObjectOfType<movement>().playerDamage);
     }
 

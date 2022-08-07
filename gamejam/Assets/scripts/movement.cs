@@ -35,6 +35,7 @@ public class movement : MonoBehaviour
 
         // Initialize player attack animation
         attackAnimation = GameObject.FindGameObjectWithTag("attackAnimator").GetComponent<Animator>();
+        playerDamage = 10;
     }
 
     //Update frames in game
