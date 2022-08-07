@@ -85,6 +85,13 @@ public class movement : MonoBehaviour
 
     //Process left mouse click for player attack
     void processAttack() {
+        if (attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("attackAnimation")) {
+            playerDamage = 10;
+        }
+        if (attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("attackAnimation1")) {
+            playerDamage = 15;
+        }
+
         if(Input.GetMouseButtonDown(0) && !statusVar.isCoolDown
         && !attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("attackAnimation")
         && !attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("attackAnimation1")) {
@@ -92,13 +99,6 @@ public class movement : MonoBehaviour
             attackCollider.enabled = true;
             attackArea.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
             Invoke("disableAttackCollider", 0.15f);
-        }
-
-        if (attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("attackAnimation")) {
-            playerDamage = 10;
-        }
-        if (attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("attackAnimation1")) {
-            playerDamage = 15;
         }
     }
 

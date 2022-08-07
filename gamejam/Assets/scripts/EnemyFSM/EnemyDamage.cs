@@ -8,6 +8,7 @@ public class EnemyDamage : EnemyBase
     float deathDuration;
     [SerializeField]
     GameObject player;
+    Color c;
     private void Update() {
         
         ProcessDeath();
@@ -19,8 +20,14 @@ public class EnemyDamage : EnemyBase
         }
     }
     
-    private void ProcessDamage() {
+    private void ProcessDamage() { 
+        if(getHP() > 0){
+            c = this.gameObject.GetComponent<Renderer>().material.color;
+            this.gameObject.GetComponent<Renderer>().material.SetColor("_Color",new Color(1f,0.6f,0.6f,1f));
+            Invoke("resetColor", 0.15f);
+        }
         damage(FindObjectOfType<movement>().playerDamage);
+        
     }
 
     private void ProcessDeath() {
@@ -35,5 +42,9 @@ public class EnemyDamage : EnemyBase
 
     private void destroyEnemy(){
         Destroy(this.gameObject);
+    }
+
+    private void resetColor(){
+        this.gameObject.GetComponent<Renderer>().material.SetColor("_Color",c);
     }
 }
