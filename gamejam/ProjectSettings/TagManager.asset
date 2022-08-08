@@ -27,7 +27,7 @@ TagManager:
   - Projectile
   - DetectArea
   - AttackArea
-  - 
+  - PlatformWithoutPlayerCollision
   - 
   - 
   - 

@@ -13,7 +13,7 @@ public class movement : MonoBehaviour
     public bool canJump = false;
     public int playerDamage;
     private float nextAttck;
-    float jump_init_v = 20f;
+    float jump_init_v = 23f;
     //attack vars
     public bool attacking = false;
     Collider2D attackCollider;
