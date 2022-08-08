@@ -23,6 +23,8 @@ public class Health : MonoBehaviour
     }
 
     void TakeDamage() {
+        // update health
+        health -= 1;
         // update hearts
         for (int i = 0; i < hearts.Length; i++) {
             if (hearts[i].sprite.name == "heart_half") {
@@ -35,6 +37,9 @@ public class Health : MonoBehaviour
             }
         }
 
+        // if player died, skip immunity, return to death screen
+        if (health == 0) {}
+
         // give player [x] seconds of immunity and player can pass through enemy
         int playerLayer = LayerMask.NameToLayer("Player");
         int enemyLayer = LayerMask.NameToLayer("Enemy");
@@ -42,6 +47,19 @@ public class Health : MonoBehaviour
         Physics2D.IgnoreLayerCollision(playerLayer, enemyLayer);
         Physics2D.IgnoreLayerCollision(playerLayer, projectileLayer);
         Invoke("immunityEnd", immunityCooldown);
+    }
+
+    public void Recover() {
+        for (int i = hearts.Length - 1; i >= 0; i--) {
+            if (hearts[i].sprite.name == "heart_empty") {
+                hearts[i].sprite = halfHeart;
+                break;
+            }
+            if (hearts[i].sprite.name == "heart_half") {
+                hearts[i].sprite = fullHeart;
+                break;
+            }
+        }
     }
 
     void immunityEnd() {
