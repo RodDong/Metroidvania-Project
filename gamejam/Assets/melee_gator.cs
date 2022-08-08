@@ -29,16 +29,6 @@ public class melee_gator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //update isRight relative to player position 
-        if (player.transform.position.x - gameObject.transform.position.x > 0)
-        {
-            isRight = true;
-        }
-        else
-        {
-            isRight = false;
-        }
-
         float distance = Vector3.Distance(player.transform.position, gameObject.transform.position);
         if(distance < attackRange){
             attack();
@@ -46,7 +36,6 @@ public class melee_gator : MonoBehaviour
             Wander();
         }
 
-        rotateRelativeToPlayer();
     }
 
     void attack(){
