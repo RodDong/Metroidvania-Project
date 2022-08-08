@@ -25,9 +25,9 @@ TagManager:
   - Wall
   - Platform
   - Projectile
-  - 
-  - 
-  - 
+  - DetectArea
+  - AttackArea
+  - PlatformWithoutPlayerCollision
   - 
   - 
   - 

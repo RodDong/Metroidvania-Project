@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Gator : MonoBehaviour
 {
-    float attackRange = 50f;
+    float attackRange = 10f;
     bool attackCoolDown = false;
     GameObject player;
     GameObject arrowObj;
