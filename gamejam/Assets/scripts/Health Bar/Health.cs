@@ -50,6 +50,7 @@ public class Health : MonoBehaviour
     }
 
     public void Recover() {
+        Debug.Log(1);
         for (int i = hearts.Length - 1; i >= 0; i--) {
             if (hearts[i].sprite.name == "heart_empty") {
                 hearts[i].sprite = halfHeart;

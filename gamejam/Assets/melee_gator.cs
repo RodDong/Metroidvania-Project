@@ -31,7 +31,6 @@ public class melee_gator : MonoBehaviour
         if(distance < attackRange && SoundDetectArea.GetComponent<EnemyDetection>().hasTarget){
             attack();
         }
-
     }
 
     void attack(){

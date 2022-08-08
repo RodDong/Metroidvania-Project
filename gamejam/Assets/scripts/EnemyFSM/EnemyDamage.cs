@@ -37,6 +37,7 @@ public class EnemyDamage : EnemyBase
                 gameObject.GetComponent<Animator>().SetTrigger("death");
             }
             Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), player.GetComponent<Collider2D>());
+            GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
             Invoke("destroyEnemy", deathDuration);
         }
     }

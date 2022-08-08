@@ -50,7 +50,6 @@ public class EnemyDetection : MonoBehaviour
             hasTarget = true;
             Invoke("loseTarget",3f);
         }
-
     }
 
     void rotateRelativeToPlayer()
