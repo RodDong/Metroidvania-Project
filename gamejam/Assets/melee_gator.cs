@@ -12,10 +12,6 @@ public class melee_gator : MonoBehaviour
     private Animator animator;
 
     //ground detection vars
-    [SerializeField] private float groundDetectDistance;
-    [SerializeField] private Transform frontGroundDetection;
-
-    [SerializeField] private Transform backGroundDetection;
     [SerializeField] GameObject spearCollider;
     [SerializeField] GameObject VisionDetectArea;
     [SerializeField] GameObject SoundDetectArea;
@@ -25,7 +21,6 @@ public class melee_gator : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("player");
         animator = gameObject.GetComponent<Animator>();
         isRight = false;
-        //Time.timeScale = 0.2f;
     }
 
     // Update is called once per frames

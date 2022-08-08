@@ -12,9 +12,10 @@ public class EnemyDetection : MonoBehaviour
     [SerializeField] private Transform backGroundDetection;
     public Vector3 position;
     float offset = 3f;
-    private float wanderSpeed = 5;
+    private float wanderSpeed = 5f;
     bool isRight;
     public bool hasTarget;
+    public bool isFacingRight => Mathf.Abs(transform.eulerAngles.y) < 90;
     void Start()
     {
         isRight = true;
@@ -41,9 +42,6 @@ public class EnemyDetection : MonoBehaviour
         if(!hasTarget && !enemy.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("melee_attack")){
             Wander();
         }
-        
-        
-        
     }
 
     private void OnTriggerStay2D(Collider2D other) {
@@ -74,26 +72,24 @@ public class EnemyDetection : MonoBehaviour
     public void Wander()
     {
         enemy.transform.Translate(Vector2.left * wanderSpeed * Time.deltaTime);
-
-        Collider2D isFrontGround = Physics2D.Raycast(frontGroundDetection.position, Vector2.down, groundDetectDistance).collider,
-                   isBackGround = Physics2D.Raycast(backGroundDetection.position, Vector2.down, groundDetectDistance).collider;
-
-
+        int groundMask = 1 << 8;
+        Collider2D isFrontGround = Physics2D.Raycast(frontGroundDetection.position, Vector2.down, groundDetectDistance, groundMask).collider,
+                   isBackGround = Physics2D.Raycast(backGroundDetection.position, Vector2.down, groundDetectDistance, groundMask).collider;
         if (isFrontGround == null)
         {
             Flip();
-        } 
+        }
     }
 
     private void Flip()
     {
-        if (isRight)
+        if (isFacingRight)
         {
-            transform.eulerAngles = new Vector3(0, -180, 0);
+            enemy.transform.eulerAngles = new Vector3(0, -180, 0);
         }
         else
         {
-            transform.eulerAngles = new Vector3(0, 0, 0);
+            enemy.transform.eulerAngles = new Vector3(0, 0, 0);
         }
     }
 
