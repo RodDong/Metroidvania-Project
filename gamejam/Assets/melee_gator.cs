@@ -6,7 +6,7 @@ public class melee_gator : MonoBehaviour
 {
     private bool isRight;
     private float wanderSpeed = 5f;
-    private float attackRange = 4f;
+    private float attackRange = 5f;
 
     GameObject player;
     private Animator animator;
@@ -32,11 +32,9 @@ public class melee_gator : MonoBehaviour
     void Update()
     {
 
-        float distance = Vector3.Distance(SoundDetectArea.GetComponent<EnemyDetection>().position, gameObject.transform.position);
+        float distance = Mathf.Abs(SoundDetectArea.GetComponent<EnemyDetection>().position.x - gameObject.transform.position.x);
         if(distance < attackRange && SoundDetectArea.GetComponent<EnemyDetection>().hasTarget){
-            Debug.Log("attack");
             attack();
-            Invoke("deFrost", 1f);
         }
 
     }
@@ -70,7 +68,4 @@ public class melee_gator : MonoBehaviour
         spearCollider.GetComponent<Rigidbody2D>().velocity = new Vector2 (0,0);
     }
 
-    void deFrost(){
-        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
-    }
 }

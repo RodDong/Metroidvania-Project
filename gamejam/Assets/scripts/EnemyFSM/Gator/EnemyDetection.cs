@@ -31,15 +31,14 @@ public class EnemyDetection : MonoBehaviour
         {
             isRight = false;
         }
-        Debug.Log(hasTarget);
         if(hasTarget){
-            rotateRelativeToPlayer();
-            if(Mathf.Abs(enemy.transform.position.x - position.x) > offset){
-                Debug.Log("wander");
+            
+            if(Mathf.Abs(enemy.transform.position.x - position.x) >= offset){
+                rotateRelativeToPlayer();
                 Wander();
             }
         }
-        if(!hasTarget){
+        if(!hasTarget && !enemy.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("melee_attack")){
             Wander();
         }
         
@@ -51,7 +50,7 @@ public class EnemyDetection : MonoBehaviour
         if((other.tag == "player" ||  other.tag == "attackArea") && other.GetComponent<movement>().makeSound){
             position = other.transform.position;
             hasTarget = true;
-            Invoke("loseTarget",1.1f);
+            Invoke("loseTarget",3f);
         }
 
     }
