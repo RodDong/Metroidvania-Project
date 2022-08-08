@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Mouse : EnemyBase
+public class Mouse : MonoBehaviour
 {
     private StateMachine<Mouse> stateMachine;
 
@@ -95,5 +95,4 @@ public class Mouse : EnemyBase
     }
 
     #endregion
-
 }

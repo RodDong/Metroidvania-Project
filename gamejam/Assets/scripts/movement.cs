@@ -11,12 +11,14 @@ public class movement : MonoBehaviour
     public bool isRight;
     //Jump vars
     public bool canJump = false;
+    public int playerDamage;
     private float nextAttck;
     float jump_init_v = 20f;
     //attack vars
     public bool attacking = false;
     Collider2D attackCollider;
     Rigidbody2D rb;
+    Animator attackAnimation;
     
 
     //Game initialization
@@ -30,6 +32,10 @@ public class movement : MonoBehaviour
         //initialize player rigidbody 
         rb = GetComponent<Rigidbody2D>();
         isRight = true;
+
+        // Initialize player attack animation
+        attackAnimation = GameObject.FindGameObjectWithTag("attackAnimator").GetComponent<Animator>();
+        playerDamage = 10;
     }
 
     //Update frames in game
@@ -56,6 +62,7 @@ public class movement : MonoBehaviour
             v.y = jump_init_v;
             canJump = false;
         }
+        
         v.x = Input.GetAxisRaw("Horizontal") * 10f;
         rb.velocity = v;
 
@@ -78,9 +85,17 @@ public class movement : MonoBehaviour
 
     //Process left mouse click for player attack
     void processAttack() {
-        if(Input.GetMouseButtonDown(0) && !statusVar.isCoolDown){
+        if (attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("attackAnimation")) {
+            playerDamage = 10;
+        }
+        if (attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("attackAnimation1")) {
+            playerDamage = 15;
+        }
+
+        if(Input.GetMouseButtonDown(0) && !statusVar.isCoolDown
+        && !attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("attackAnimation")
+        && !attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("attackAnimation1")) {
             attacking = true;
-            // nextAttck = Time.time + attackRate;
             attackCollider.enabled = true;
             attackArea.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
             Invoke("disableAttackCollider", 0.15f);
