@@ -19,10 +19,10 @@ public class DustTrailVFX : MonoBehaviour
         Vector2 dustPos = player.transform.position;
         dustPos.y -= player.GetComponent<Collider2D>().bounds.size.y / 2;
         gameObject.transform.position = dustPos;
-        if (player.canJump && PS.isStopped) {
-            PS.Play();
-        } else if (!player.canJump) {
+        if (!player.canJump || player.GetComponent<Rigidbody2D>().velocity == Vector2.zero) {
             PS.Stop();
+        } else if (player.canJump && PS.isStopped) {
+            PS.Play();
         }
     }
 }

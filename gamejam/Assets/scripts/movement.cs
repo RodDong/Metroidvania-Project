@@ -9,11 +9,13 @@ public class movement : MonoBehaviour
 
     public Vector3 position;
     public bool isRight;
+    bool isFalling;
+    public bool makeSound;
     //Jump vars
     public bool canJump = false;
     public int playerDamage;
     private float nextAttck;
-    float jump_init_v = 23f;
+    float jump_init_v = 20f;
     //attack vars
     public bool attacking = false;
     Collider2D attackCollider;
@@ -36,6 +38,10 @@ public class movement : MonoBehaviour
         // Initialize player attack animation
         attackAnimation = GameObject.FindGameObjectWithTag("attackAnimator").GetComponent<Animator>();
         playerDamage = 10;
+
+        //Initialize makeSound
+        isFalling = false;
+        makeSound = false;
     }
 
     //Update frames in game
@@ -45,12 +51,20 @@ public class movement : MonoBehaviour
         rb.freezeRotation = true;
         processInput();
         processAttack();
+        if(rb.velocity.y <-3){
+            isFalling = true;
+        }
     }
 
     //Collision handler for bool canJump
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.tag == "ground" || other.gameObject.tag == "OneWayPlatform") {
             canJump = true;
+            if(isFalling){
+                makeSound = true;
+                isFalling = false;
+                Invoke("disableSound", 0.4f);
+            }
         }
     }
 
@@ -96,6 +110,7 @@ public class movement : MonoBehaviour
         && !attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("attackAnimation")
         && !attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("attackAnimation1")) {
             attacking = true;
+            makeSound = true;
             attackCollider.enabled = true;
             attackArea.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
             Invoke("disableAttackCollider", 0.15f);
@@ -105,5 +120,10 @@ public class movement : MonoBehaviour
     void disableAttackCollider(){
         attackArea.GetComponent<Renderer>().material.SetColor("_Color", Color.blue);
         attackCollider.enabled = false;
+        makeSound = false;
+    }
+
+    void disableSound(){
+        makeSound = false;
     }
 }

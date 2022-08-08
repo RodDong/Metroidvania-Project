@@ -17,6 +17,8 @@ public class melee_gator : MonoBehaviour
 
     [SerializeField] private Transform backGroundDetection;
     [SerializeField] GameObject spearCollider;
+    [SerializeField] GameObject VisionDetectArea;
+    [SerializeField] GameObject SoundDetectArea;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,27 +28,17 @@ public class melee_gator : MonoBehaviour
         //Time.timeScale = 0.2f;
     }
 
-    // Update is called once per frame
+    // Update is called once per frames
     void Update()
     {
-        //update isRight relative to player position 
-        if (player.transform.position.x - gameObject.transform.position.x > 0)
-        {
-            isRight = true;
-        }
-        else
-        {
-            isRight = false;
-        }
 
-        float distance = Vector3.Distance(player.transform.position, gameObject.transform.position);
-        if(distance < attackRange){
+        float distance = Vector3.Distance(SoundDetectArea.GetComponent<EnemyDetection>().position, gameObject.transform.position);
+        if(distance < attackRange && SoundDetectArea.GetComponent<EnemyDetection>().hasTarget){
             attack();
         }else if(!animator.GetCurrentAnimatorStateInfo(0).IsName("melee_attack")){
             Wander();
         }
 
-        rotateRelativeToPlayer();
     }
 
     void attack(){
