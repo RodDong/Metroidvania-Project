@@ -11,7 +11,7 @@ public class EnemyDetection : MonoBehaviour
 
     [SerializeField] private Transform backGroundDetection;
     public Vector3 position;
-    float offset = 0f;
+    float offset = 3f;
     private float wanderSpeed = 5;
     bool isRight;
     public bool hasTarget;
@@ -34,7 +34,7 @@ public class EnemyDetection : MonoBehaviour
         Debug.Log(hasTarget);
         if(hasTarget){
             rotateRelativeToPlayer();
-            if(enemy.transform.position.x - position.x > offset){
+            if(Mathf.Abs(enemy.transform.position.x - position.x) > offset){
                 Debug.Log("wander");
                 Wander();
             }
@@ -51,7 +51,7 @@ public class EnemyDetection : MonoBehaviour
         if((other.tag == "player" ||  other.tag == "attackArea") && other.GetComponent<movement>().makeSound){
             position = other.transform.position;
             hasTarget = true;
-            Invoke("loseTarget",0.8f);
+            Invoke("loseTarget",1.1f);
         }
 
     }

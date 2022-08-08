@@ -36,11 +36,13 @@ public class melee_gator : MonoBehaviour
         if(distance < attackRange && SoundDetectArea.GetComponent<EnemyDetection>().hasTarget){
             Debug.Log("attack");
             attack();
+            Invoke("deFrost", 1f);
         }
 
     }
 
     void attack(){
+        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
         if(!animator.GetCurrentAnimatorStateInfo(0).IsName("melee_attack")){
             Invoke("fireSpearCollider", 0.46f);
         }
@@ -68,4 +70,7 @@ public class melee_gator : MonoBehaviour
         spearCollider.GetComponent<Rigidbody2D>().velocity = new Vector2 (0,0);
     }
 
+    void deFrost(){
+        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+    }
 }
