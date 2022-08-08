@@ -5,8 +5,8 @@ using UnityEngine;
 public class melee_gator : MonoBehaviour
 {
     private bool isRight;
-    private float wanderSpeed = 5;
-    private float attackRange = 4;
+    private float wanderSpeed = 5f;
+    private float attackRange = 4f;
 
     GameObject player;
     private Animator animator;
@@ -34,9 +34,8 @@ public class melee_gator : MonoBehaviour
 
         float distance = Vector3.Distance(SoundDetectArea.GetComponent<EnemyDetection>().position, gameObject.transform.position);
         if(distance < attackRange && SoundDetectArea.GetComponent<EnemyDetection>().hasTarget){
+            Debug.Log("attack");
             attack();
-        }else if(!animator.GetCurrentAnimatorStateInfo(0).IsName("melee_attack")){
-            Wander();
         }
 
     }
@@ -69,41 +68,4 @@ public class melee_gator : MonoBehaviour
         spearCollider.GetComponent<Rigidbody2D>().velocity = new Vector2 (0,0);
     }
 
-    void rotateRelativeToPlayer()
-    {
-        if (isRight)
-        {
-            gameObject.transform.localRotation = Quaternion.Euler(0, 180, 0);
-        }
-        else
-        {
-            gameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
-        }
-    }
-
-    public void Wander()
-    {
-        transform.Translate(Vector2.left * wanderSpeed * Time.deltaTime);
-
-        Collider2D isFrontGround = Physics2D.Raycast(frontGroundDetection.position, Vector2.down, groundDetectDistance).collider,
-                   isBackGround = Physics2D.Raycast(backGroundDetection.position, Vector2.down, groundDetectDistance).collider;
-
-
-        if (isFrontGround == null)
-        {
-            Flip();
-        } 
-    }
-
-    private void Flip()
-    {
-        if (isRight)
-        {
-            transform.eulerAngles = new Vector3(0, -180, 0);
-        }
-        else
-        {
-            transform.eulerAngles = new Vector3(0, 0, 0);
-        }
-    }
 }

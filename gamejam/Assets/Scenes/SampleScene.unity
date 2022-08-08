@@ -2109,7 +2109,6 @@ GameObject:
   - component: {fileID: 622581847}
   - component: {fileID: 622581848}
   - component: {fileID: 622581849}
-  - component: {fileID: 622581850}
   m_Layer: 12
   m_Name: VisionDetectArea
   m_TagString: Untagged
@@ -2287,21 +2286,6 @@ PolygonCollider2D:
       - {x: -1.8399999, y: -2.6599998}
       - {x: -1.76, y: -2.59}
       - {x: -1.51, y: -2.45}
---- !u!114 &622581850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 622581846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e310a118ed9d8aa4fb0f140a696df383, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 1071473489}
-  enemy: {fileID: 833656420}
-  position: {x: 0, y: 0, z: 0}
 --- !u!1 &828464164
 GameObject:
   m_ObjectHideFlags: 0
@@ -3340,7 +3324,6 @@ MonoBehaviour:
   attackArea: {fileID: 186620750}
   position: {x: 0, y: 0, z: 0}
   isRight: 0
-  isFalling: 0
   makeSound: 0
   canJump: 0
   playerDamage: 0
@@ -4581,7 +4564,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1071473489}
   enemy: {fileID: 833656420}
+  groundDetectDistance: 5
+  frontGroundDetection: {fileID: 1233000559}
+  backGroundDetection: {fileID: 202006084}
   position: {x: 0, y: 0, z: 0}
+  hasTarget: 0
 --- !u!58 &1799580325
 CircleCollider2D:
   m_ObjectHideFlags: 0
