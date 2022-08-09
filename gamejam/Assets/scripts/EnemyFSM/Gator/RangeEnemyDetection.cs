@@ -8,7 +8,7 @@ public class RangeEnemyDetection : MonoBehaviour
     [SerializeField] GameObject enemy;
     public Vector3 position;
     float offset = 1f;
-    bool isRight;
+    public bool isRight;
     public bool hasTarget;
     public bool isFacingRight => Mathf.Abs(transform.eulerAngles.y) < 90;
     void Start()
@@ -27,6 +27,9 @@ public class RangeEnemyDetection : MonoBehaviour
         {
             isRight = false;
         }
+
+        Debug.Log(isRight);
+
         if(hasTarget){
             
             if(Mathf.Abs(enemy.transform.position.x - position.x) >= offset){

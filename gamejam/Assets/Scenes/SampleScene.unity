@@ -405,6 +405,7 @@ MonoBehaviour:
   player: {fileID: 1071473489}
   enemy: {fileID: 1716752536}
   position: {x: 0, y: 0, z: 0}
+  isRight: 0
   hasTarget: 0
 --- !u!212 &69680367
 SpriteRenderer:
@@ -519,6 +520,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundDetection: {fileID: 69680364}
+  enemy: {fileID: 1716752536}
   distance: 20
   startAngle: 0
   finishAngle: 70
