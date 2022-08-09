@@ -93,5 +93,4 @@ public class MeleeEnemyDetection : MonoBehaviour
             enemy.transform.eulerAngles = new Vector3(0, 0, 0);
         }
     }
-
 }

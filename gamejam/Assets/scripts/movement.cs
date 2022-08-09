@@ -63,7 +63,7 @@ public class movement : MonoBehaviour
             if(isFalling){
                 makeSound = true;
                 isFalling = false;
-                Invoke("disableSound", 0.4f);
+                Invoke("disableSound", 0.1f);
             }
         }
     }
