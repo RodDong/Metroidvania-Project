@@ -27,8 +27,8 @@ public class melee_gator : MonoBehaviour
     void Update()
     {
 
-        float distance = Mathf.Abs(SoundDetectArea.GetComponent<EnemyDetection>().position.x - gameObject.transform.position.x);
-        if(distance < attackRange && SoundDetectArea.GetComponent<EnemyDetection>().hasTarget){
+        float distance = Mathf.Abs(SoundDetectArea.GetComponent<MeleeEnemyDetection>().position.x - gameObject.transform.position.x);
+        if(distance < attackRange && SoundDetectArea.GetComponent<MeleeEnemyDetection>().hasTarget){
             attack();
         }
     }

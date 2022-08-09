@@ -18,7 +18,6 @@ public class Arrow : MonoBehaviour
         countDown -= Time.deltaTime;
         if (countDown <= 0f)
         {
-            //Destroy(gameObject);
             countDown = destroyTime;
             ObjectPool.Instance.Kill(this.gameObject);
         }
@@ -26,7 +25,6 @@ public class Arrow : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        //Destroy(this.gameObject);
         countDown = destroyTime;
         ObjectPool.Instance.Kill(this.gameObject);
     }
