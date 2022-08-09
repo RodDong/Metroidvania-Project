@@ -5,7 +5,6 @@ using UnityEngine;
 public class melee_gator : MonoBehaviour
 {
     private bool isRight;
-    private float wanderSpeed = 5f;
     private float attackRange = 5f;
 
     GameObject player;
@@ -27,9 +26,13 @@ public class melee_gator : MonoBehaviour
     void Update()
     {
 
-        float distance = Mathf.Abs(SoundDetectArea.GetComponent<MeleeEnemyDetection>().position.x - gameObject.transform.position.x);
-        if(distance < attackRange && SoundDetectArea.GetComponent<MeleeEnemyDetection>().hasTarget){
+        float xDistance = Mathf.Abs(SoundDetectArea.GetComponent<MeleeEnemyDetection>().position.x - gameObject.transform.position.x);
+        float yDistance = SoundDetectArea.GetComponent<MeleeEnemyDetection>().position.y - gameObject.transform.position.y;
+        
+        if(xDistance < attackRange && SoundDetectArea.GetComponent<MeleeEnemyDetection>().hasTarget && yDistance < 7){
             attack();
+        }else if(yDistance > 7 && SoundDetectArea.GetComponent<MeleeEnemyDetection>().hasTarget){
+            gameObject.GetComponent<Animator>().SetTrigger("Idle");
         }
     }
 

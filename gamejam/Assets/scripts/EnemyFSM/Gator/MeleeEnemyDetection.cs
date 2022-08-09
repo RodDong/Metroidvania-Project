@@ -39,9 +39,10 @@ public class MeleeEnemyDetection : MonoBehaviour
                 Wander();
             }
         }
-        if(!hasTarget && !enemy.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("melee_attack")){
+        else if(!hasTarget && !enemy.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("melee_attack")){
             Wander();
         }
+        
     }
 
     private void OnTriggerStay2D(Collider2D other) {
@@ -70,6 +71,7 @@ public class MeleeEnemyDetection : MonoBehaviour
 
     public void Wander()
     {
+        enemy.GetComponent<Animator>().SetTrigger("walk");
         enemy.transform.Translate(Vector2.left * wanderSpeed * Time.deltaTime);
         int groundMask = 1 << 8;
         Collider2D isFrontGround = Physics2D.Raycast(frontGroundDetection.position, Vector2.down, groundDetectDistance, groundMask).collider,

@@ -30,20 +30,26 @@ public class Gator : MonoBehaviour
         xDistance = rangerEnemyDetection.GetComponent<RangeEnemyDetection>().position.x - gameObject.transform.position.x;
         yDistance = rangerEnemyDetection.GetComponent<RangeEnemyDetection>().position.y - gameObject.transform.position.y;
         float phi = xDistance / distance;
-
+        
         //Debug.Log(rangerEnemyDetection.GetComponent<RangeEnemyDetection>().hasTarget);
         if (distance < attackRange && rangerEnemyDetection.GetComponent<RangeEnemyDetection>().hasTarget)
         {
             attackAnimation.SetTrigger("attack");
+            
             if (attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("shooting") && !attackCoolDown)
             {
+                Debug.Log(!attackCoolDown);
                 Invoke("instantiateArrow", 0.35f);
                 attackCoolDown = true;
             }
-            if (attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("idle"))
+            else if (attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("idle"))
             {
+                
                 attackCoolDown = false;
             }
+        }
+        if(attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("returning")){
+            attackAnimation.ResetTrigger("attack");
         }
     }
 
