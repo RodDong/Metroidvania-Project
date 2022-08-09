@@ -34,13 +34,10 @@ public class RangerVisualDetection : MonoBehaviour
         RaycastHit2D hit;
         for (float i = startAngle; i < finishAngle; i += increment) {
             targetPos = (Quaternion.Euler(0, 0, i) * Vector2.left).normalized * distance;
-            Debug.Log(enemy.transform.eulerAngles.y);
-            if(Mathf.Abs(enemy.transform.eulerAngles.y)<90 && targetPos.x>0){
-                Debug.Log("Right");
-                targetPos.x*=-1;
-            }else if (Mathf.Abs(enemy.transform.eulerAngles.y)>90 && targetPos.x<0){
-                Debug.Log("Left");
-                targetPos.x*=-1;
+            if(Mathf.Abs(enemy.transform.eulerAngles.y) < 90 && targetPos.x > 0){
+                targetPos.x *= -1;
+            }else if (Mathf.Abs(enemy.transform.eulerAngles.y) > 90 && targetPos.x < 0){
+                targetPos.x *= -1;
             }
             targetPos += startPos;
             // TODO: replace player with particle effect

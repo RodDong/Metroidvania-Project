@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemyDamage : EnemyBase
 {
     [SerializeField]
+    GameObject enemyRangerParent;
+    [SerializeField]
     float deathDuration;
     [SerializeField]
     GameObject player;
@@ -37,13 +39,15 @@ public class EnemyDamage : EnemyBase
                 gameObject.GetComponent<Animator>().SetTrigger("death");
             }
             Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), player.GetComponent<Collider2D>());
-            GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
             Invoke("destroyEnemy", deathDuration);
         }
     }
 
     private void destroyEnemy(){
-        Destroy(this.gameObject);
+        foreach (Transform child in enemyRangerParent.transform) {
+            Destroy(child.gameObject);
+        }
+        Destroy(enemyRangerParent.gameObject);
     }
 
     private void resetColor(){

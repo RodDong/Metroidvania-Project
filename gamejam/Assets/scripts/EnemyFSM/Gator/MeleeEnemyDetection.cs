@@ -71,14 +71,16 @@ public class MeleeEnemyDetection : MonoBehaviour
 
     public void Wander()
     {
-        enemy.GetComponent<Animator>().SetTrigger("walk");
-        enemy.transform.Translate(Vector2.left * wanderSpeed * Time.deltaTime);
-        int groundMask = 1 << 8;
-        Collider2D isFrontGround = Physics2D.Raycast(frontGroundDetection.position, Vector2.down, groundDetectDistance, groundMask).collider,
-                   isBackGround = Physics2D.Raycast(backGroundDetection.position, Vector2.down, groundDetectDistance, groundMask).collider;
-        if (isFrontGround == null)
-        {
-            Flip();
+        if (enemy.GetComponent<EnemyDamage>().getHP() > 0) {
+            enemy.GetComponent<Animator>().SetTrigger("walk");
+            enemy.transform.Translate(Vector2.left * wanderSpeed * Time.deltaTime);
+            int groundMask = 1 << 8;
+            Collider2D isFrontGround = Physics2D.Raycast(frontGroundDetection.position, Vector2.down, groundDetectDistance, groundMask).collider,
+                    isBackGround = Physics2D.Raycast(backGroundDetection.position, Vector2.down, groundDetectDistance, groundMask).collider;
+            if (isFrontGround == null)
+            {
+                Flip();
+            }
         }
     }
 
