@@ -28,8 +28,6 @@ public class RangeEnemyDetection : MonoBehaviour
             isRight = false;
         }
 
-        Debug.Log(isRight);
-
         if(hasTarget){
             
             if(Mathf.Abs(enemy.transform.position.x - position.x) >= offset){
