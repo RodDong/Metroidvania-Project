@@ -106,7 +106,8 @@ public class movement : MonoBehaviour
             playerDamage = 15;
         }
 
-        if(Input.GetMouseButtonDown(0) && !statusVar.isCoolDown
+        if(Input.GetMouseButtonDown(0) && !attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("coolDown") 
+        && !attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("coolDown1")
         && !attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("attackAnimation")
         && !attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("attackAnimation1")) {
             Debug.Log(playerDamage);
