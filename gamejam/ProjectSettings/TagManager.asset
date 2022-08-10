@@ -12,6 +12,8 @@ TagManager:
   - enemy_mouse
   - OneWayPlatform
   - attackAnimator
+  - VisualDetectArea
+  - SoundDetectArea
   layers:
   - Default
   - TransparentFX
@@ -25,9 +27,9 @@ TagManager:
   - Wall
   - Platform
   - Projectile
-  - DetectArea
   - AttackArea
-  - PlatformWithoutPlayerCollision
+  - DetectArea
+  - 
   - 
   - 
   - 

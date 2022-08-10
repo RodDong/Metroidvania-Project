@@ -9,7 +9,7 @@ public class movement : MonoBehaviour
 
     public Vector3 position;
     public bool isRight;
-    bool isFalling;
+    public bool isFalling;
     public bool makeSound;
     //Jump vars
     public bool canJump = false;
@@ -51,7 +51,7 @@ public class movement : MonoBehaviour
         rb.freezeRotation = true;
         processInput();
         processAttack();
-        if(rb.velocity.y <-3){
+        if(rb.velocity.y <0){
             isFalling = true;
         }
     }
@@ -63,7 +63,7 @@ public class movement : MonoBehaviour
             if(isFalling){
                 makeSound = true;
                 isFalling = false;
-                Invoke("disableSound", 0.1f);
+                Invoke("disableSound", 0.4f);
             }
         }
     }
