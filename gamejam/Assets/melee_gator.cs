@@ -5,40 +5,39 @@ using UnityEngine;
 public class melee_gator : MonoBehaviour
 {
     private bool isRight;
-    private float wanderSpeed = 5;
-    private float attackRange = 4;
+    private float attackRange = 5f;
 
     GameObject player;
     private Animator animator;
 
     //ground detection vars
-    [SerializeField] private float groundDetectDistance;
-    [SerializeField] private Transform frontGroundDetection;
-
-    [SerializeField] private Transform backGroundDetection;
     [SerializeField] GameObject spearCollider;
+    [SerializeField] GameObject VisionDetectArea;
+    [SerializeField] GameObject SoundDetectArea;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("player");
         animator = gameObject.GetComponent<Animator>();
         isRight = false;
-        //Time.timeScale = 0.2f;
     }
 
-    // Update is called once per frame
+    // Update is called once per frames
     void Update()
     {
-        float distance = Vector3.Distance(player.transform.position, gameObject.transform.position);
-        if(distance < attackRange){
-            attack();
-        }else if(!animator.GetCurrentAnimatorStateInfo(0).IsName("melee_attack")){
-            Wander();
-        }
 
+        float xDistance = Mathf.Abs(SoundDetectArea.GetComponent<MeleeEnemyDetection>().position.x - gameObject.transform.position.x);
+        float yDistance = SoundDetectArea.GetComponent<MeleeEnemyDetection>().position.y - gameObject.transform.position.y;
+        
+        if(xDistance < attackRange && SoundDetectArea.GetComponent<MeleeEnemyDetection>().hasTarget && yDistance < 7){
+            attack();
+        }else if(yDistance > 7 && SoundDetectArea.GetComponent<MeleeEnemyDetection>().hasTarget){
+            gameObject.GetComponent<Animator>().SetTrigger("Idle");
+        }
     }
 
     void attack(){
+        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
         if(!animator.GetCurrentAnimatorStateInfo(0).IsName("melee_attack")){
             Invoke("fireSpearCollider", 0.46f);
         }
@@ -66,41 +65,4 @@ public class melee_gator : MonoBehaviour
         spearCollider.GetComponent<Rigidbody2D>().velocity = new Vector2 (0,0);
     }
 
-    void rotateRelativeToPlayer()
-    {
-        if (isRight)
-        {
-            gameObject.transform.localRotation = Quaternion.Euler(0, 180, 0);
-        }
-        else
-        {
-            gameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
-        }
-    }
-
-    public void Wander()
-    {
-        transform.Translate(Vector2.left * wanderSpeed * Time.deltaTime);
-
-        Collider2D isFrontGround = Physics2D.Raycast(frontGroundDetection.position, Vector2.down, groundDetectDistance).collider,
-                   isBackGround = Physics2D.Raycast(backGroundDetection.position, Vector2.down, groundDetectDistance).collider;
-
-
-        if (isFrontGround == null)
-        {
-            Flip();
-        } 
-    }
-
-    private void Flip()
-    {
-        if (isRight)
-        {
-            transform.eulerAngles = new Vector3(0, -180, 0);
-        }
-        else
-        {
-            transform.eulerAngles = new Vector3(0, 0, 0);
-        }
-    }
 }

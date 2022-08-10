@@ -9,11 +9,11 @@ public class movement : MonoBehaviour
 
     public Vector3 position;
     public bool isRight;
-    public bool isFalling;
+    bool isFalling;
     public bool makeSound;
     //Jump vars
     public bool canJump = false;
-    public int playerDamage;
+    [HideInInspector]public int playerDamage;
     private float nextAttck;
     float jump_init_v = 20f;
     //attack vars
@@ -51,7 +51,7 @@ public class movement : MonoBehaviour
         rb.freezeRotation = true;
         processInput();
         processAttack();
-        if(rb.velocity.y <0){
+        if(rb.velocity.y <-3){
             isFalling = true;
         }
     }
@@ -63,7 +63,7 @@ public class movement : MonoBehaviour
             if(isFalling){
                 makeSound = true;
                 isFalling = false;
-                Invoke("disableSound", 0.4f);
+                Invoke("disableSound", 0.1f);
             }
         }
     }
@@ -99,16 +99,17 @@ public class movement : MonoBehaviour
 
     //Process left mouse click for player attack
     void processAttack() {
-        if (attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("attackAnimation")) {
+        if (attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("coolDown") || attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("coolDown1")) {
             playerDamage = 10;
         }
-        if (attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("attackAnimation1")) {
+        if (attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("Transition1")) {
             playerDamage = 15;
         }
 
         if(Input.GetMouseButtonDown(0) && !statusVar.isCoolDown
         && !attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("attackAnimation")
         && !attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("attackAnimation1")) {
+            Debug.Log(playerDamage);
             attacking = true;
             makeSound = true;
             attackCollider.enabled = true;

@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemyDamage : EnemyBase
 {
     [SerializeField]
+    GameObject enemyParent;
+    [SerializeField]
     float deathDuration;
     [SerializeField]
     GameObject player;
@@ -28,7 +30,7 @@ public class EnemyDamage : EnemyBase
             this.gameObject.GetComponent<Renderer>().material.SetColor("_Color",new Color(1f,0.6f,0.6f,1f));
             Invoke("resetColor", 0.15f);
         }
-        damage(FindObjectOfType<movement>().playerDamage);
+        damage(player.GetComponent<movement>().playerDamage);
     }
 
     private void ProcessDeath() {
@@ -42,7 +44,10 @@ public class EnemyDamage : EnemyBase
     }
 
     private void destroyEnemy(){
-        Destroy(this.gameObject);
+        foreach (Transform child in enemyParent.transform) {
+            Destroy(child.gameObject);
+        }
+        Destroy(enemyParent.gameObject);
     }
 
     private void resetColor(){
