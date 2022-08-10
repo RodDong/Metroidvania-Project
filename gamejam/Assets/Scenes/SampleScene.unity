@@ -2597,7 +2597,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 30
-  enemyRangerParent: {fileID: 833656420}
+  enemyParent: {fileID: 833656420}
   deathDuration: 2
   player: {fileID: 1071473489}
 --- !u!60 &833656429
@@ -3320,7 +3320,7 @@ MonoBehaviour:
   isRight: 0
   makeSound: 0
   canJump: 0
-  playerDamage: 0
+  playerDamage: 10
   attacking: 0
 --- !u!4 &1453003880 stripped
 Transform:
@@ -3802,7 +3802,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 25
-  enemyRangerParent: {fileID: 1513139376}
+  enemyParent: {fileID: 1513139376}
   deathDuration: 2
   player: {fileID: 1071473489}
 --- !u!60 &1716752566
@@ -4743,7 +4743,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 10
-  enemyRangerParent: {fileID: 0}
+  enemyParent: {fileID: 1962646459}
   deathDuration: 0.15
   player: {fileID: 1071473489}
 --- !u!60 &1962646471
