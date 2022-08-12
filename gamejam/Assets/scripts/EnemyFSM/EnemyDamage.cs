@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyDamage : EnemyBase
 {
     [SerializeField]
-    GameObject enemyRangerParent;
+    GameObject enemyParent;
     [SerializeField]
     float deathDuration;
     [SerializeField]
@@ -44,10 +44,10 @@ public class EnemyDamage : EnemyBase
     }
 
     private void destroyEnemy(){
-        foreach (Transform child in enemyRangerParent.transform) {
+        foreach (Transform child in enemyParent.transform) {
             Destroy(child.gameObject);
         }
-        Destroy(enemyRangerParent.gameObject);
+        Destroy(enemyParent.gameObject);
     }
 
     private void resetColor(){
