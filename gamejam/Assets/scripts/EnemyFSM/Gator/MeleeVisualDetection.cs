@@ -18,9 +18,9 @@ public class MeleeVisualDetection : MonoBehaviour
     private void Update() {
         // wtf
         if (soundDetection.GetComponent<MeleeEnemyDetection>().isFacingRight) {
-            direction = -1;
-        } else {
             direction = 1;
+        } else {
+            direction = -1;
         }
 
         RaycastSweep();
