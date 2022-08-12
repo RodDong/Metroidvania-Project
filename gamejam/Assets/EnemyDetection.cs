@@ -2,19 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RangeEnemyDetection : MonoBehaviour
+public class EnemyDetection : MonoBehaviour
 {
     [SerializeField] GameObject player;
     [SerializeField] GameObject enemy;
-    public Vector3 position;
-    float offset = 1f;
-    public bool isRight;
-    public bool hasTarget;
-    public bool isFacingRight => Mathf.Abs(transform.eulerAngles.y) < 90;
+    Vector3 position;
+    bool isRight;
     void Start()
     {
         isRight = true;
-        hasTarget = false;
     }
 
     void Update()
@@ -27,22 +23,14 @@ public class RangeEnemyDetection : MonoBehaviour
         {
             isRight = false;
         }
-
-        if(hasTarget){
-            
-            if(Mathf.Abs(enemy.transform.position.x - position.x) >= offset){
-                rotateRelativeToPlayer();
-            }
-        }
+        rotateRelativeToPlayer();
+        Debug.Log(position);
     }
 
-    private void OnTriggerStay2D(Collider2D other) {
-        if((other.tag == "player" ||  other.tag == "attackArea") && other.GetComponent<movement>().makeSound){
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.tag == "player" ||  other.tag == "attackArea" && other.GetComponent<movement>().makeSound){
             position = other.transform.position;
-            hasTarget = true;
-            Invoke("loseTarget",2f);
         }
-
     }
 
     void rotateRelativeToPlayer()
@@ -56,10 +44,5 @@ public class RangeEnemyDetection : MonoBehaviour
             enemy.transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
     }
-
-    void loseTarget(){
-        hasTarget = false;
-    }
-
 
 }

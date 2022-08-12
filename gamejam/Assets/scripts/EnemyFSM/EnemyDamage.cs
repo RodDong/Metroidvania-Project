@@ -25,7 +25,7 @@ public class EnemyDamage : EnemyBase
         }
     }
     
-    private void ProcessDamage() { 
+    private void ProcessDamage() {
         if(this.getHP() > 0){
             this.gameObject.GetComponent<Renderer>().material.SetColor("_Color",new Color(1f,0.6f,0.6f,1f));
             Invoke("resetColor", 0.15f);
@@ -53,4 +53,6 @@ public class EnemyDamage : EnemyBase
     private void resetColor(){
         this.gameObject.GetComponent<Renderer>().material.SetColor("_Color", c);
     }
+
+    
 }
