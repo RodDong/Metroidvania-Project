@@ -5,7 +5,7 @@ using UnityEngine;
 public class camerascript : MonoBehaviour
 {
     Vector3 offset = new Vector3(0f, 0f, -10f);
-    float smoothTime = 1f;
+    float smoothTime = 0.5f;
     float verticalPanDistance = 10f;
     Vector3 velocity = Vector3.zero;
     [SerializeField] Transform target;

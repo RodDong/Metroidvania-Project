@@ -18,7 +18,6 @@ public class MeleeEnemyDetection : MonoBehaviour
     public bool isFacingRight => Mathf.Abs(transform.eulerAngles.y) < 90;
     void Start()
     {
-        isRight = true;
         hasTarget = false;
     }
 
@@ -32,6 +31,7 @@ public class MeleeEnemyDetection : MonoBehaviour
         {
             isRight = false;
         }
+
         if(hasTarget){
             
             if(Mathf.Abs(enemy.transform.position.x - position.x) >= offset){
