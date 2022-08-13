@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Gator : MonoBehaviour
 {
-    float attackRange = 10f;
+    float attackRange = 30f;
     bool attackCoolDown = false;
     GameObject player;
     GameObject arrowObj;
@@ -13,7 +13,6 @@ public class Gator : MonoBehaviour
     private float xDistance;
     private float yDistance;
     [SerializeField] GameObject arrow;
-    [SerializeField] GameObject arrowContainer;
     [SerializeField] GameObject rangerEnemyDetection;
 
     // Start is called before the first frame update
@@ -30,10 +29,11 @@ public class Gator : MonoBehaviour
         xDistance = rangerEnemyDetection.GetComponent<RangeEnemyDetection>().position.x - gameObject.transform.position.x;
         yDistance = rangerEnemyDetection.GetComponent<RangeEnemyDetection>().position.y - gameObject.transform.position.y;
         float phi = xDistance / distance;
-        
-        //Debug.Log(rangerEnemyDetection.GetComponent<RangeEnemyDetection>().hasTarget);
+        Debug.Log(distance);
+
         if (distance < attackRange && rangerEnemyDetection.GetComponent<RangeEnemyDetection>().hasTarget)
         {
+
             attackAnimation.SetTrigger("attack");
             
             if (attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("shooting") && !attackCoolDown)
@@ -55,7 +55,7 @@ public class Gator : MonoBehaviour
     void instantiateArrow()
     {
         float arrow_rotation = Mathf.Atan(yDistance / xDistance) * Mathf.Rad2Deg;
-        if (rangerEnemyDetection.GetComponent<RangeEnemyDetection>().isFacingRight)
+        if (rangerEnemyDetection.GetComponent<RangeEnemyDetection>().isRight)
         {
             arrow_rotation += 180f;
         }

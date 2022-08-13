@@ -11,7 +11,7 @@ public class MeleeEnemyDetection : MonoBehaviour
 
     [SerializeField] private Transform backGroundDetection;
     public Vector3 position;
-    float offset = 3f;
+    float offset = 2f;
     private float wanderSpeed = 5f;
     bool isRight;
     public bool hasTarget;
@@ -40,6 +40,7 @@ public class MeleeEnemyDetection : MonoBehaviour
             }
         }
         else if(!hasTarget && !enemy.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("melee_attack")){
+            
             Wander();
         }
         

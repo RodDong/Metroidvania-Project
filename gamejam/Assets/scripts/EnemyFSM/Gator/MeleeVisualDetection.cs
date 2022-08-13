@@ -6,6 +6,8 @@ public class MeleeVisualDetection : MonoBehaviour
 {
     [SerializeField]
     GameObject soundDetection;
+    [SerializeField]
+    GameObject playerDustTrail;
     public float distance = 20f;
     public float startAngle = -30f;
     public float finishAngle = 30f;
@@ -18,9 +20,9 @@ public class MeleeVisualDetection : MonoBehaviour
     private void Update() {
         // wtf
         if (soundDetection.GetComponent<MeleeEnemyDetection>().isFacingRight) {
-            direction = 1;
-        } else {
             direction = -1;
+        } else {
+            direction = 1;
         }
 
         RaycastSweep();
@@ -37,10 +39,10 @@ public class MeleeVisualDetection : MonoBehaviour
             targetPos = (Quaternion.Euler(0, 0, i) * Vector2.right * direction).normalized * distance + startPos;
             // TODO: replace player with particle effect
             hit = Physics2D.Linecast(startPos, targetPos, 1 << LayerMask.NameToLayer("Player"));
-            if (hit) {
+            if (hit && playerDustTrail.GetComponent<DustTrailVFX>().playing) {
                 MeleeEnemyDetection detection = soundDetection.GetComponent<MeleeEnemyDetection>();
                 if (!detection.hasTarget) {
-                    soundDetection.GetComponent<MeleeEnemyDetection>().position = hit.transform.position;
+                    soundDetection.GetComponent<MeleeEnemyDetection>().position= new Vector3(hit.transform.position.x + 10, hit.transform.position.y, 0);
                     detection.hasTarget = true;
                     Invoke("loseTarget",3f);
                 }

@@ -110,7 +110,6 @@ public class movement : MonoBehaviour
         && !attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("coolDown1")
         && !attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("attackAnimation")
         && !attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("attackAnimation1")) {
-            Debug.Log(playerDamage);
             attacking = true;
             makeSound = true;
             attackCollider.enabled = true;

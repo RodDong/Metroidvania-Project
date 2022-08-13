@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class melee_gator : MonoBehaviour
 {
-    private bool isRight;
     private float attackRange = 5f;
 
     GameObject player;
@@ -17,9 +16,9 @@ public class melee_gator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        resetSpearCollider();
         player = GameObject.FindGameObjectWithTag("player");
         animator = gameObject.GetComponent<Animator>();
-        isRight = false;
     }
 
     // Update is called once per frames
@@ -46,10 +45,10 @@ public class melee_gator : MonoBehaviour
 
     void fireSpearCollider(){
         spearCollider.GetComponent<BoxCollider2D>().enabled = true;
-        if(!isRight){
-            spearCollider.GetComponent<Rigidbody2D>().AddForce(Vector3.left*5f, ForceMode2D.Impulse);
+        if(SoundDetectArea.GetComponent<MeleeEnemyDetection>().isFacingRight){
+            spearCollider.GetComponent<Rigidbody2D>().AddForce(Vector2.left*5f, ForceMode2D.Impulse);
         }else{
-            spearCollider.GetComponent<Rigidbody2D>().AddForce(Vector3.right*5f, ForceMode2D.Impulse);
+            spearCollider.GetComponent<Rigidbody2D>().AddForce(Vector2.right*5f, ForceMode2D.Impulse);
         }
         Invoke("stopSpearCollider", 0.3f);
         Invoke("resetSpearCollider", 0.54f);

@@ -8,6 +8,8 @@ public class RangerVisualDetection : MonoBehaviour
     GameObject soundDetection;
     [SerializeField]
     GameObject enemy;
+    [SerializeField]
+    GameObject playerDustTrial;
     public float distance = 20f;
     public float startAngle;
     public float finishAngle;
@@ -42,7 +44,8 @@ public class RangerVisualDetection : MonoBehaviour
             targetPos += startPos;
             // TODO: replace player with particle effect
             hit = Physics2D.Linecast(startPos, targetPos, 1 << LayerMask.NameToLayer("Player"));
-            if (hit) {
+            if (hit && playerDustTrial.GetComponent<DustTrailVFX>().playing) {
+                
                 RangeEnemyDetection detection = soundDetection.GetComponent<RangeEnemyDetection>();
                 if (!detection.hasTarget) {
                     soundDetection.GetComponent<RangeEnemyDetection>().position = hit.transform.position;
