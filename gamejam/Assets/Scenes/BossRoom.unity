@@ -932,7 +932,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -1131,7 +1131,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1525925416}
-  m_LocalRotation: {x: -0, y: -0, z: -0.22229524, w: 0.9749794}
+  m_LocalRotation: {x: -0, y: -0, z: -0.39644605, w: 0.91805804}
   m_LocalPosition: {x: 2.47, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1162,7 +1162,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1919532291}
-  m_LocalRotation: {x: -0, y: -0, z: -0.105829455, w: 0.99438435}
+  m_LocalRotation: {x: -0, y: -0, z: -0.100382045, w: 0.99494904}
   m_LocalPosition: {x: 3.74, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
