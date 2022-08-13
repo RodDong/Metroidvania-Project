@@ -41,7 +41,9 @@ public class MeleeEnemyDetection : MonoBehaviour
         else if(!hasTarget && !enemy.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("melee_attack")){
             Wander();
         }
-        
+        if (hasTarget) {
+            player.GetComponent<PlayerStatus>().beingDetected();
+        }
     }
 
     private void OnTriggerStay2D(Collider2D other) {
