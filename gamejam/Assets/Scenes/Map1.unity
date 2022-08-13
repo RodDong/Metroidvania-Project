@@ -1331,10 +1331,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -12.610067, y: 8.761049}
+    - - {x: -12.477785, y: 20.864914}
       - {x: -12.502161, y: -8.815001}
       - {x: 12.165991, y: -8.882235}
-      - {x: 12.233225, y: 8.613298}
+      - {x: 12.233225, y: 20.915588}
 --- !u!4 &240345808
 Transform:
   m_ObjectHideFlags: 0
@@ -1621,10 +1621,11 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -12.502983, y: 8.84}
+    - - {x: -12.421648, y: 21.184978}
       - {x: -12.502983, y: -8.84}
+      - {x: 12.039125, y: -8.7864685}
       - {x: 12.394368, y: -8.785693}
-      - {x: 12.494584, y: 8.84}
+      - {x: 12.331914, y: 21.2029}
 --- !u!114 &280646809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1980,10 +1981,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -12.451851, y: 8.886039}
+    - - {x: -12.451851, y: 21.243607}
       - {x: -12.548148, y: -8.837891}
       - {x: 11.959988, y: -8.777889}
-      - {x: 12.142231, y: 8.837891}
+      - {x: 11.875973, y: 21.215303}
 --- !u!114 &331915196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2419,7 +2420,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 521216825}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.8363066, y: -2.81669, z: -20}
+  m_LocalPosition: {x: -1.8199825, y: -2.81665, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2842,7 +2843,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 576035133}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -40.46, y: -3.64, z: 0}
+  m_LocalPosition: {x: -40.4, y: 1.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4995,7 +4996,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1149295349}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -60.58, y: -0.9, z: 0}
+  m_LocalPosition: {x: -60.51, y: 5.57, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5355,7 +5356,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1192702705}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -30.4, y: -0, z: 0}
+  m_LocalPosition: {x: -30.2, y: 6.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5581,10 +5582,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -12.429741, y: 7.6076984}
+    - - {x: -12.429741, y: 20.211739}
       - {x: -12.447197, y: -10.159742}
       - {x: 12.420105, y: -10.212542}
-      - {x: 12.429741, y: 7.5374384}
+      - {x: 12.349464, y: 20.14148}
 --- !u!4 &1282419641
 Transform:
   m_ObjectHideFlags: 0
@@ -5657,10 +5658,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -12.378113, y: 8.776944}
+    - - {x: -12.464035, y: 20.805885}
       - {x: -12.378113, y: -8.233367}
       - {x: 12.409042, y: -8.260065}
-      - {x: 12.497253, y: 8.65779}
+      - {x: 12.497253, y: 20.858576}
 --- !u!4 &1320778955
 Transform:
   m_ObjectHideFlags: 0
@@ -5733,10 +5734,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -12.5, y: 8.68444}
+    - - {x: -12.5, y: 21.330906}
       - {x: -12.5, y: -7.8972673}
       - {x: 12.039658, y: -8.193428}
-      - {x: 11.962921, y: 8.684441}
+      - {x: 11.962921, y: 21.246033}
 --- !u!4 &1377598360
 Transform:
   m_ObjectHideFlags: 0
@@ -6116,10 +6117,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -12.423363, y: 11.439824}
+    - - {x: -12.214272, y: 23.782856}
       - {x: -12.359154, y: -11.0452175}
       - {x: 12.500084, y: -11.0452175}
-      - {x: 12.423355, y: 11.3631}
+      - {x: 12.423355, y: 23.594997}
 --- !u!114 &1472596523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6392,7 +6393,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1518133206}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -50.5, y: -0.91, z: 0}
+  m_LocalPosition: {x: -50.5, y: 5.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6468,7 +6469,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 25, y: 17.675781}
+    oldSize: {x: 25.004885, y: 30.000002}
     newSize: {x: 35.079998, y: 24.802656}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -6526,7 +6527,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TrackedObjectOffset: {x: 0, y: 0, z: 0}
-  m_LookaheadTime: 0.3
+  m_LookaheadTime: 0.5
   m_LookaheadSmoothing: 10
   m_LookaheadIgnoreY: 1
   m_XDamping: 2
@@ -6536,14 +6537,14 @@ MonoBehaviour:
   m_ScreenX: 0.5
   m_ScreenY: 0.5
   m_CameraDistance: 10
-  m_DeadZoneWidth: 0.1
+  m_DeadZoneWidth: 0
   m_DeadZoneHeight: 0.05
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
   m_SoftZoneWidth: 2
   m_SoftZoneHeight: 0.8
   m_BiasX: 0
-  m_BiasY: NaN
+  m_BiasY: 0
   m_CenterOnActivate: 1
   m_GroupFramingMode: 2
   m_AdjustmentMode: 0
@@ -7656,7 +7657,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1788498887}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.1, y: 0, z: 0}
+  m_LocalPosition: {x: -10.1, y: 6.23, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7943,7 +7944,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1870123286}
   - component: {fileID: 1870123287}
-  - component: {fileID: 1870123288}
   m_Layer: 0
   m_Name: map 1-0 background
   m_TagString: Untagged
@@ -7959,7 +7959,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1870123285}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 6.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8007,46 +8007,17 @@ SpriteRenderer:
   m_SortingLayerID: -1793667017
   m_SortingLayer: -2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9ff0eec33bad1b54e9510908e5057690, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 40ac2354cd6c74746ab56f43337a8249, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 25.005966, y: 17.68}
+  m_Size: {x: 25, y: 20.52002}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &1870123288
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1870123285}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 25.005966, y: 17.68}
-    newSize: {x: 25.005966, y: 17.68}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -12.502983, y: 8.84}
-      - {x: -12.502983, y: -8.84}
-      - {x: 12.502983, y: -8.84}
-      - {x: 12.502983, y: 8.84}
 --- !u!1 &1872355545
 GameObject:
   m_ObjectHideFlags: 3
@@ -8424,7 +8395,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1950300989}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -20.37, y: 0.02, z: 0}
+  m_LocalPosition: {x: -20.23, y: 6.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9243,6 +9214,14 @@ PrefabInstance:
     - target: {fileID: 5246572821549866405, guid: 5e040ba0cfc16174282a0d213c3ab016, type: 3}
       propertyPath: m_SizeDelta.y
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5246572821549866405, guid: 5e040ba0cfc16174282a0d213c3ab016, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5246572821549866405, guid: 5e040ba0cfc16174282a0d213c3ab016, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 5246572821549866405, guid: 5e040ba0cfc16174282a0d213c3ab016, type: 3}
       propertyPath: m_LocalPosition.x
