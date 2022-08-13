@@ -49,8 +49,14 @@ TagManager:
   - name: BackGround
     uniqueID: 2501300279
     locked: 0
+  - name: Environment
+    uniqueID: 2905576275
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: FrontEnvironment
+    uniqueID: 2691197681
     locked: 0
   - name: New Layer 1
     uniqueID: 2336982791
@@ -60,7 +66,4 @@ TagManager:
     locked: 0
   - name: New Layer 3
     uniqueID: 1942020537
-    locked: 0
-  - name: New Layer 4
-    uniqueID: 2691197681
     locked: 0

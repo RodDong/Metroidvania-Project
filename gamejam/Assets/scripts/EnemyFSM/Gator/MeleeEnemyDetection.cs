@@ -11,7 +11,7 @@ public class MeleeEnemyDetection : MonoBehaviour
 
     [SerializeField] private Transform backGroundDetection;
     public Vector3 position;
-    float offset = 3f;
+    float offset = 2f;
     private float wanderSpeed = 5f;
     bool isRight;
     public bool hasTarget;
@@ -33,7 +33,6 @@ public class MeleeEnemyDetection : MonoBehaviour
         }
 
         if(hasTarget){
-            
             if(Mathf.Abs(enemy.transform.position.x - position.x) >= offset){
                 rotateRelativeToPlayer();
                 Wander();
