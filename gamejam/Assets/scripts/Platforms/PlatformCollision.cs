@@ -15,7 +15,7 @@ public class PlatformCollision : MonoBehaviour
     {
         if (!player.GetComponent<PlayerOneWayPlatform>().isDropping && 
         player.transform.position.y - player.transform.localScale.y / 2 >
-        gameObject.transform.position.y + gameObject.transform.localScale.y / 2) {
+        gameObject.transform.position.y) {
             gameObject.layer = LayerMask.NameToLayer("Platform");
         } else {
             gameObject.layer = LayerMask.NameToLayer("PlatformWithoutPlayerCollision");

@@ -8,7 +8,7 @@ public class Health : MonoBehaviour
     // health bar elements
     public int health;
     public int numHearts;
-    public Image[] hearts;
+    public List<GameObject> hearts;
     public Sprite fullHeart;
     public Sprite halfHeart;
     public Sprite emptyHeart;
@@ -26,13 +26,14 @@ public class Health : MonoBehaviour
         // update health
         health -= 1;
         // update hearts
-        for (int i = 0; i < hearts.Length; i++) {
-            if (hearts[i].sprite.name == "heart_half") {
-                hearts[i].sprite = emptyHeart;
+        for (int i = hearts.Count - 1; i >= 0; i--) {
+            Animator heartAnimator = hearts[i].GetComponent<Animator>();
+            if (heartAnimator.GetCurrentAnimatorStateInfo(0).IsName("soul_full")) {
+                heartAnimator.SetTrigger("full_hurt");
                 break;
             }
-            if (hearts[i].sprite.name == "heart_full") {
-                hearts[i].sprite = halfHeart;
+            if (heartAnimator.GetCurrentAnimatorStateInfo(0).IsName("soul_break")) {
+                heartAnimator.SetTrigger("break_hurt");
                 break;
             }
         }
@@ -50,13 +51,14 @@ public class Health : MonoBehaviour
     }
 
     public void Recover() {
-        for (int i = hearts.Length - 1; i >= 0; i--) {
-            if (hearts[i].sprite.name == "heart_empty") {
-                hearts[i].sprite = halfHeart;
+        for (int i = hearts.Count - 1; i >= 0; i--) {
+            Animator heartAnimator = hearts[i].GetComponent<Animator>();
+            if (heartAnimator.GetCurrentAnimatorStateInfo(0).IsName("soul_break")) {
+                heartAnimator.SetTrigger("break_recover");
                 break;
             }
-            if (hearts[i].sprite.name == "heart_half") {
-                hearts[i].sprite = fullHeart;
+            if (heartAnimator.GetCurrentAnimatorStateInfo(0).IsName("soul_empty")) {
+                heartAnimator.SetTrigger("empty_recover");
                 break;
             }
         }

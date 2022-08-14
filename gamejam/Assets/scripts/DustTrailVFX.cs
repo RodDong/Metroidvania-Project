@@ -5,8 +5,9 @@ using UnityEngine;
 public class DustTrailVFX : MonoBehaviour
 {
     ParticleSystem PS;
+    public bool playing;
 
-    [SerializeField] movement player;
+    [SerializeField] GameObject player;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,9 +20,11 @@ public class DustTrailVFX : MonoBehaviour
         Vector2 dustPos = player.transform.position;
         dustPos.y -= player.GetComponent<Collider2D>().bounds.size.y / 2;
         gameObject.transform.position = dustPos;
-        if (!player.canJump || player.GetComponent<Rigidbody2D>().velocity == Vector2.zero) {
+        if (!player.GetComponent<movement>().canJump || player.GetComponent<Rigidbody2D>().velocity == Vector2.zero) {
+            playing = false;
             PS.Stop();
-        } else if (player.canJump && PS.isStopped) {
+        } else if (player.GetComponent<movement>() && PS.isStopped) {
+            playing = true;
             PS.Play();
         }
     }
