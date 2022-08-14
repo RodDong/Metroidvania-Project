@@ -10,15 +10,20 @@ public class MeleeEnemyDetection : MonoBehaviour
     [SerializeField] private Transform frontGroundDetection;
 
     [SerializeField] private Transform backGroundDetection;
-    public Vector3 position;
-    float offset = 2f;
-    private float wanderSpeed = 5f;
-    bool isRight;
+    [SerializeField] private GameObject wall;
+    [SerializeField] private int leftWall;
+    [SerializeField] private int rightWall;
     public bool hasTarget;
     public bool isFacingRight => Mathf.Abs(transform.eulerAngles.y) < 90;
+    public Vector3 position;
+    private float wanderSpeed = 5f;
+    private WallList wallList;
+    float offset = 2f;
+    bool isRight;
     void Start()
     {
         hasTarget = false;
+        wallList = wall.GetComponent<WallList>();
     }
 
     void Update()
@@ -46,7 +51,8 @@ public class MeleeEnemyDetection : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D other) {
+    private void OnTriggerStay2D(Collider2D other)
+    {
         if((other.tag == "player" ||  other.tag == "attackArea") && other.GetComponent<movement>().makeSound){
             position = other.transform.position;
             hasTarget = true;
@@ -66,7 +72,8 @@ public class MeleeEnemyDetection : MonoBehaviour
         }
     }
 
-    void loseTarget(){
+    void loseTarget()
+    {
         hasTarget = false;
     }
 
@@ -76,10 +83,18 @@ public class MeleeEnemyDetection : MonoBehaviour
             enemy.GetComponent<Animator>().SetTrigger("walk");
             enemy.transform.Translate(Vector2.left * wanderSpeed * Time.deltaTime);
             int groundMask = 1 << 8;
-            Collider2D isFrontGround = Physics2D.Raycast(frontGroundDetection.position, Vector2.down, groundDetectDistance, groundMask).collider,
-                    isBackGround = Physics2D.Raycast(backGroundDetection.position, Vector2.down, groundDetectDistance, groundMask).collider;
+            int platformMask = 1 << 10;
+            int noCollisionPlatformMask = 1 << 14;
+            Collider2D isFrontGround = Physics2D.Raycast(frontGroundDetection.position, Vector2.down, groundDetectDistance, groundMask | platformMask | noCollisionPlatformMask).collider,
+                    isBackGround = Physics2D.Raycast(backGroundDetection.position, Vector2.down, groundDetectDistance, groundMask | platformMask | noCollisionPlatformMask).collider;
             if (isFrontGround == null)
             {
+                Flip();
+            }
+            if (enemy.transform.position.x < wallList.wallPosLists[leftWall]) {
+                Flip();
+            }
+            if (enemy.transform.position.x > wallList.wallPosLists[rightWall]) {
                 Flip();
             }
         }
