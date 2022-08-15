@@ -116,7 +116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   enemy: {fileID: 1052367050608436482}
-  groundDetectDistance: 5
+  groundDetectDistance: 2
   frontGroundDetection: {fileID: 1052367050461801225}
   backGroundDetection: {fileID: 1052367051624918306}
   position: {x: 0, y: 0, z: 0}
@@ -698,6 +698,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundDetection: {fileID: 1052367049959184839}
+  playerDustTrail: {fileID: 0}
   distance: 20
   startAngle: -30
   finishAngle: 30

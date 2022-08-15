@@ -10,6 +10,10 @@ public class EnemyBase : MonoBehaviour
     public int getHP() {
         return HP;
     }
+    
+    public void setHP(int val) {
+        HP = val;
+    }
 
     public void damage(int damage) {
         HP -= damage;

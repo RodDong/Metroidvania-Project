@@ -6,6 +6,11 @@ public class PlayerStatus : MonoBehaviour
 {
     [SerializeField] GameObject wall;
     public bool isDetected;
+    private EdgeCollider2D[] wallLists;
+
+    private void Start() {
+        wallLists = wall.GetComponents<EdgeCollider2D>();
+    }
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Q)) {
@@ -15,11 +20,15 @@ public class PlayerStatus : MonoBehaviour
 
     public void beingDetected() {
         isDetected = true;
-        wall.SetActive(true);
+        for (int i = 0; i < wallLists.Length; i++) {
+            wallLists[i].isTrigger = false;
+        }
     }
 
     public void clearArea() {
         isDetected = false;
-        wall.SetActive(false);
+        for (int i = 0; i < wallLists.Length; i++) {
+            wallLists[i].isTrigger = true;
+        }
     }
 }

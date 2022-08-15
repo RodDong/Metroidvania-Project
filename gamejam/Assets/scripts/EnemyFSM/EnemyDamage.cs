@@ -39,20 +39,15 @@ public class EnemyDamage : EnemyBase
                 gameObject.GetComponent<Animator>().SetTrigger("death");
             }
             Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), player.GetComponent<Collider2D>());
-            Invoke("destroyEnemy", deathDuration);
+            Invoke("disableEnemy", deathDuration);
         }
     }
 
-    private void destroyEnemy(){
-        foreach (Transform child in enemyParent.transform) {
-            Destroy(child.gameObject);
-        }
-        Destroy(enemyParent.gameObject);
+    private void disableEnemy(){
+        enemyParent.gameObject.SetActive(false);
     }
 
     private void resetColor(){
         this.gameObject.GetComponent<Renderer>().material.SetColor("_Color", c);
     }
-
-    
 }
