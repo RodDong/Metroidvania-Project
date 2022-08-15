@@ -2,27 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossDetection : MonoBehaviour
+public class BossDetectionJump : MonoBehaviour
 {
+    [SerializeField]
+    GameObject player;
     public Vector3 position;
     public bool hasTarget;
-    // Start is called before the first frame update
     void Start()
     {
         hasTarget = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
         
     }
 
     private void OnTriggerStay2D(Collider2D other) {
-        if((other.tag == "player" ||  other.tag == "attackArea") && other.GetComponent<movement>().makeSound){
+        
+        if((other.tag == "player" ||  other.tag == "attackArea") && player.GetComponent<movement>().makeSound){
+            
             position = other.transform.position;
             hasTarget = true;
-            Invoke("loseTarget",3f);
+            Invoke("loseTarget",5f);
         }
     }
+
+    private void loseTarget(){
+        hasTarget = false;
+    }
+
+    
 }

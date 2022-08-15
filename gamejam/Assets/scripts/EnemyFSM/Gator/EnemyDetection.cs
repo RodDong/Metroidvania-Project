@@ -24,7 +24,6 @@ public class EnemyDetection : MonoBehaviour
             isRight = false;
         }
         rotateRelativeToPlayer();
-        Debug.Log(position);
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
