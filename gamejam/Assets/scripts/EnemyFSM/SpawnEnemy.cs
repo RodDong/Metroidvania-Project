@@ -4,22 +4,35 @@ using UnityEngine;
 
 public class SpawnEnemy : MonoBehaviour
 {
-    // Start is called before the first frame update
     [SerializeField] GameObject enemiesOfScene;
-    void Start()
-    {
-        
+    private List<GameObject> enemyList = new List<GameObject>();
+    private List<int> enemyHPList = new List<int>();
+    private List<Vector3> enemyPosList = new List<Vector3>();
+    private void Start() {
+        for (int i = 0; i < enemiesOfScene.transform.childCount; i++) {
+            GameObject enemy = enemiesOfScene.transform.GetChild(i).gameObject;
+            enemyList.Add(enemy);
+            enemyHPList.Add(enemy.GetComponent<EnemyDamage>().getHP());
+            enemyPosList.Add(enemy.transform.position);
+        }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void Update() {
+        // No enabled child object found, reset enemy health and position
+        if (enemiesOfScene.GetComponentsInChildren<melee_gator>().GetLength(0) == 0) {
+            for (int i = 0; i < enemyList.Count; i++) {
+                enemyList[i].GetComponent<EnemyDamage>().setHP(enemyHPList[i]);
+                enemyList[i].GetComponent<Transform>().position = enemyPosList[i];
+            }
+        }
     }
-
-    void OnTriggerStay2D() {
-        if (!enemiesOfScene.activeSelf) {
-            enemiesOfScene.SetActive(true);
+    private void OnTriggerEnter2D(Collider2D other) {
+        // TODO: reload enemy status
+        if (other.tag == "player") {
+            for (int i = 0; i < enemyList.Count; i++) {
+                if (!enemyList[i].activeSelf) {
+                    enemyList[i].SetActive(true);
+                }
+            }
         }
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class CheckPointSL : MonoBehaviour, IDataManager
 {
     [SerializeField] bool activateSL = false;
+    [SerializeField] GameObject saveMenu;
     public Vector3 playerPosition;
     private bool onFire;
 
@@ -24,11 +25,10 @@ public class CheckPointSL : MonoBehaviour, IDataManager
     {
         playerPosition = gameObject.transform.position;
         if (Input.GetKeyDown(KeyCode.L) && activateSL) {
-            Debug.Log("Press L to load");
             DataManager.instance.LoadGame();
         }
         if (onFire && Input.GetKeyDown(KeyCode.E) && activateSL) {
-            Debug.Log("Bonfire Lit");
+            saveMenu.GetComponent<Animator>().SetTrigger("start");
             DataManager.instance.SaveGame();
         }
     }
