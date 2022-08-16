@@ -59,7 +59,12 @@ public class movement : MonoBehaviour
     //Collision handler for bool canJump
     private void OnCollisionEnter2D(Collision2D other) {
         //update isOnRoad boolean
-        isOnRoad = other.gameObject.tag == "road";
+        if(other.gameObject.tag == "road"){
+            isOnRoad = true;
+        }
+        if(other.gameObject.tag == "ground" || other.gameObject.tag == "OneWayPlatform"){
+            isOnRoad = false;
+        }
 
         //update makeSound and is Falling
         if(other.gameObject.tag == "ground" || other.gameObject.tag == "OneWayPlatform" || other.gameObject.tag == "road") {
