@@ -7,9 +7,10 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool isPaused = false;
     public GameObject pauseMenu;
+    public GameObject deathMenu;
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Escape)) {
+        if (Input.GetKeyDown(KeyCode.Escape) && !deathMenu.activeSelf) {
             if (isPaused) {
                 Resume();
             } else {

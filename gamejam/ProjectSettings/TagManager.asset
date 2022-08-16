@@ -28,7 +28,7 @@ TagManager:
   - DetectArea
   - AttackArea
   - PlatformWithoutPlayerCollision
-  - 
+  - InvisibleWall
   - 
   - 
   - 
