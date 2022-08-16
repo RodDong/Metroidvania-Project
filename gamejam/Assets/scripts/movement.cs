@@ -10,7 +10,7 @@ public class movement : MonoBehaviour
     public Vector3 position;
     public bool isRight;
     bool isFalling;
-    public bool makeSound;
+    public bool makeSound, isOnRoad;
     //Jump vars
     public bool canJump = false;
     [HideInInspector]public int playerDamage;
@@ -58,7 +58,11 @@ public class movement : MonoBehaviour
 
     //Collision handler for bool canJump
     private void OnCollisionEnter2D(Collision2D other) {
-        if(other.gameObject.tag == "ground" || other.gameObject.tag == "OneWayPlatform") {
+        //update isOnRoad boolean
+        isOnRoad = other.gameObject.tag == "road";
+
+        //update makeSound and is Falling
+        if(other.gameObject.tag == "ground" || other.gameObject.tag == "OneWayPlatform" || other.gameObject.tag == "road") {
             canJump = true;
             if(isFalling){
                 makeSound = true;

@@ -18,12 +18,14 @@ public class DustTrailVFX : MonoBehaviour
     void Update()
     {
         Vector2 dustPos = player.transform.position;
+        Debug.Log(player.GetComponent<movement>().isOnRoad);
         dustPos.y -= player.GetComponent<Collider2D>().bounds.size.y / 2;
         gameObject.transform.position = dustPos;
-        if (!player.GetComponent<movement>().canJump || player.GetComponent<Rigidbody2D>().velocity == Vector2.zero) {
+        if (!player.GetComponent<movement>().canJump || player.GetComponent<Rigidbody2D>().velocity == Vector2.zero || player.GetComponent<movement>().isOnRoad) {
             playing = false;
             PS.Stop();
-        } else if (player.GetComponent<movement>() && PS.isStopped) {
+            
+        } else if (PS.isStopped && !player.GetComponent<movement>().isOnRoad) {
             playing = true;
             PS.Play();
         }
