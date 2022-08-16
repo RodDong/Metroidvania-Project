@@ -35,11 +35,13 @@ public class MeleeVisualDetection : MonoBehaviour
         int increment = Mathf.RoundToInt(Mathf.Abs(startAngle - finishAngle) / segments);
 
         RaycastHit2D hit;
+        int playerLayerMask = 1 << LayerMask.NameToLayer("Player");
+        int wallLayerMask = 1 << LayerMask.NameToLayer("InvisibleWall");
         for (float i = startAngle; i < finishAngle; i += increment) {
             targetPos = (Quaternion.Euler(0, 0, i) * Vector2.right * direction).normalized * distance + startPos;
-            // TODO: fix offset
-            hit = Physics2D.Linecast(startPos, targetPos, 1 << LayerMask.NameToLayer("Player"));
-            if (hit && playerDustTrail.GetComponent<DustTrailVFX>().playing) {
+            hit = Physics2D.Linecast(startPos, targetPos, playerLayerMask | wallLayerMask);
+            //TODO: add wall layer
+            if (hit && hit.collider.tag == "player" && playerDustTrail.GetComponent<DustTrailVFX>().playing) {
                 MeleeEnemyDetection detection = soundDetection.GetComponent<MeleeEnemyDetection>();
                 if (!detection.hasTarget) {
                     soundDetection.GetComponent<MeleeEnemyDetection>().position= new Vector3(hit.transform.position.x, hit.transform.position.y, 0);

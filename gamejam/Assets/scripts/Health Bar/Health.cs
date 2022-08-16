@@ -9,12 +9,16 @@ public class Health : MonoBehaviour
     public int health;
     public int numHearts;
     public List<GameObject> hearts;
-    public Sprite fullHeart;
-    public Sprite halfHeart;
-    public Sprite emptyHeart;
-
     // cooldown of immunity after being damaged
     public float immunityCooldown;
+    public GameObject deathMenu;
+    public bool isDead;
+
+    private void Update() {
+        if (health <= 0 && !isDead) {
+            ProcessDeath();
+        }
+    }
 
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy") || other.gameObject.layer == LayerMask.NameToLayer("Projectile")) {
@@ -22,7 +26,13 @@ public class Health : MonoBehaviour
         }
     }
 
-    void TakeDamage() {
+    void ProcessDeath() {
+        isDead = true;
+        deathMenu.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    private void TakeDamage() {
         // update health
         health -= 1;
         // update hearts
