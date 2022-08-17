@@ -671,7 +671,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.9972502, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1827,6 +1827,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesOfScene: {fileID: 398724256}
+  wall: {fileID: 144705162}
+  isDetected: 0
+  isClear: 0
+  isInRoom: 0
 --- !u!1 &248799115
 GameObject:
   m_ObjectHideFlags: 0
@@ -2348,6 +2352,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesOfScene: {fileID: 1957893154}
+  wall: {fileID: 144705162}
+  isDetected: 0
+  isClear: 0
+  isInRoom: 0
 --- !u!1 &344484296
 GameObject:
   m_ObjectHideFlags: 0
@@ -3143,7 +3151,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 521216825}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.8199825, y: -2.81665, z: -20}
+  m_LocalPosition: {x: -0.5032501, y: -2.8529, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7541,6 +7549,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesOfScene: {fileID: 2116835510}
+  wall: {fileID: 144705162}
+  isDetected: 0
+  isClear: 0
+  isInRoom: 0
 --- !u!4 &1282594572 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1052367050608436481, guid: 8d5db6295dc2a714384fdf349264c6b7, type: 3}
@@ -7636,6 +7648,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesOfScene: {fileID: 1100288649}
+  wall: {fileID: 144705162}
+  isDetected: 0
+  isClear: 0
+  isInRoom: 0
 --- !u!1 &1377598358
 GameObject:
   m_ObjectHideFlags: 0
@@ -7726,6 +7742,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesOfScene: {fileID: 708824964}
+  wall: {fileID: 144705162}
+  isDetected: 0
+  isClear: 0
+  isInRoom: 0
 --- !u!1 &1391290096
 GameObject:
   m_ObjectHideFlags: 0
@@ -8108,6 +8128,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesOfScene: {fileID: 1957713140}
+  wall: {fileID: 144705162}
+  isDetected: 0
+  isClear: 0
+  isInRoom: 0
 --- !u!1 &1472967744
 GameObject:
   m_ObjectHideFlags: 0

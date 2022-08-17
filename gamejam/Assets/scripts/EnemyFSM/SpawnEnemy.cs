@@ -24,7 +24,6 @@ public class SpawnEnemy : MonoBehaviour
     }
     private void Update() {
         isDetected = player.GetComponent<PlayerStatus>().isDetected;
-        Debug.Log(enemiesOfScene.GetComponentsInChildren<EnemyDamage>().GetLength(0) + " " + isInRoom + " " + isDetected);
         // No enabled child object found, reset enemy health and position
         if (enemiesOfScene.GetComponentsInChildren<EnemyDamage>().GetLength(0) == 0) {
             isClear = true;
