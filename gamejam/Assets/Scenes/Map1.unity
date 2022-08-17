@@ -908,7 +908,7 @@ EdgeCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 124.5, y: 0}
+  m_Offset: {x: 124.7, y: 0}
   m_EdgeRadius: 0
   m_Points:
   - {x: 12.341318, y: 38}
@@ -930,7 +930,7 @@ EdgeCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 99.5, y: 0}
+  m_Offset: {x: 99.85, y: 0}
   m_EdgeRadius: 0
   m_Points:
   - {x: 12.341318, y: 38}
@@ -1518,7 +1518,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 206412400}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -70, y: 0.9, z: 0}
+  m_LocalPosition: {x: -66.18, y: 0.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1783,8 +1783,8 @@ PolygonCollider2D:
     m_Paths:
     - - {x: -12.477785, y: 20.864914}
       - {x: -12.502161, y: -8.815001}
-      - {x: 12.165991, y: -8.882235}
-      - {x: 12.233225, y: 20.915588}
+      - {x: 11.923353, y: -8.95156}
+      - {x: 11.78261, y: 20.984915}
 --- !u!4 &240345808
 Transform:
   m_ObjectHideFlags: 0
@@ -1827,6 +1827,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesOfScene: {fileID: 398724256}
+  wall: {fileID: 144705162}
+  isDetected: 0
+  isClear: 0
+  isInRoom: 0
 --- !u!1 &248799115
 GameObject:
   m_ObjectHideFlags: 0
@@ -2091,10 +2095,11 @@ PolygonCollider2D:
     m_Paths:
     - - {x: -12.421648, y: 21.184978}
       - {x: -12.502983, y: -8.84}
-      - {x: 12.360337, y: -8.866772}
-      - {x: 13.194662, y: -8.819174}
-      - {x: 13.194662, y: -8.785693}
-      - {x: 12.974338, y: 21.2029}
+      - {x: 11.742759, y: -8.972212}
+      - {x: 12.126545, y: -9.015665}
+      - {x: 12.126207, y: -8.363933}
+      - {x: 12.068102, y: 21.302338}
+      - {x: 11.859514, y: 21.255985}
 --- !u!114 &280646809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2348,6 +2353,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesOfScene: {fileID: 1957893154}
+  wall: {fileID: 144705162}
+  isDetected: 0
+  isClear: 0
+  isInRoom: 0
 --- !u!1 &344484296
 GameObject:
   m_ObjectHideFlags: 0
@@ -3143,7 +3152,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 521216825}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.8199825, y: -2.81665, z: -20}
+  m_LocalPosition: {x: -1.8202028, y: -2.89797, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3519,7 +3528,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 594261422}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -60.59, y: 0.15, z: 0}
+  m_LocalPosition: {x: -67.24, y: 0.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3567,7 +3576,7 @@ SpriteRenderer:
   m_SortingLayerID: -1389391021
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 92d89e9fa42b633429dd63918f51c61f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 761bf4137655bfc49b057a203af34c1d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4581,7 +4590,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 787283210}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -66, y: -3.03, z: 0}
+  m_LocalPosition: {x: -60.49, y: -3.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5369,6 +5378,90 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 949220493}
   m_CullTransparentMesh: 1
+--- !u!1 &950352271
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 950352272}
+  - component: {fileID: 950352273}
+  m_Layer: 0
+  m_Name: bossbones2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &950352272
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950352271}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -29.8, y: 0.9, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1425440578}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &950352273
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950352271}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 66f811a2156fae44d96fc09f4d7fe512, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 9.29, y: 15.59}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &997470875
 GameObject:
   m_ObjectHideFlags: 3
@@ -6407,7 +6500,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1149295349}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -60.51, y: 5.57, z: 0}
+  m_LocalPosition: {x: -49.08, y: 5.59, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6479,7 +6572,7 @@ EdgeCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 11.3, y: 0}
   m_EdgeRadius: 0
   m_Points:
   - {x: 12.475677, y: 15.019596}
@@ -6784,7 +6877,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -5.6774025, y: 0.893555}
+  m_Offset: {x: -5.6774025, y: 0.03643322}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -6795,7 +6888,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 13.662682, y: 9.853254}
+  m_Size: {x: 13.662682, y: 11.567499}
   m_EdgeRadius: 0
 --- !u!212 &1185610821
 SpriteRenderer:
@@ -6916,7 +7009,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -4.024246, y: -0.031938553}
+  m_Offset: {x: -4.416813, y: -0.031938553}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -6927,7 +7020,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 10.964798, y: 0.9361229}
+  m_Size: {x: 11.749931, y: 0.9361229}
   m_EdgeRadius: 0
 --- !u!1 &1192702705
 GameObject:
@@ -7497,8 +7590,8 @@ PolygonCollider2D:
     m_Paths:
     - - {x: -12.429741, y: 20.211739}
       - {x: -12.447197, y: -10.159742}
-      - {x: 12.420105, y: -10.212542}
-      - {x: 12.349464, y: 20.14148}
+      - {x: 12.246788, y: -10.247204}
+      - {x: 12.280136, y: 20.14148}
 --- !u!4 &1282419641
 Transform:
   m_ObjectHideFlags: 0
@@ -7541,6 +7634,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesOfScene: {fileID: 2116835510}
+  wall: {fileID: 144705162}
+  isDetected: 0
+  isClear: 0
+  isInRoom: 0
 --- !u!4 &1282594572 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1052367050608436481, guid: 8d5db6295dc2a714384fdf349264c6b7, type: 3}
@@ -7590,10 +7687,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -12.464035, y: 20.805885}
-      - {x: -12.378113, y: -8.233367}
-      - {x: 12.409042, y: -8.260065}
-      - {x: 12.497253, y: 20.858576}
+    - - {x: -12.193771, y: 21.184252}
+      - {x: -12.2157135, y: -8.233367}
+      - {x: 35.394363, y: -8.163488}
+      - {x: 35.289413, y: 21.05173}
 --- !u!4 &1320778955
 Transform:
   m_ObjectHideFlags: 0
@@ -7636,6 +7733,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesOfScene: {fileID: 1100288649}
+  wall: {fileID: 144705162}
+  isDetected: 0
+  isClear: 0
+  isInRoom: 0
 --- !u!1 &1377598358
 GameObject:
   m_ObjectHideFlags: 0
@@ -7680,8 +7781,8 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -12.5, y: 21.330906}
-      - {x: -12.5, y: -7.8972673}
+    - - {x: -12.300552, y: 21.330906}
+      - {x: -12.329056, y: -7.9542522}
       - {x: 12.039658, y: -8.193428}
       - {x: 11.962921, y: 21.246033}
 --- !u!4 &1377598360
@@ -7726,6 +7827,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesOfScene: {fileID: 708824964}
+  wall: {fileID: 144705162}
+  isDetected: 0
+  isClear: 0
+  isInRoom: 0
 --- !u!1 &1391290096
 GameObject:
   m_ObjectHideFlags: 0
@@ -7753,7 +7858,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1391290096}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -52, y: 0.9, z: 0}
+  m_LocalPosition: {x: -38.63, y: 0.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7888,6 +7993,7 @@ Transform:
   - {fileID: 1811599761}
   - {fileID: 1320778955}
   - {fileID: 690532249}
+  - {fileID: 950352272}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8078,9 +8184,9 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: -12.214272, y: 23.782856}
-      - {x: -12.622261, y: -14.8414955}
-      - {x: 12.391129, y: -14.717473}
-      - {x: 12.423355, y: 23.594997}
+      - {x: -12.377426, y: -14.8414955}
+      - {x: 12.482002, y: -14.848886}
+      - {x: 12.35331, y: 23.62497}
 --- !u!114 &1472596523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8108,6 +8214,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesOfScene: {fileID: 1957713140}
+  wall: {fileID: 144705162}
+  isDetected: 0
+  isClear: 0
+  isInRoom: 0
 --- !u!1 &1472967744
 GameObject:
   m_ObjectHideFlags: 0
@@ -9633,7 +9743,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1727663245}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -60.5, y: -6.88, z: 0}
+  m_LocalPosition: {x: -49, y: -8.29, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9705,18 +9815,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.9056}
+  m_Offset: {x: -0.03262329, y: -0.22320926}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 25, y: 4.23584}
+    oldSize: {x: 47.920002, y: 3.7203517}
     newSize: {x: 35.079998, y: 24.802656}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 25, y: 2.3982997}
+  m_Size: {x: 47.821167, y: 3.7630813}
   m_EdgeRadius: 0
 --- !u!4 &1737649192 stripped
 Transform:
@@ -10170,7 +10280,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1811599760}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -56, y: -3.03, z: 0}
+  m_LocalPosition: {x: -41.7, y: -3.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10279,9 +10389,9 @@ GameObject:
   - component: {fileID: 1831371938}
   - component: {fileID: 1831371940}
   - component: {fileID: 1831371939}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: map1-4 platform3
-  m_TagString: Untagged
+  m_TagString: OneWayPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
