@@ -1,11 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class movement : MonoBehaviour
 {
+    // FSM components
+    private State currentState;
+    public float transition;
+    public float duration;
+    public float coolDown;
     //game Objects
-    [SerializeField] GameObject attackArea;
+    [SerializeField] public GameObject attackArea;
 
     public Vector3 position;
     public bool isRight;
@@ -13,19 +19,17 @@ public class movement : MonoBehaviour
     public bool makeSound, isOnRoad;
     //Jump vars
     public bool canJump = false;
-    [HideInInspector]public int playerDamage;
-    private float nextAttck;
+    [HideInInspector] public int playerDamage;
     float jump_init_v = 20f;
     //attack vars
     public bool attacking = false;
-    Collider2D attackCollider;
+    [HideInInspector] public Collider2D attackCollider;
     Rigidbody2D rb;
-    Animator attackAnimation;
-    
+    [HideInInspector] public Animator attackAnimation;
 
     //Game initialization
     void Start() {
-
+        currentState = new IdleState();
         //initialize AttackArea collider
         attackCollider = attackArea.GetComponent<Collider2D>();
         attackCollider.enabled = false;
@@ -46,6 +50,11 @@ public class movement : MonoBehaviour
 
     //Update frames in game
     void Update() {
+        transition -= Time.deltaTime;
+        duration -= Time.deltaTime;
+        coolDown -= Time.deltaTime;
+        currentState.Execute(this);
+
         attacking = false;
         position = rb.transform.position;
         rb.freezeRotation = true;
@@ -54,6 +63,10 @@ public class movement : MonoBehaviour
         if(rb.velocity.y <-3){
             isFalling = true;
         }
+    }
+
+    public void ChangeState(State state) {
+        currentState = state;
     }
 
     //Collision handler for bool canJump
@@ -114,20 +127,17 @@ public class movement : MonoBehaviour
         if (attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("Transition1")) {
             playerDamage = 15;
         }
-
-        if(Input.GetMouseButtonDown(0) && !attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("coolDown") 
-        && !attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("coolDown1")
-        && !attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("attackAnimation")
-        && !attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("attackAnimation1")) {
-            attacking = true;
-            makeSound = true;
-            attackCollider.enabled = true;
-            attackArea.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
-            Invoke("disableAttackCollider", 0.15f);
-        }
     }
 
-    void disableAttackCollider(){
+    public void enableAttackCollider() {
+        attacking = true;
+        makeSound = true;
+        attackCollider.enabled = true;
+        attackArea.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+        Invoke("disableAttackCollider", 0.15f);
+    }
+
+    public void disableAttackCollider() {
         attackArea.GetComponent<Renderer>().material.SetColor("_Color", Color.blue);
         attackCollider.enabled = false;
         makeSound = false;
@@ -135,5 +145,48 @@ public class movement : MonoBehaviour
 
     void disableSound(){
         makeSound = false;
+    }
+}
+
+public abstract class State {
+    public abstract void Execute(movement player);
+}
+
+public class IdleState : State {
+    public override void Execute(movement player) {
+        if (Input.GetMouseButtonDown(0) && player.coolDown <= 0) {
+            // move to attack 1
+            player.attackAnimation.Play("attackAnimation");
+            player.duration = 0.25f;
+            player.transition = 0.5f;
+            player.enableAttackCollider();
+            player.ChangeState(new AttackState1());
+        }
+    }
+}
+
+public class AttackState1 : State { 
+    public override void Execute(movement player) {
+        if (Input.GetMouseButtonDown(0) && player.transition > 0 && player.duration <= 0) {
+            player.duration = 0.25f;
+            player.enableAttackCollider();
+            player.attackAnimation.Play("attackAnimation1");
+            player.ChangeState(new AttackState2());
+        } else if (player.transition <= 0) {
+            player.attackAnimation.Play("Idle");
+            player.ChangeState(new IdleState());
+        } else if (player.duration <= 0) {
+            player.attackAnimation.Play("Idle");
+        }
+    }
+}
+
+public class AttackState2 : State {
+    public override void Execute(movement player) {
+        if (player.duration <= 0) {
+            player.attackAnimation.Play("Idle");
+            player.coolDown = 1f;
+            player.ChangeState(new IdleState());
+        }
     }
 }
