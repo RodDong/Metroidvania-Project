@@ -29,9 +29,8 @@ public class EnemyDamage : EnemyBase
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "attackArea")
+        if (other.tag == "attackArea" && this.gameObject.layer != LayerMask.NameToLayer("projectile"))
         {
-            Debug.Log("Process Damage!");
             ProcessDamage();
         }
     }
@@ -49,15 +48,15 @@ public class EnemyDamage : EnemyBase
 
     private void ProcessDeath()
     {
-        if (this.getHP() <= 0)
-        {
-            if (this.gameObject.tag != "enemy_mouse")
-            {
-                gameObject.GetComponent<Animator>().SetTrigger("death");
-            }
-            Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), player.GetComponent<Collider2D>());
-            Invoke("disableEnemy", deathDuration);
-        }
+        // if (this.getHP() <= 0)
+        // {
+        //     if (this.gameObject.tag != "enemy_mouse" && this.gameObject.tag!="Boss1")
+        //     {
+        //         gameObject.GetComponent<Animator>().SetTrigger("death");
+        //     }
+        //     Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), player.GetComponent<Collider2D>());
+        //     Invoke("disableEnemy", deathDuration);
+        // }
     }
 
     private void disableEnemy()

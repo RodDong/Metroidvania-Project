@@ -4303,7 +4303,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: boss1/bone_1
+    path: boss1/bone_1/bone_2/bone_3
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -4313,7 +4313,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: boss1/bone_1
+    path: boss1/bone_1/bone_2/bone_3
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -4323,7 +4323,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: boss1/bone_1
+    path: boss1/bone_1/bone_2/bone_3
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -4483,7 +4483,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: boss1/bone_1/bone_2/bone_3
+    path: boss1/bone_1/bone_2
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -4493,7 +4493,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: boss1/bone_1/bone_2/bone_3
+    path: boss1/bone_1/bone_2
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -4503,7 +4503,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: boss1/bone_1/bone_2/bone_3
+    path: boss1/bone_1/bone_2
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -4513,7 +4513,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: boss1/bone_1/bone_2
+    path: boss1/bone_1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -4523,7 +4523,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: boss1/bone_1/bone_2
+    path: boss1/bone_1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -4533,7 +4533,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: boss1/bone_1/bone_2
+    path: boss1/bone_1
     classID: 4
     script: {fileID: 0}
   - curve:
