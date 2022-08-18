@@ -40,9 +40,9 @@ public class SpawnEnemy : MonoBehaviour
         }
 
         //后门
-        // if(Input.GetKeyDown(KeyCode.Q)) {
-        //     clearArea();
-        // }
+        if(Input.GetKeyDown(KeyCode.Q)) {
+            clearArea();
+        }
 
         wallControl();
 
