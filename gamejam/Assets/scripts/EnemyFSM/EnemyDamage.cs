@@ -29,9 +29,8 @@ public class EnemyDamage : EnemyBase
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "attackArea")
+        if (other.tag == "attackArea" && this.gameObject.layer != LayerMask.NameToLayer("projectile"))
         {
-            Debug.Log("Process Damage!");
             ProcessDamage();
         }
     }
@@ -51,7 +50,7 @@ public class EnemyDamage : EnemyBase
     {
         if (this.getHP() <= 0)
         {
-            if (this.gameObject.tag != "enemy_mouse")
+            if (this.gameObject.tag != "enemy_mouse" && this.gameObject.tag!="Boss1")
             {
                 gameObject.GetComponent<Animator>().SetTrigger("death");
             }

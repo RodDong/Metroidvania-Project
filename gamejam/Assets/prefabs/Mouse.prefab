@@ -219,7 +219,7 @@ GameObject:
   - component: {fileID: 8518410956022374331}
   - component: {fileID: 8518410956022374329}
   - component: {fileID: 8518410956022374328}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: Mouse
   m_TagString: enemy_mouse
   m_Icon: {fileID: 0}

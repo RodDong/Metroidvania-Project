@@ -136,10 +136,6 @@ public class ToadDeath : IState<Toad>
 
     public void Execute(Toad enemy)
     {
-        if (enemy.animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 2.2f)
-        {
-            enemy.enabled = false;
-        }
     }
 
     public void Exit(Toad enemy)

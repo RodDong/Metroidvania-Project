@@ -18,7 +18,6 @@ public class Health : MonoBehaviour
         int playerLayer = LayerMask.NameToLayer("Player");
         int enemyLayer = LayerMask.NameToLayer("Enemy");
         int projectileLayer = LayerMask.NameToLayer("Projectile");
-        Physics2D.IgnoreLayerCollision(playerLayer, enemyLayer, false);
         Physics2D.IgnoreLayerCollision(playerLayer, projectileLayer, false);
     }
 
