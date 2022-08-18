@@ -7,7 +7,7 @@ public class SpawnEnemy : MonoBehaviour
     GameObject player;
     [SerializeField] GameObject enemiesOfScene;
     [SerializeField] GameObject wall;
-    public bool isDetected, isClear, isInRoom;
+    [HideInInspector] public bool isDetected, isClear, isInRoom;
     private EdgeCollider2D[] wallLists;
     private List<GameObject> enemyList = new List<GameObject>();
     private List<int> enemyHPList = new List<int>();

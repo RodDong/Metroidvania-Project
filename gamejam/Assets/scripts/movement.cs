@@ -7,22 +7,25 @@ public class movement : MonoBehaviour
 {
     // FSM components
     private State currentState;
-    public float transition;
-    public float duration;
-    public float coolDown;
+    // if transition > 0, move from attack1 to attack2
+    [HideInInspector] public float transition;
+    // if duration <= 0, move to idle state
+    [HideInInspector] public float duration;
+    // if coolDown > 0, player cannot attack
+    [HideInInspector] public float coolDown;
     //game Objects
     [SerializeField] public GameObject attackArea;
 
-    public Vector3 position;
-    public bool isRight;
-    bool isFalling;
-    public bool makeSound, isOnRoad;
+    [HideInInspector] public Vector3 position;
+    [HideInInspector] public bool isRight;
+    [HideInInspector] bool isFalling;
+    [HideInInspector] public bool makeSound, isOnRoad;
     //Jump vars
-    public bool canJump = false;
+    [HideInInspector] public bool canJump = false;
     [HideInInspector] public int playerDamage;
     float jump_init_v = 20f;
     //attack vars
-    public bool attacking = false;
+    [HideInInspector] public bool attacking = false;
     [HideInInspector] public Collider2D attackCollider;
     Rigidbody2D rb;
     [HideInInspector] public Animator attackAnimation;
