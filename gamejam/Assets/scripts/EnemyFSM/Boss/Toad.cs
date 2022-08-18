@@ -145,11 +145,11 @@ if (hp < 1/2):
         // Stage 01
         if (HP >= maxHP / 2)
         {
-            if (playerDistance <= attackRange)
+            if (playerDistance <= attackRange && player.GetComponent<movement>().makeSound == true)
             {
                 stateMachine.ChangeState(ToadAttack.Instance);
             }
-            else if (playerDistance <= detectRange && canJump)
+            else if (playerDistance <= detectRange && canJump && player.GetComponent<movement>().makeSound == true)
             {
                 stateMachine.ChangeState(ToadJump.Instance);
             }

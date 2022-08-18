@@ -5,7 +5,7 @@ using UnityEngine;
 public class WallList : MonoBehaviour
 {
     private EdgeCollider2D[] wallLists;
-    public List<float> wallPosLists;
+    [HideInInspector] public List<float> wallPosLists;
     // Start is called before the first frame update
     void Start()
     {

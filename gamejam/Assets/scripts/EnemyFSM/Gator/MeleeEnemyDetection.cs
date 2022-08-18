@@ -16,18 +16,23 @@ public class MeleeEnemyDetection : MonoBehaviour
     public bool hasTarget;
     public bool isFacingRight => Mathf.Abs(transform.eulerAngles.y) < 90;
     public Vector3 position;
-    private float wanderSpeed = 5f;
+    private float wanderSpeed = 5f, flipCD = 1f;
     private WallList wallList;
     float offset = 2f;
     bool isRight;
+    float timer = 0.0f;
     void Start()
     {
+
         hasTarget = false;
         wallList = wall.GetComponent<WallList>();
     }
 
     void Update()
     {
+        
+        timer+=Time.deltaTime;
+        if(hasTarget) player.GetComponent<PlayerStatus>().isDetected = true;
         if (position.x - enemy.transform.position.x > 0)
         {
             isRight = true;
@@ -45,9 +50,6 @@ public class MeleeEnemyDetection : MonoBehaviour
         }
         else if(!hasTarget && !enemy.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("melee_attack")){
             Wander();
-        }
-        if (hasTarget) {
-            player.GetComponent<PlayerStatus>().beingDetected();
         }
     }
 
@@ -102,13 +104,18 @@ public class MeleeEnemyDetection : MonoBehaviour
 
     private void Flip()
     {
-        if (isFacingRight)
-        {
-            enemy.transform.eulerAngles = new Vector3(0, -180, 0);
+        if(timer > flipCD){
+            timer = 0f;
+            if (isFacingRight)
+            {
+                enemy.transform.eulerAngles = new Vector3(0, -180, 0);
+            }
+            else
+            {
+                enemy.transform.eulerAngles = new Vector3(0, 0, 0);
+            }
         }
-        else
-        {
-            enemy.transform.eulerAngles = new Vector3(0, 0, 0);
-        }
+
+        
     }
 }

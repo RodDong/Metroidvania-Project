@@ -33,8 +33,6 @@ public class RangeEnemyDetection : MonoBehaviour
             if(Mathf.Abs(enemy.transform.position.x - position.x) >= offset){
                 rotateRelativeToPlayer();
             }
-
-            player.GetComponent<PlayerStatus>().beingDetected();
         
         }
     }
