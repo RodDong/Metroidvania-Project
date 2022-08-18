@@ -98,6 +98,7 @@ public class ToadAttack : IState<Toad>
     {
         enemy.animator.Play("Attack");
         enemy.debugText.SetText("Attack");
+        enemy.tongueCol.enabled = true;
     }
 
     public void Execute(Toad enemy)
@@ -111,7 +112,38 @@ public class ToadAttack : IState<Toad>
 
     public void Exit(Toad enemy)
     {
-
+        enemy.tongueCol.enabled = false;
     }
 
+}
+
+public class ToadDeath : IState<Toad>
+{
+    public static ToadDeath Instance { get; private set; }
+
+    static ToadDeath()
+    {
+        Instance = new ToadDeath();
+    }
+
+
+    public void Enter(Toad enemy)
+    {
+        Debug.Log("death");
+        enemy.animator.Play("Death");
+        enemy.debugText.SetText("Death");
+    }
+
+    public void Execute(Toad enemy)
+    {
+        if (enemy.animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 2.2f)
+        {
+            enemy.enabled = false;
+        }
+    }
+
+    public void Exit(Toad enemy)
+    {
+
+    }
 }

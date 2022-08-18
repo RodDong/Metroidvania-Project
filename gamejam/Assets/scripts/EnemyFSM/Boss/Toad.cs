@@ -47,6 +47,8 @@ public class Toad : MonoBehaviour
 
     [SerializeField]
     public Collider2D coll;
+    [SerializeField]
+    public Collider2D tongueCol;
 
     [SerializeField]
     Rigidbody2D rb;
@@ -84,6 +86,7 @@ public class Toad : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("player");
         playerMovement = player.GetComponent<movement>();
         ToadIdle.Instance.Enter(this);
+        tongueCol.enabled = false;
     }
 
     void Update()
@@ -154,7 +157,14 @@ if (hp < 1/2):
         {
             if (playerDistance <= attackRange && playerMovement.makeSound == true)
             {
-                stateMachine.ChangeState(ToadAttack.Instance);
+                if((gameObject.transform.eulerAngles.y > 90 && player.transform.position.x >= transform.position.x) 
+                || (gameObject.transform.eulerAngles.y < 90 && player.transform.position.x <= transform.position.x)){
+                    invokeAttack();
+                }else{
+
+                    Invoke("invokeAttack", 1f);
+                }
+                
             }
             else if (playerDistance <= detectRange && canJump && playerMovement.makeSound == true)
             {
@@ -170,7 +180,13 @@ if (hp < 1/2):
         {
             if (playerDistance <= attackRange)
             {
-                stateMachine.ChangeState(ToadAttack.Instance);
+                if((gameObject.transform.eulerAngles.y > 90 && player.transform.position.x >= transform.position.x) 
+                || (gameObject.transform.eulerAngles.y < 90 && player.transform.position.x <= transform.position.x)){
+                    invokeAttack();
+                }else{
+
+                    Invoke("invokeAttack", 1f);
+                }
             }
             else if (playerDistance <= detectRange && canJump)
             {
@@ -182,9 +198,10 @@ if (hp < 1/2):
             }
         }
         // Die
-        else
+        else if(HP<=0)
         {
-
+            Debug.Log("death");
+            stateMachine.ChangeState(ToadDeath.Instance);
         }
     }
 
@@ -294,5 +311,12 @@ if (hp < 1/2):
         canJump = true;
     }
 
+    void disableTongue(){
+        tongueCol.enabled = false;
+    }
+
+    void invokeAttack(){
+        stateMachine.ChangeState(ToadAttack.Instance);
+    }
 
 }

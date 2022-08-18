@@ -119,8 +119,11 @@ MonoBehaviour:
   groundDetectDistance: 2
   frontGroundDetection: {fileID: 1052367050461801225}
   backGroundDetection: {fileID: 1052367051624918306}
-  position: {x: 0, y: 0, z: 0}
+  wall: {fileID: 0}
+  leftWall: 0
+  rightWall: 0
   hasTarget: 0
+  position: {x: 0, y: 0, z: 0}
 --- !u!1 &1052367050461801224
 GameObject:
   m_ObjectHideFlags: 0

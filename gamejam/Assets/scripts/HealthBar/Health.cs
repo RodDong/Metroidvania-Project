@@ -63,7 +63,6 @@ public class Health : MonoBehaviour
         int playerLayer = LayerMask.NameToLayer("Player");
         int enemyLayer = LayerMask.NameToLayer("Enemy");
         int projectileLayer = LayerMask.NameToLayer("Projectile");
-        Physics2D.IgnoreLayerCollision(playerLayer, enemyLayer);
         Physics2D.IgnoreLayerCollision(playerLayer, projectileLayer);
         Invoke("immunityEnd", immunityCooldown);
     }
@@ -86,7 +85,15 @@ public class Health : MonoBehaviour
         int playerLayer = LayerMask.NameToLayer("Player");
         int enemyLayer = LayerMask.NameToLayer("Enemy");
         int projectileLayer = LayerMask.NameToLayer("Projectile");
-        Physics2D.IgnoreLayerCollision(playerLayer, enemyLayer, false);
         Physics2D.IgnoreLayerCollision(playerLayer, projectileLayer, false);
+    }
+
+    public void resetHealth() {
+        isDead = false;
+        health = 6;
+        for (int i = 0; i < hearts.Count; i++) {
+            Animator heartAnimator = hearts[i].GetComponent<Animator>();
+            heartAnimator.SetTrigger("full_recover");
+        }
     }
 }
