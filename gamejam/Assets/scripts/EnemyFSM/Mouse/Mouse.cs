@@ -24,6 +24,10 @@ public class Mouse : MonoBehaviour
 
     [SerializeField]
     private Transform backGroundDetection;
+    [SerializeField] private GameObject wall;
+    [SerializeField] private int leftWall;
+    [SerializeField] private int rightWall;
+    private WallList wallList;
 
     public bool isFacingRight => Mathf.Abs(transform.eulerAngles.y) < 90;
 
@@ -43,6 +47,7 @@ public class Mouse : MonoBehaviour
     private void Start()
     {
         MouseWander.Instance.Enter(this);
+        wallList = wall.GetComponent<WallList>();
     }
 
     private void Update()
@@ -62,15 +67,30 @@ public class Mouse : MonoBehaviour
     {
         transform.Translate(Vector2.right * wanderSpeed * Time.deltaTime);
 
-        Collider2D isFrontGround = Physics2D.Raycast(frontGroundDetection.position, Vector2.down, groundDetectDistance).collider,
-                   isBackGround = Physics2D.Raycast(backGroundDetection.position, Vector2.down, groundDetectDistance).collider;
+        int groundMask = 1 << 8;
+        int platformMask = 1 << 10;
+        int noCollisionPlatformMask = 1 << 14;
+        Collider2D frontRayCollider = 
+                    Physics2D.Raycast(frontGroundDetection.position, 
+                        Vector2.down, 
+                        groundDetectDistance, 
+                        groundMask | platformMask | noCollisionPlatformMask).collider,
+                   backRayCollider = 
+                    Physics2D.Raycast(
+                        backGroundDetection.position, 
+                        Vector2.down, 
+                        groundDetectDistance, 
+                        groundMask | platformMask | noCollisionPlatformMask).collider;
 
-        noGroundOnBothSides = (isFrontGround == null) && (isBackGround == null);
+        noGroundOnBothSides = frontRayCollider == null && backRayCollider == null;
 
-        if (isFrontGround == null)
+        if (frontRayCollider == null
+        || transform.position.x < wallList.wallPosLists[leftWall] 
+        || transform.position.x > wallList.wallPosLists[rightWall])
         {
             Flip();
         }
+       
     }
 
     private void Flip()
