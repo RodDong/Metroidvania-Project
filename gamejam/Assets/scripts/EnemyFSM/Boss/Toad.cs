@@ -5,27 +5,27 @@ using TMPro;
 
 public class Toad : MonoBehaviour
 {
-    private StateMachine<Toad> stateMachine;
+    StateMachine<Toad> stateMachine;
 
     public Animator animator;
 
     public TMP_Text debugText;
 
-    private const int maxHP = 20;
+    const int maxHP = 20;
 
-    private const int maxRange = 300;
-
-    [SerializeField]
-    private int HP = maxHP;
+    const int maxRange = 300;
 
     [SerializeField]
-    private float detectRange = 200f;
+    int HP = maxHP;
 
     [SerializeField]
-    private float attackRange = 50f;
+    float detectRange = 200f;
 
     [SerializeField]
-    private float jumpForce;
+    float attackRange = 50f;
+
+    [SerializeField]
+    float jumpForce;
 
     [SerializeField]
     [Tooltip("Toad所能跳到的最高高度, 设置在镜头边界之上")]
@@ -36,33 +36,39 @@ public class Toad : MonoBehaviour
     public float jumpCoolDownTime;
 
     [SerializeField]
-    private GameObject ranger;
+    [Tooltip("击退玩家的force大小")]
+    float repulseForce = 5f;
 
     [SerializeField]
-    private GameObject melee;
+    GameObject ranger;
+
+    [SerializeField]
+    GameObject melee;
 
     [SerializeField]
     public Collider2D coll;
 
     [SerializeField]
-    private Rigidbody2D rb;
+    Rigidbody2D rb;
 
     [SerializeField]
-    private List<Transform> rangerSummonPositionList = new List<Transform>();
+    List<Transform> rangerSummonPositionList = new List<Transform>();
 
     [SerializeField]
-    private List<Transform> meleeSummonPositionList = new List<Transform>();
+    List<Transform> meleeSummonPositionList = new List<Transform>();
 
     public bool isRising, isFalling;
 
-    private Vector3 landingPoint;
+    Vector3 landingPoint;
 
-    private bool hasSummonRangers = false;
-    private bool hasSummonMelees = false;
+    bool hasSummonRangers = false;
+    bool hasSummonMelees = false;
 
-    private GameObject player;
+    GameObject player;
 
-    private bool canJump = true;
+    movement playerMovement;
+
+    bool canJump = true;
 
 
     #region Initialize
@@ -73,13 +79,14 @@ public class Toad : MonoBehaviour
         stateMachine.SetCurrentState(ToadIdle.Instance);
     }
 
-    private void Start()
+    void Start()
     {
         player = GameObject.FindGameObjectWithTag("player");
+        playerMovement = player.GetComponent<movement>();
         ToadIdle.Instance.Enter(this);
     }
 
-    private void Update()
+    void Update()
     {
         stateMachine.StateMachineUpdate();
         if (HP <= 3 * maxHP / 4 && !hasSummonRangers)
@@ -145,11 +152,11 @@ if (hp < 1/2):
         // Stage 01
         if (HP >= maxHP / 2)
         {
-            if (playerDistance <= attackRange && player.GetComponent<movement>().makeSound == true)
+            if (playerDistance <= attackRange && playerMovement.makeSound == true)
             {
                 stateMachine.ChangeState(ToadAttack.Instance);
             }
-            else if (playerDistance <= detectRange && canJump && player.GetComponent<movement>().makeSound == true)
+            else if (playerDistance <= detectRange && canJump && playerMovement.makeSound == true)
             {
                 stateMachine.ChangeState(ToadJump.Instance);
             }
@@ -252,10 +259,18 @@ if (hp < 1/2):
     /// 跳回地面触发
     /// </summary>
     /// <param name="other"></param>
-    private void OnCollisionEnter2D(Collision2D other)
+    void OnCollisionEnter2D(Collision2D other)
     {
         if (other.collider.CompareTag("ground") && isFalling)
         {
+            isFalling = false;
+            canJump = false;
+            Invoke("SetCanJump2True", jumpCoolDownTime);
+        }
+        else if (other.collider.CompareTag("player") && isFalling)
+        {
+            Debug.Log("Fall on player! Add force" + transform.right * repulseForce);
+            playerMovement.playerRepulse(transform.right * repulseForce);
             isFalling = false;
             canJump = false;
             Invoke("SetCanJump2True", jumpCoolDownTime);
@@ -274,7 +289,7 @@ if (hp < 1/2):
         }
     }
 
-    private void SetCanJump2True()
+    void SetCanJump2True()
     {
         canJump = true;
     }
