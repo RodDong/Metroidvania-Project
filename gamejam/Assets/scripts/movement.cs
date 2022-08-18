@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class movement : MonoBehaviour
 {
-    // FSM components
-    private State currentState;
+    [SerializeField] public Slider cdSlider;
+    [SerializeField] public GameObject attackArea;
     // if transition > 0, move from attack1 to attack2
     [HideInInspector] public float transition;
     // if duration <= 0, move to idle state
@@ -14,8 +15,6 @@ public class movement : MonoBehaviour
     // if coolDown > 0, player cannot attack
     [HideInInspector] public float coolDown;
     //game Objects
-    [SerializeField] public GameObject attackArea;
-
     [HideInInspector] public Vector3 position;
     [HideInInspector] public bool isRight;
     [HideInInspector] bool isFalling;
@@ -23,12 +22,14 @@ public class movement : MonoBehaviour
     //Jump vars
     [HideInInspector] public bool canJump = false;
     [HideInInspector] public int playerDamage;
-    float jump_init_v = 20f;
     //attack vars
     [HideInInspector] public bool attacking = false;
     [HideInInspector] public Collider2D attackCollider;
-    Rigidbody2D rb;
     [HideInInspector] public Animator attackAnimation;
+    float jump_init_v = 20f;
+    Rigidbody2D rb;
+    // FSM components
+    private State currentState;
 
     //Game initialization
     void Start() {
@@ -36,8 +37,9 @@ public class movement : MonoBehaviour
         //initialize AttackArea collider
         attackCollider = attackArea.GetComponent<Collider2D>();
         attackCollider.enabled = false;
+        cdSlider.maxValue = 1f;
+        cdSlider.value = 1f;
         
-
         //initialize player rigidbody 
         rb = GetComponent<Rigidbody2D>();
         isRight = true;
@@ -56,6 +58,13 @@ public class movement : MonoBehaviour
         transition -= Time.deltaTime;
         duration -= Time.deltaTime;
         coolDown -= Time.deltaTime;
+        if (coolDown > 0) {
+            if (cdSlider.value + Time.deltaTime < 1f) {
+                cdSlider.value += Time.deltaTime;
+            } else {
+                cdSlider.value = 1f;
+            }
+        }
         currentState.Execute(this);
 
         attacking = false;
@@ -124,10 +133,10 @@ public class movement : MonoBehaviour
 
     //Process left mouse click for player attack
     void processAttack() {
-        if (attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("coolDown") || attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("coolDown1")) {
+        if (coolDown > 0) {
             playerDamage = 10;
         }
-        if (attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("Transition1")) {
+        if (attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("attackAnimation1")) {
             playerDamage = 15;
         }
     }
@@ -162,6 +171,7 @@ public class IdleState : State {
             player.attackAnimation.Play("attackAnimation");
             player.duration = 0.25f;
             player.transition = 0.5f;
+            player.cdSlider.value = 0.5f;
             player.enableAttackCollider();
             player.ChangeState(new AttackState1());
         }
@@ -173,13 +183,14 @@ public class AttackState1 : State {
         if (Input.GetMouseButtonDown(0) && player.transition > 0 && player.duration <= 0) {
             player.duration = 0.25f;
             player.enableAttackCollider();
+            player.cdSlider.value = 0f;
             player.attackAnimation.Play("attackAnimation1");
             player.ChangeState(new AttackState2());
         } else if (player.transition <= 0) {
+            player.coolDown = 1f;
+            player.cdSlider.value = 0f;
             player.attackAnimation.Play("Idle");
             player.ChangeState(new IdleState());
-        } else if (player.duration <= 0) {
-            player.attackAnimation.Play("Idle");
         }
     }
 }
