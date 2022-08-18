@@ -14,6 +14,14 @@ public class Health : MonoBehaviour
     public GameObject deathMenu;
     public bool isDead;
 
+    private void Start() {
+        int playerLayer = LayerMask.NameToLayer("Player");
+        int enemyLayer = LayerMask.NameToLayer("Enemy");
+        int projectileLayer = LayerMask.NameToLayer("Projectile");
+        Physics2D.IgnoreLayerCollision(playerLayer, enemyLayer, false);
+        Physics2D.IgnoreLayerCollision(playerLayer, projectileLayer, false);
+    }
+
     private void Update() {
         if (health <= 0 && !isDead) {
             ProcessDeath();

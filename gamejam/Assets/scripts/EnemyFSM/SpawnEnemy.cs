@@ -35,20 +35,18 @@ public class SpawnEnemy : MonoBehaviour
                 enemyList[i].GetComponent<Transform>().transform.position = enemyPosList[i].position;
                 enemyList[i].GetComponent<Transform>().transform.rotation = enemyPosList[i].rotation;
             }
-        }else{
+        } else {
             isClear = false;
         }
 
-        //后门
+        // Rod的后门
         if(Input.GetKeyDown(KeyCode.Q)) {
             clearArea();
         }
 
         wallControl();
-
     }
     private void OnTriggerEnter2D(Collider2D other) {
-        
         // TODO: reload enemy status
         if (other.tag == "player") {
             isInRoom = true;

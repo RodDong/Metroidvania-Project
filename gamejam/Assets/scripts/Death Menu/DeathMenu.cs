@@ -6,7 +6,23 @@ using UnityEngine.SceneManagement;
 public class DeathMenu : MonoBehaviour, IDataManager
 {
     public GameObject deathMenu;
+    [SerializeField] GameObject player;
+    [SerializeField] GameObject wall;
+    private EdgeCollider2D[] wallLists;
+
+    private void Start() {
+        wallLists = wall.GetComponents<EdgeCollider2D>();
+    }
     public void Resume() {
+        // reset player health
+        player.GetComponent<Health>().isDead = false;
+        player.GetComponent<Health>().health = 6;
+
+        // reset wall status
+        for (int i = 0; i < wallLists.Length; i++) {
+            wallLists[i].isTrigger = true;
+        }
+
         deathMenu.SetActive(false);
         Time.timeScale = 1f;
         DataManager.instance.LoadGame();
