@@ -129,13 +129,45 @@ public class ToadDeath : IState<Toad>
 
     public void Enter(Toad enemy)
     {
-        Debug.Log("death");
+        Debug.Log("Death");
         enemy.animator.Play("Death");
         enemy.debugText.SetText("Death");
     }
 
     public void Execute(Toad enemy)
     {
+    }
+
+    public void Exit(Toad enemy)
+    {
+
+    }
+}
+
+public class ToadRoar : IState<Toad>
+{
+    public static ToadRoar Instance { get; private set; }
+
+    static ToadRoar()
+    {
+        Instance = new ToadRoar();
+    }
+
+
+    public void Enter(Toad enemy)
+    {
+        Debug.Log("Roar");
+        enemy.animator.Play("Roar");
+        enemy.debugText.SetText("Roar");
+    }
+
+    public void Execute(Toad enemy)
+    {
+        enemy.Flip();
+        if (enemy.animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+        {
+            enemy.ChangeState();
+        }
     }
 
     public void Exit(Toad enemy)
