@@ -28,7 +28,9 @@ public class Health : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy") || other.gameObject.layer == LayerMask.NameToLayer("Projectile")) {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy")
+            || other.gameObject.layer == LayerMask.NameToLayer("Projectile")
+            || other.gameObject.layer == LayerMask.NameToLayer("Mouse")) {
             TakeDamage();
         }
     }
@@ -62,7 +64,9 @@ public class Health : MonoBehaviour
         int playerLayer = LayerMask.NameToLayer("Player");
         int enemyLayer = LayerMask.NameToLayer("Enemy");
         int projectileLayer = LayerMask.NameToLayer("Projectile");
+        int mouseLayer = LayerMask.NameToLayer("Mouse");
         Physics2D.IgnoreLayerCollision(playerLayer, projectileLayer);
+        Physics2D.IgnoreLayerCollision(playerLayer, mouseLayer);
         Invoke("immunityEnd", immunityCooldown);
     }
 
@@ -84,7 +88,9 @@ public class Health : MonoBehaviour
         int playerLayer = LayerMask.NameToLayer("Player");
         int enemyLayer = LayerMask.NameToLayer("Enemy");
         int projectileLayer = LayerMask.NameToLayer("Projectile");
+        int mouseLayer = LayerMask.NameToLayer("Mouse");
         Physics2D.IgnoreLayerCollision(playerLayer, projectileLayer, false);
+        Physics2D.IgnoreLayerCollision(playerLayer, mouseLayer, false);
     }
 
     public void resetHealth() {
