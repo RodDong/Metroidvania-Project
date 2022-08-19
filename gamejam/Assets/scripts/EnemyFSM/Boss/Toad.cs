@@ -6,17 +6,14 @@ using TMPro;
 public class Toad : MonoBehaviour
 {
     StateMachine<Toad> stateMachine;
-
     public Animator animator;
 
     public TMP_Text debugText;
+    [HideInInspector] public EnemyDamage enemyHealth;
 
     const int maxHP = 20;
 
     const int maxRange = 300;
-
-    [SerializeField]
-    int HP = maxHP;
 
     [SerializeField]
     float detectRange = 200f;
@@ -47,6 +44,8 @@ public class Toad : MonoBehaviour
 
     [SerializeField]
     public Collider2D coll;
+    [SerializeField]
+    public Collider2D tongueCol;
 
     [SerializeField]
     Rigidbody2D rb;
@@ -81,21 +80,23 @@ public class Toad : MonoBehaviour
 
     void Start()
     {
+        enemyHealth = this.GetComponent<EnemyDamage>();
         player = GameObject.FindGameObjectWithTag("player");
         playerMovement = player.GetComponent<movement>();
         ToadIdle.Instance.Enter(this);
+        tongueCol.enabled = false;
     }
 
     void Update()
     {
         stateMachine.StateMachineUpdate();
-        if (HP <= 3 * maxHP / 4 && !hasSummonRangers)
+        if (enemyHealth.getHP() <= 3 * maxHP / 4 && !hasSummonRangers)
         {
             hasSummonRangers = true;
             // ToadRoar?
             SummonRangers();
         }
-        if (HP <= maxHP / 2 && !hasSummonMelees)
+        if (enemyHealth.getHP() <= maxHP / 2 && !hasSummonMelees)
         {
             hasSummonMelees = true;
             SummonMelees();
@@ -150,11 +151,18 @@ if (hp < 1/2):
         float playerDistance = PlayerDistance();
 
         // Stage 01
-        if (HP >= maxHP / 2)
+        if (enemyHealth.getHP() >= maxHP / 2)
         {
             if (playerDistance <= attackRange && playerMovement.makeSound == true)
             {
-                stateMachine.ChangeState(ToadAttack.Instance);
+                if((gameObject.transform.eulerAngles.y > 90 && player.transform.position.x >= transform.position.x) 
+                || (gameObject.transform.eulerAngles.y < 90 && player.transform.position.x <= transform.position.x)){
+                    invokeAttack();
+                }else{
+
+                    Invoke("invokeAttack", 1f);
+                }
+                
             }
             else if (playerDistance <= detectRange && canJump && playerMovement.makeSound == true)
             {
@@ -166,11 +174,17 @@ if (hp < 1/2):
             }
         }
         // Stage 02
-        else if (HP > 0)
+        else if (enemyHealth.getHP() > 0)
         {
             if (playerDistance <= attackRange)
             {
-                stateMachine.ChangeState(ToadAttack.Instance);
+                if((gameObject.transform.eulerAngles.y > 90 && player.transform.position.x >= transform.position.x) 
+                || (gameObject.transform.eulerAngles.y < 90 && player.transform.position.x <= transform.position.x)){
+                    invokeAttack();
+                }else{
+
+                    Invoke("invokeAttack", 1f);
+                }
             }
             else if (playerDistance <= detectRange && canJump)
             {
@@ -182,9 +196,9 @@ if (hp < 1/2):
             }
         }
         // Die
-        else
+        else if(enemyHealth.getHP() <= 0)
         {
-
+            stateMachine.ChangeState(ToadDeath.Instance);
         }
     }
 
@@ -294,5 +308,12 @@ if (hp < 1/2):
         canJump = true;
     }
 
+    void disableTongue(){
+        tongueCol.enabled = false;
+    }
+
+    void invokeAttack(){
+        stateMachine.ChangeState(ToadAttack.Instance);
+    }
 
 }

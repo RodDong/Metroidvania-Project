@@ -13,11 +13,13 @@ public class CollisionManager : MonoBehaviour
         int noCollisionPlatformLayer = LayerMask.NameToLayer("PlatformWithoutPlayerCollision");
         int attackLayer = LayerMask.NameToLayer("AttackArea");
         int detectLayer = LayerMask.NameToLayer("DetectArea");
+        int mouseLyaer = LayerMask.NameToLayer("Mouse");
         Physics2D.IgnoreLayerCollision(enemyLayer, enemyLayer);
         Physics2D.IgnoreLayerCollision(enemyLayer, projectileLayer);
         Physics2D.IgnoreLayerCollision(projectileLayer, platformLayer);
         Physics2D.IgnoreLayerCollision(projectileLayer, noCollisionPlatformLayer);
         Physics2D.IgnoreLayerCollision(attackLayer, detectLayer);
         Physics2D.IgnoreLayerCollision(playerLayer, noCollisionPlatformLayer);
+        Physics2D.IgnoreLayerCollision(playerLayer, enemyLayer);
     }
 }

@@ -15,8 +15,7 @@ public class DeathMenu : MonoBehaviour, IDataManager
     }
     public void Resume() {
         // reset player health
-        player.GetComponent<Health>().isDead = false;
-        player.GetComponent<Health>().health = 6;
+        player.GetComponent<Health>().resetHealth();
 
         // reset wall status
         for (int i = 0; i < wallLists.Length; i++) {

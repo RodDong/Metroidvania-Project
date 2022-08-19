@@ -85,8 +85,8 @@ public class Mouse : MonoBehaviour
         noGroundOnBothSides = frontRayCollider == null && backRayCollider == null;
 
         if (frontRayCollider == null
-        || transform.position.x < wallList.wallPosLists[leftWall] 
-        || transform.position.x > wallList.wallPosLists[rightWall])
+        || frontGroundDetection.transform.position.x < wallList.wallPosLists[leftWall] 
+        || frontGroundDetection.transform.position.x > wallList.wallPosLists[rightWall])
         {
             Flip();
         }
