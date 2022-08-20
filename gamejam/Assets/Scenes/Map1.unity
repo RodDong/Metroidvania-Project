@@ -530,7 +530,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.9290097, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -2538,6 +2538,14 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -1957984505
       objectReference: {fileID: 0}
+    - target: {fileID: 2302759235758959458, guid: 9ae518f7145260d48b4d2403964aa27a, type: 3}
+      propertyPath: swing1
+      value: 
+      objectReference: {fileID: 8300000, guid: fc8486d13b5c64a46b0821aa2af36ea0, type: 3}
+    - target: {fileID: 2302759235758959458, guid: 9ae518f7145260d48b4d2403964aa27a, type: 3}
+      propertyPath: deathMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 14845f945f3cff749a9740116da7fc02, type: 3}
     - target: {fileID: 5674050915087484864, guid: 9ae518f7145260d48b4d2403964aa27a, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2602,6 +2610,10 @@ PrefabInstance:
       propertyPath: deathMenu
       value: 
       objectReference: {fileID: 1727518179}
+    - target: {fileID: 6139250151333763169, guid: 9ae518f7145260d48b4d2403964aa27a, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 1819696343}
     - target: {fileID: 6139250151333763169, guid: 9ae518f7145260d48b4d2403964aa27a, type: 3}
       propertyPath: immunityCooldown
       value: 1
@@ -2903,7 +2915,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 521216825}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.91283417, y: -2.90287, z: -20}
+  m_LocalPosition: {x: -1.8202028, y: -2.89797, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9231,6 +9243,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!82 &1819696343 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 347059666788476653, guid: 9ae518f7145260d48b4d2403964aa27a, type: 3}
+  m_PrefabInstance: {fileID: 464613383}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1829165408 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1052367050608436481, guid: 8d5db6295dc2a714384fdf349264c6b7, type: 3}
