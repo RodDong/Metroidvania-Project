@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
+    [SerializeField] AudioSource audioSource;
+    private AudioClip gettingHitSound;
+    private AudioClip deathSound;
     // health bar elements
     public int health;
     public int numHearts;
@@ -19,6 +22,8 @@ public class Health : MonoBehaviour
         int enemyLayer = LayerMask.NameToLayer("Enemy");
         int projectileLayer = LayerMask.NameToLayer("Projectile");
         Physics2D.IgnoreLayerCollision(playerLayer, projectileLayer, false);
+        gettingHitSound = audioSource.GetComponent<PlayerAudio>().hurt;
+        deathSound = audioSource.GetComponent<PlayerAudio>().deathMusic;
     }
 
     private void Update() {
@@ -39,11 +44,13 @@ public class Health : MonoBehaviour
         isDead = true;
         deathMenu.SetActive(true);
         Time.timeScale = 0f;
+        audioSource.PlayOneShot(deathSound);
     }
 
     private void TakeDamage() {
         // update health
         health -= 1;
+        audioSource.PlayOneShot(gettingHitSound);
         // update hearts
         for (int i = hearts.Count - 1; i >= 0; i--) {
             Animator heartAnimator = hearts[i].GetComponent<Animator>();
