@@ -379,7 +379,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.2329149, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -2667,7 +2667,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 521216825}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.8202028, y: -2.89797, z: -20}
+  m_LocalPosition: {x: -5.089328, y: -2.88029, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6178,6 +6178,10 @@ PrefabInstance:
       propertyPath: rightWall
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1052367050594758467, guid: 8d5db6295dc2a714384fdf349264c6b7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1052367050608436481, guid: 8d5db6295dc2a714384fdf349264c6b7, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -6225,6 +6229,10 @@ PrefabInstance:
     - target: {fileID: 1052367050608436482, guid: 8d5db6295dc2a714384fdf349264c6b7, type: 3}
       propertyPath: m_Name
       value: Enemy Melee Gator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1052367050608436483, guid: 8d5db6295dc2a714384fdf349264c6b7, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1052367050608436490, guid: 8d5db6295dc2a714384fdf349264c6b7, type: 3}
       propertyPath: player
@@ -7892,6 +7900,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1052367050608436483, guid: 8d5db6295dc2a714384fdf349264c6b7, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1052367050608436490, guid: 8d5db6295dc2a714384fdf349264c6b7, type: 3}
       propertyPath: player
       value: 
@@ -8922,7 +8934,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1831371937}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -38.64, y: -15.7, z: 0}
+  m_LocalPosition: {x: -38.64, y: -15.87, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8955,7 +8967,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.38375473, y: -0.033860207}
+  m_Offset: {x: 0.38375473, y: 0.15533543}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -8966,7 +8978,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.7675095, y: 0.41308784}
+  m_Size: {x: 1.7675095, y: 0.37524986}
   m_EdgeRadius: 0
 --- !u!4 &1833448595 stripped
 Transform:

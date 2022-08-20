@@ -286,7 +286,7 @@ if (hp < 1/2):
     public void EnableColliderWhileFalling()
     {
         Vector2 dir = landingPoint - transform.position;
-        RaycastHit2D info = Physics2D.Raycast(transform.position, dir, dir.magnitude, 1 << LayerMask.NameToLayer("Ground"));
+        RaycastHit2D info = Physics2D.Raycast(transform.position, dir, dir.magnitude, 1 << LayerMask.NameToLayer("Ground") | 1 << LayerMask.NameToLayer("PlatformWithoutPlayerCollision") | 1 << LayerMask.NameToLayer("Platform"));
         if (info.collider == null && dir.magnitude <= 3f)// || !info.collider.CompareTag("ground"))
         {
             Debug.Log("Enable Collider! " + transform.position + landingPoint);
@@ -300,7 +300,7 @@ if (hp < 1/2):
     /// <param name="other"></param>
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.collider.CompareTag("ground") && isFalling)
+        if (other.collider.CompareTag("ground") || other.collider.CompareTag("OneWayPlatform") && isFalling)
         {
             isFalling = false;
             canJump = false;

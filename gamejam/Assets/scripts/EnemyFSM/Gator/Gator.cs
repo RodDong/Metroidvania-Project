@@ -35,9 +35,9 @@ public class Gator : MonoBehaviour
         {
 
             attackAnimation.SetTrigger("attack");
-            
             if (attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("shooting") && !attackCoolDown)
             {
+                
                 Invoke("instantiateArrow", 0.35f);
                 attackCoolDown = true;
             }

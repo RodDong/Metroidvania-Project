@@ -31,6 +31,9 @@ public class SpawnEnemy : MonoBehaviour
                 if(enemyList[i].GetComponent<melee_gator>()!=null){
                     enemyList[i].GetComponent<melee_gator>().enabled = true;
                 }
+                if(enemyList[i].GetComponent<Gator>()!=null){
+                    enemyList[i].GetComponent<Gator>().enabled = true;
+                }
                 enemyList[i].GetComponent<EnemyDamage>().setHP(enemyHPList[i]);
                 enemyList[i].GetComponent<Transform>().transform.position = enemyPosList[i].position;
                 enemyList[i].GetComponent<Transform>().transform.rotation = enemyPosList[i].rotation;
