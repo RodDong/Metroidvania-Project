@@ -28,18 +28,26 @@ public class SpawnEnemy : MonoBehaviour
         if (enemiesOfScene.GetComponentsInChildren<EnemyDamage>().GetLength(0) == 0) {
             isClear = true;
             for (int i = 0; i < enemyList.Count; i++) {
-                if(enemyList[i].GetComponent<melee_gator>()!=null){
+                if (enemyList[i].GetComponent<melee_gator>() != null) {
                     enemyList[i].GetComponent<melee_gator>().enabled = true;
                 }
+                if (enemyList[i].GetComponent<Gator>() != null) {
+                    enemyList[i].GetComponent<Gator>().enabled = true;
+                }
+                // reset enemy health
                 enemyList[i].GetComponent<EnemyDamage>().setHP(enemyHPList[i]);
+                // reset enemy position
                 enemyList[i].GetComponent<Transform>().transform.position = enemyPosList[i].position;
                 enemyList[i].GetComponent<Transform>().transform.rotation = enemyPosList[i].rotation;
+                // reset enemy detection
+                if (enemyList[i].GetComponent<MeleeEnemyDetection>() != null) {
+                    enemyList[i].GetComponent<MeleeEnemyDetection>().hasTarget = false;
+                }
             }
         } else {
             isClear = false;
         }
 
-        // Rod的后门
         if(Input.GetKeyDown(KeyCode.Q)) {
             clearArea();
         }

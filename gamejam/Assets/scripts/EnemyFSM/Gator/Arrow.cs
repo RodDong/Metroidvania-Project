@@ -23,9 +23,11 @@ public class Arrow : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        countDown = destroyTime;
-        ObjectPool.Instance.Kill(this.gameObject);
+        if (other.tag == "player" || other.gameObject.layer == LayerMask.NameToLayer("Ground")) {
+            countDown = destroyTime;
+            ObjectPool.Instance.Kill(this.gameObject);
+        }
     }
 }

@@ -28,8 +28,7 @@ public class RangeEnemyDetection : MonoBehaviour
             isRight = false;
         }
 
-        if(hasTarget){
-            
+        if (hasTarget) {
             if(Mathf.Abs(enemy.transform.position.x - position.x) >= offset){
                 rotateRelativeToPlayer();
             }

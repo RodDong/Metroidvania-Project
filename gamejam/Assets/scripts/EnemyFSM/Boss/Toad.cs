@@ -95,13 +95,13 @@ public class Toad : MonoBehaviour
         {
             hasSummonRangers = true;
             // ToadRoar?
-            stateMachine.SetGlobalState(ToadRoar.Instance);
+            stateMachine.ChangeState(ToadRoar.Instance);
             SummonRangers();
         }
-        if (enemyHealth.getHP() <= maxHP / 2 && !hasSummonMelees)
+        else if (enemyHealth.getHP() <= maxHP / 2 && !hasSummonMelees)
         {
             hasSummonMelees = true;
-            stateMachine.SetGlobalState(ToadRoar.Instance);
+            stateMachine.ChangeState(ToadRoar.Instance);
             SummonMelees();
         }
     }
@@ -151,11 +151,11 @@ if (hp < 1/2):
     /// </summary>
     public void ChangeState()
     {
-        if (stateMachine.GlobalState() != null)
+        /*if (stateMachine.GlobalState() != null)
         {
             stateMachine.SetGlobalState(null);
             return;
-        }
+        }*/
 
         float playerDistance = PlayerDistance();
 

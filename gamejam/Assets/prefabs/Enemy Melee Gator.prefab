@@ -121,7 +121,7 @@ MonoBehaviour:
   backGroundDetection: {fileID: 1052367051624918306}
   wall: {fileID: 0}
   leftWall: 0
-  rightWall: 0
+  rightWall: 1
   hasTarget: 0
   position: {x: 0, y: 0, z: 0}
 --- !u!1 &1052367050461801224
@@ -251,7 +251,7 @@ BoxCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -319,7 +319,7 @@ Transform:
   m_GameObject: {fileID: 1052367050608436482}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.38, y: -4.82, z: -0.325015}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1052367050461801225}
@@ -415,7 +415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spearCollider: {fileID: 1052367050594758466}
-  VisionDetectArea: {fileID: 0}
+  VisionDetectArea: {fileID: 1052367051212715757}
   SoundDetectArea: {fileID: 1052367049959184839}
 --- !u!114 &1052367050608436490
 MonoBehaviour:
