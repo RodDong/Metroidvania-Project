@@ -11,7 +11,7 @@ public class Toad : MonoBehaviour
     public TMP_Text debugText;
     [HideInInspector] public EnemyDamage enemyHealth;
 
-    const int maxHP = 20;
+    int maxHP = 250;
 
     const int maxRange = 300;
 
@@ -81,6 +81,7 @@ public class Toad : MonoBehaviour
     void Start()
     {
         enemyHealth = this.GetComponent<EnemyDamage>();
+        maxHP = enemyHealth.getHP();
         player = GameObject.FindGameObjectWithTag("player");
         playerMovement = player.GetComponent<movement>();
         ToadIdle.Instance.Enter(this);
@@ -94,11 +95,13 @@ public class Toad : MonoBehaviour
         {
             hasSummonRangers = true;
             // ToadRoar?
+            stateMachine.SetGlobalState(ToadRoar.Instance);
             SummonRangers();
         }
         if (enemyHealth.getHP() <= maxHP / 2 && !hasSummonMelees)
         {
             hasSummonMelees = true;
+            stateMachine.SetGlobalState(ToadRoar.Instance);
             SummonMelees();
         }
     }
@@ -148,6 +151,12 @@ if (hp < 1/2):
     /// </summary>
     public void ChangeState()
     {
+        if (stateMachine.GlobalState() != null)
+        {
+            stateMachine.SetGlobalState(null);
+            return;
+        }
+
         float playerDistance = PlayerDistance();
 
         // Stage 01
@@ -155,14 +164,17 @@ if (hp < 1/2):
         {
             if (playerDistance <= attackRange && playerMovement.makeSound == true)
             {
-                if((gameObject.transform.eulerAngles.y > 90 && player.transform.position.x >= transform.position.x) 
-                || (gameObject.transform.eulerAngles.y < 90 && player.transform.position.x <= transform.position.x)){
+                if ((gameObject.transform.eulerAngles.y > 90 && player.transform.position.x >= transform.position.x)
+                || (gameObject.transform.eulerAngles.y < 90 && player.transform.position.x <= transform.position.x))
+                {
                     invokeAttack();
-                }else{
+                }
+                else
+                {
 
                     Invoke("invokeAttack", 1f);
                 }
-                
+
             }
             else if (playerDistance <= detectRange && canJump && playerMovement.makeSound == true)
             {
@@ -178,10 +190,13 @@ if (hp < 1/2):
         {
             if (playerDistance <= attackRange)
             {
-                if((gameObject.transform.eulerAngles.y > 90 && player.transform.position.x >= transform.position.x) 
-                || (gameObject.transform.eulerAngles.y < 90 && player.transform.position.x <= transform.position.x)){
+                if ((gameObject.transform.eulerAngles.y > 90 && player.transform.position.x >= transform.position.x)
+                || (gameObject.transform.eulerAngles.y < 90 && player.transform.position.x <= transform.position.x))
+                {
                     invokeAttack();
-                }else{
+                }
+                else
+                {
 
                     Invoke("invokeAttack", 1f);
                 }
@@ -196,7 +211,7 @@ if (hp < 1/2):
             }
         }
         // Die
-        else if(enemyHealth.getHP() <= 0)
+        else if (enemyHealth.getHP() <= 0)
         {
             stateMachine.ChangeState(ToadDeath.Instance);
         }
@@ -224,11 +239,21 @@ if (hp < 1/2):
     public void SummonRangers()
     {
         Debug.Log("Summon Rangers!");
+        for (int i = 0; i < rangerSummonPositionList.Count; i++)
+        {
+            Transform tf = rangerSummonPositionList[i];
+            Instantiate(ranger, tf.position, tf.rotation);
+        }
     }
 
     public void SummonMelees()
     {
         Debug.Log("Summon Melees!");
+        for (int i = 0; i < meleeSummonPositionList.Count; i++)
+        {
+            Transform tf = meleeSummonPositionList[i];
+            Instantiate(melee, tf.position, tf.rotation);
+        }
     }
 
     public void Jump()
@@ -308,11 +333,13 @@ if (hp < 1/2):
         canJump = true;
     }
 
-    void disableTongue(){
+    void disableTongue()
+    {
         tongueCol.enabled = false;
     }
 
-    void invokeAttack(){
+    void invokeAttack()
+    {
         stateMachine.ChangeState(ToadAttack.Instance);
     }
 

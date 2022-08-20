@@ -24,6 +24,10 @@ public class StateMachine<T>
         return previousState;
     }
 
+    /// <summary>
+    /// 中途紧急插入的状态
+    /// </summary>
+    /// <returns></returns>
     public IState<T> GlobalState()
     {
         return globalState;
