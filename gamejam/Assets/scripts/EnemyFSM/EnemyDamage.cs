@@ -10,8 +10,8 @@ public class EnemyDamage : EnemyBase
     float deathDuration;
     [SerializeField]
     GameObject player;
+    [HideInInspector] public float originHP;
     Color c;
-
     Renderer spriteRenderer;
 
     private void Start()
@@ -21,6 +21,7 @@ public class EnemyDamage : EnemyBase
         {
             c = spriteRenderer.material.color;
         }
+        originHP = getHP();
     }
     private void Update()
     {
