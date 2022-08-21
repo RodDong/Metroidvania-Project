@@ -44,7 +44,7 @@ public class MeleeVisualDetection : MonoBehaviour
             if (hit && hit.collider.tag == "player" && playerDustTrail.GetComponent<DustTrailVFX>().playing) {
                 MeleeEnemyDetection detection = soundDetection.GetComponent<MeleeEnemyDetection>();
                 if (!detection.hasTarget) {
-                    soundDetection.GetComponent<MeleeEnemyDetection>().position= new Vector3(hit.transform.position.x, hit.transform.position.y, 0);
+                    soundDetection.GetComponent<MeleeEnemyDetection>().position = new Vector3(hit.transform.position.x, hit.transform.position.y, 0);
                     detection.hasTarget = true;
                     Invoke("loseTarget",3f);
                 }

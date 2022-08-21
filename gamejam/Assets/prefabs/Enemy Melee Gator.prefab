@@ -431,7 +431,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 30
   enemyParent: {fileID: 1052367050608436482}
-  deathDuration: 2
+  deathDuration: 1
   player: {fileID: 0}
 --- !u!50 &1052367050608436492
 Rigidbody2D:

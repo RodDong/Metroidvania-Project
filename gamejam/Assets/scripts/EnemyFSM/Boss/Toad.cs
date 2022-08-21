@@ -50,11 +50,11 @@ public class Toad : MonoBehaviour
     [SerializeField]
     Rigidbody2D rb;
 
-    [SerializeField]
-    List<Transform> rangerSummonPositionList = new List<Transform>();
+    // [SerializeField]
+    // List<Transform> rangerSummonPositionList = new List<Transform>();
 
-    [SerializeField]
-    List<Transform> meleeSummonPositionList = new List<Transform>();
+    // [SerializeField]
+    // List<Transform> meleeSummonPositionList = new List<Transform>();
 
     public bool isRising, isFalling;
 
@@ -96,13 +96,13 @@ public class Toad : MonoBehaviour
             hasSummonRangers = true;
             // ToadRoar?
             stateMachine.ChangeState(ToadRoar.Instance);
-            SummonRangers();
+            //SummonRangers();
         }
         else if (enemyHealth.getHP() <= maxHP / 2 && !hasSummonMelees)
         {
             hasSummonMelees = true;
             stateMachine.ChangeState(ToadRoar.Instance);
-            SummonMelees();
+            //SummonMelees();
         }
     }
 
@@ -162,6 +162,9 @@ if (hp < 1/2):
         // Stage 01
         if (enemyHealth.getHP() >= maxHP / 2)
         {
+            if((playerDistance <= attackRange || playerDistance <= detectRange) && playerMovement.makeSound == true){
+                player.GetComponent<PlayerStatus>().isDetected = true;
+            }
             if (playerDistance <= attackRange && playerMovement.makeSound == true)
             {
                 if ((gameObject.transform.eulerAngles.y > 90 && player.transform.position.x >= transform.position.x)
@@ -188,7 +191,7 @@ if (hp < 1/2):
         // Stage 02
         else if (enemyHealth.getHP() > 0)
         {
-            if (playerDistance <= attackRange)
+            if (playerDistance <= attackRange && playerMovement.makeSound == true)
             {
                 if ((gameObject.transform.eulerAngles.y > 90 && player.transform.position.x >= transform.position.x)
                 || (gameObject.transform.eulerAngles.y < 90 && player.transform.position.x <= transform.position.x))
@@ -201,7 +204,7 @@ if (hp < 1/2):
                     Invoke("invokeAttack", 1f);
                 }
             }
-            else if (playerDistance <= detectRange && canJump)
+            else if (playerDistance <= detectRange && canJump && playerMovement.makeSound == true)
             {
                 stateMachine.ChangeState(ToadJump.Instance);
             }
@@ -236,25 +239,25 @@ if (hp < 1/2):
 
     }
 
-    public void SummonRangers()
-    {
-        Debug.Log("Summon Rangers!");
-        for (int i = 0; i < rangerSummonPositionList.Count; i++)
-        {
-            Transform tf = rangerSummonPositionList[i];
-            Instantiate(ranger, tf.position, tf.rotation);
-        }
-    }
+    // public void SummonRangers()
+    // {
+    //     Debug.Log("Summon Rangers!");
+    //     for (int i = 0; i < rangerSummonPositionList.Count; i++)
+    //     {
+    //         Transform tf = rangerSummonPositionList[i];
+    //         Instantiate(ranger, tf.position, tf.rotation);
+    //     }
+    // }
 
-    public void SummonMelees()
-    {
-        Debug.Log("Summon Melees!");
-        for (int i = 0; i < meleeSummonPositionList.Count; i++)
-        {
-            Transform tf = meleeSummonPositionList[i];
-            Instantiate(melee, tf.position, tf.rotation);
-        }
-    }
+    // public void SummonMelees()
+    // {
+    //     Debug.Log("Summon Melees!");
+    //     for (int i = 0; i < meleeSummonPositionList.Count; i++)
+    //     {
+    //         Transform tf = meleeSummonPositionList[i];
+    //         Instantiate(melee, tf.position, tf.rotation);
+    //     }
+    // }
 
     public void Jump()
     {
@@ -286,7 +289,7 @@ if (hp < 1/2):
     public void EnableColliderWhileFalling()
     {
         Vector2 dir = landingPoint - transform.position;
-        RaycastHit2D info = Physics2D.Raycast(transform.position, dir, dir.magnitude, 1 << LayerMask.NameToLayer("Ground"));
+        RaycastHit2D info = Physics2D.Raycast(transform.position, dir, dir.magnitude, 1 << LayerMask.NameToLayer("Ground") | 1 << LayerMask.NameToLayer("PlatformWithoutPlayerCollision") | 1 << LayerMask.NameToLayer("Platform"));
         if (info.collider == null && dir.magnitude <= 3f)// || !info.collider.CompareTag("ground"))
         {
             Debug.Log("Enable Collider! " + transform.position + landingPoint);
@@ -300,7 +303,7 @@ if (hp < 1/2):
     /// <param name="other"></param>
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.collider.CompareTag("ground") && isFalling)
+        if (other.collider.CompareTag("ground") || other.collider.CompareTag("OneWayPlatform") && isFalling)
         {
             isFalling = false;
             canJump = false;

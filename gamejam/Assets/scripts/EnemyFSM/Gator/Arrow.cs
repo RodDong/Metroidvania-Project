@@ -25,7 +25,7 @@ public class Arrow : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "player" || other.gameObject.layer == LayerMask.NameToLayer("Ground")) {
+        if (other.tag == "player" || other.gameObject.layer == LayerMask.NameToLayer("Ground") || other.gameObject.layer == LayerMask.NameToLayer("InvisibleWall")) {
             countDown = destroyTime;
             ObjectPool.Instance.Kill(this.gameObject);
         }

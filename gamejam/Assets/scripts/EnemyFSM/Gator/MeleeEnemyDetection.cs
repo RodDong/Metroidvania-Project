@@ -31,8 +31,12 @@ public class MeleeEnemyDetection : MonoBehaviour
     void Update()
     {
         
-        timer+=Time.deltaTime;
-        if(hasTarget) player.GetComponent<PlayerStatus>().isDetected = true;
+        if (timer >= 0) {
+            timer -= Time.deltaTime;
+        }
+        if (hasTarget) {
+            player.GetComponent<PlayerStatus>().isDetected = true;
+        }
         if (position.x - enemy.transform.position.x > 0)
         {
             isRight = true;
@@ -42,20 +46,20 @@ public class MeleeEnemyDetection : MonoBehaviour
             isRight = false;
         }
 
-        if(hasTarget){
+        if (hasTarget) {
             if(Mathf.Abs(enemy.transform.position.x - position.x) >= offset){
                 rotateRelativeToPlayer();
                 Wander();
             }
         }
-        else if(!hasTarget && !enemy.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("melee_attack")){
+        else if (!hasTarget && !enemy.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("melee_attack")) {
             Wander();
         }
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if((other.tag == "player" ||  other.tag == "attackArea") && other.GetComponent<movement>().makeSound){
+        if((other.tag == "player" ||  other.tag == "attackArea") && other.GetComponent<movement>().makeSound) {
             position = other.transform.position;
             hasTarget = true;
             Invoke("loseTarget",3f);
@@ -82,11 +86,12 @@ public class MeleeEnemyDetection : MonoBehaviour
     public void Wander()
     {
         if (enemy.GetComponent<EnemyDamage>().getHP() > 0) {
-            enemy.GetComponent<Animator>().SetTrigger("walk");
-            enemy.transform.Translate(Vector2.left * wanderSpeed * Time.deltaTime);
+            
             int groundMask = 1 << 8;
             int platformMask = 1 << 10;
             int noCollisionPlatformMask = 1 << 14;
+            enemy.GetComponent<Animator>().SetTrigger("walk");
+            enemy.transform.Translate(Vector2.left * wanderSpeed * Time.deltaTime);
             Collider2D isFrontGround = Physics2D.Raycast(frontGroundDetection.position, Vector2.down, groundDetectDistance, groundMask | platformMask | noCollisionPlatformMask).collider,
                     isBackGround = Physics2D.Raycast(backGroundDetection.position, Vector2.down, groundDetectDistance, groundMask | platformMask | noCollisionPlatformMask).collider;
             if (isFrontGround == null)
@@ -99,13 +104,14 @@ public class MeleeEnemyDetection : MonoBehaviour
             if (enemy.transform.position.x > wallList.wallPosLists[rightWall]) {
                 Flip();
             }
+            
         }
     }
 
     private void Flip()
     {
-        if(timer > flipCD){
-            timer = 0f;
+        if(timer <= 0){
+            timer = flipCD;
             if (isFacingRight)
             {
                 enemy.transform.eulerAngles = new Vector3(0, -180, 0);
@@ -114,8 +120,6 @@ public class MeleeEnemyDetection : MonoBehaviour
             {
                 enemy.transform.eulerAngles = new Vector3(0, 0, 0);
             }
-        }
-
-        
+        }        
     }
 }
