@@ -8,6 +8,7 @@ public class movement : MonoBehaviour
 {
     [SerializeField] public Slider cdSlider;
     [SerializeField] public GameObject attackArea;
+    [SerializeField] public AudioSource audioSource;
     // if transition > 0, move from attack1 to attack2
     [HideInInspector] public float transition;
     // if duration <= 0, move to idle state
@@ -32,6 +33,9 @@ public class movement : MonoBehaviour
     // FSM components
     private State currentState;
 
+    private PlayerAudio playerAudio;
+    private AudioClip attackSound;
+
     //Game initialization
     void Start()
     {
@@ -53,6 +57,9 @@ public class movement : MonoBehaviour
         //Initialize makeSound
         isFalling = false;
         makeSound = false;
+
+        playerAudio = audioSource.GetComponent<PlayerAudio>();
+        attackSound = playerAudio.swing1;
     }
 
     //Update frames in game
@@ -77,8 +84,8 @@ public class movement : MonoBehaviour
         attacking = false;
         position = rb.transform.position;
         rb.freezeRotation = true;
-        processInput();
         processAttack();
+        processInput();
         if (rb.velocity.y < -3)
         {
             isFalling = true;
@@ -111,6 +118,7 @@ public class movement : MonoBehaviour
             {
                 makeSound = true;
                 isFalling = false;
+                audioSource.PlayOneShot(playerAudio.landing);
                 Invoke("disableSound", 0.1f);
             }
         }
@@ -157,10 +165,12 @@ public class movement : MonoBehaviour
         if (coolDown > 0)
         {
             playerDamage = 10;
+            attackSound = playerAudio.swing1;
         }
         if (attackAnimator.GetCurrentAnimatorStateInfo(0).IsName("attackAnimation1"))
         {
             playerDamage = 15;
+            attackSound = playerAudio.swing2;
         }
     }
 
@@ -170,6 +180,7 @@ public class movement : MonoBehaviour
         makeSound = true;
         attackCollider.enabled = true;
         attackArea.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+        audioSource.PlayOneShot(attackSound);
         Invoke("disableAttackCollider", 0.15f);
     }
 

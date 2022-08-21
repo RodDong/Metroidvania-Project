@@ -22,6 +22,9 @@ public class DeathMenu : MonoBehaviour, IDataManager
             wallLists[i].isTrigger = true;
         }
 
+        // reset player isdetected to false
+        player.GetComponent<PlayerStatus>().isDetected = false;
+
         deathMenu.SetActive(false);
         Time.timeScale = 1f;
         DataManager.instance.LoadGame();

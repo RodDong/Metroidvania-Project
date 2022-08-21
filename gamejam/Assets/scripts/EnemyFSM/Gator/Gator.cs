@@ -29,7 +29,6 @@ public class Gator : MonoBehaviour
         xDistance = rangerEnemyDetection.GetComponent<RangeEnemyDetection>().position.x - gameObject.transform.position.x;
         yDistance = rangerEnemyDetection.GetComponent<RangeEnemyDetection>().position.y - gameObject.transform.position.y;
         float phi = xDistance / distance;
-        Debug.Log(distance);
 
         if (distance < attackRange && rangerEnemyDetection.GetComponent<RangeEnemyDetection>().hasTarget)
         {
