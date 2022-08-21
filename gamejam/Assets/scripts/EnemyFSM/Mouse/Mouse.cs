@@ -67,9 +67,9 @@ public class Mouse : MonoBehaviour
     {
         transform.Translate(Vector2.right * wanderSpeed * Time.deltaTime);
 
-        int groundMask = 1 << 8;
-        int platformMask = 1 << 10;
-        int noCollisionPlatformMask = 1 << 14;
+        int groundMask = 1 << LayerMask.NameToLayer("Ground");
+        int platformMask = 1 << LayerMask.NameToLayer("Platform");
+        int noCollisionPlatformMask = 1 << LayerMask.NameToLayer("PlatformWithoutPlayerCollision");
         Collider2D frontRayCollider = 
                     Physics2D.Raycast(frontGroundDetection.position, 
                         Vector2.down, 
@@ -83,7 +83,6 @@ public class Mouse : MonoBehaviour
                         groundMask | platformMask | noCollisionPlatformMask).collider;
 
         noGroundOnBothSides = frontRayCollider == null && backRayCollider == null;
-
         if (frontRayCollider == null
         || frontGroundDetection.transform.position.x < wallList.wallPosLists[leftWall] 
         || frontGroundDetection.transform.position.x > wallList.wallPosLists[rightWall])
