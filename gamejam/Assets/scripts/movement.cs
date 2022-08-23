@@ -24,6 +24,7 @@ public class movement : MonoBehaviour
     [HideInInspector] public bool canJump = false;
     [HideInInspector] public int playerDamage;
     //attack vars
+    [HideInInspector] public bool canAttack = false;
     [HideInInspector] public bool attacking = false;
     [HideInInspector] public Collider2D attackCollider;
     public Animator attackAnimator;
@@ -95,6 +96,14 @@ public class movement : MonoBehaviour
     public void ChangeState(State state)
     {
         currentState = state;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject.tag == "swordItem") {
+            canAttack = true;
+            GameObject.FindGameObjectWithTag("swordItem").SetActive(!canAttack);
+            GameObject.FindGameObjectWithTag("tutorial").SetActive(!canAttack);
+        }
     }
 
     //Collision handler for bool canJump
@@ -215,7 +224,7 @@ public class IdleState : State
 {
     public override void Execute(movement player)
     {
-        if (Input.GetMouseButtonDown(0) && player.coolDown <= 0)
+        if (Input.GetMouseButtonDown(0) && player.coolDown <= 0 && player.canAttack)
         {
             // move to attack 1
             player.attackAnimator.Play("attackAnimation");

@@ -14,6 +14,9 @@ public class CollisionManager : MonoBehaviour
         int attackLayer = LayerMask.NameToLayer("AttackArea");
         int detectLayer = LayerMask.NameToLayer("DetectArea");
         int mouseLyaer = LayerMask.NameToLayer("Mouse");
+        Physics2D.IgnoreLayerCollision(enemyLayer, playerLayer, false);
+        Physics2D.IgnoreLayerCollision(projectileLayer, playerLayer, false);
+
         Physics2D.IgnoreLayerCollision(enemyLayer, enemyLayer);
         Physics2D.IgnoreLayerCollision(enemyLayer, projectileLayer);
         Physics2D.IgnoreLayerCollision(enemyLayer, mouseLyaer);

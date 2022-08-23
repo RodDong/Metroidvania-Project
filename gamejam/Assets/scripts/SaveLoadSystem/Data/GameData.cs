@@ -6,8 +6,12 @@ using UnityEngine;
 public class GameData
 {
     public Vector3 playerPosition;
+    public bool canAttack;
+    public bool attackSaved;
 
     public GameData() {
         playerPosition = Vector3.zero;
+        canAttack = false;
+        attackSaved = false;
     }
 }

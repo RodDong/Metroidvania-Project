@@ -13,6 +13,10 @@ TagManager:
   - OneWayPlatform
   - attackAnimator
   - road
+  - Boss1
+  - BossTongue
+  - swordItem
+  - tutorial
   layers:
   - Default
   - TransparentFX

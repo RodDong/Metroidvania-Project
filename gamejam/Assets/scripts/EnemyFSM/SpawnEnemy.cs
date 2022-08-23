@@ -25,7 +25,7 @@ public class SpawnEnemy : MonoBehaviour
     private void Update() {
         isDetected = player.GetComponent<PlayerStatus>().isDetected;
         // No enabled child object found, reset enemy health and position
-        if (enemiesOfScene.GetComponentsInChildren<EnemyDamage>().GetLength(0) == 0) {
+        if (enemiesOfScene.GetComponentsInChildren<EnemyDamage>().GetLength(0) == 0 && enemyList[0].GetComponent<EnemyDamage>().getHP() <= 0) {
             isClear = true;
             for (int i = 0; i < enemyList.Count; i++) {
                 if (enemyList[i].GetComponent<melee_gator>() != null) {
@@ -43,10 +43,7 @@ public class SpawnEnemy : MonoBehaviour
                     enemyList[i].GetComponent<MeleeEnemyDetection>().hasTarget = false;
                 }
             }
-        } else {
-            isClear = false;
         }
-
         if(Input.GetKeyDown(KeyCode.Q)) {
             clearArea();
         }
@@ -55,7 +52,7 @@ public class SpawnEnemy : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other) {
         // TODO: reload enemy status
-        if (other.tag == "player") {
+        if (other.tag == "player" && !isClear) {
             isInRoom = true;
             for (int i = 0; i < enemyList.Count; i++) {
                 if (!enemyList[i].activeSelf) {

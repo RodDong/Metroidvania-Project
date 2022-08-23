@@ -70,7 +70,9 @@ public class Health : MonoBehaviour
         }
 
         // if player died, skip immunity, return to death screen
-        if (health == 0) {}
+        if (health == 0) {
+            return;
+        }
 
         // give player [x] seconds of immunity and player can pass through enemy
         int playerLayer = LayerMask.NameToLayer("Player");
