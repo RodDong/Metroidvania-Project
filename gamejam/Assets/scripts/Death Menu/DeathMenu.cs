@@ -26,8 +26,8 @@ public class DeathMenu : MonoBehaviour, IDataManager
         player.GetComponent<PlayerStatus>().isDetected = false;
 
         deathMenu.SetActive(false);
-        Time.timeScale = 1f;
         DataManager.instance.LoadGame();
+        Time.timeScale = 1f;
     }
 
     public void Quit() {
