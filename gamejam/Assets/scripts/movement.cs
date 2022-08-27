@@ -33,7 +33,6 @@ public class movement : MonoBehaviour
     Rigidbody2D rb;
     // FSM components
     private State currentState;
-
     private PlayerAudio playerAudio;
     private AudioClip attackSound;
 
@@ -224,7 +223,7 @@ public class IdleState : State
 {
     public override void Execute(movement player)
     {
-        if (Input.GetMouseButtonDown(0) && player.coolDown <= 0 && player.canAttack)
+        if (Input.GetKeyDown(KeyCode.J) && player.coolDown <= 0 && player.canAttack)
         {
             // move to attack 1
             player.attackAnimator.Play("attackAnimation");
@@ -241,7 +240,7 @@ public class AttackState1 : State
 {
     public override void Execute(movement player)
     {
-        if (Input.GetMouseButtonDown(0) && player.transition > 0 && player.duration <= 0)
+        if (Input.GetKeyDown(KeyCode.J) && player.transition > 0 && player.duration <= 0)
         {
             player.duration = 0.25f;
             player.enableAttackCollider();
