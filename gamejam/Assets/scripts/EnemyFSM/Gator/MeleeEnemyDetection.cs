@@ -37,14 +37,9 @@ public class MeleeEnemyDetection : MonoBehaviour
         if (hasTarget) {
             player.GetComponent<PlayerStatus>().isDetected = true;
         }
-        if (position.x - enemy.transform.position.x > 0)
-        {
-            isRight = true;
-        }
-        else
-        {
-            isRight = false;
-        }
+
+        isRight = position.x - enemy.transform.position.x > 0;
+
 
         if (hasTarget) {
             if(Mathf.Abs(enemy.transform.position.x - position.x) >= offset){
@@ -87,9 +82,9 @@ public class MeleeEnemyDetection : MonoBehaviour
     {
         if (enemy.GetComponent<EnemyDamage>().getHP() > 0) {
             
-            int groundMask = 1 << 8;
-            int platformMask = 1 << 10;
-            int noCollisionPlatformMask = 1 << 14;
+            int groundMask = 1 << LayerMask.NameToLayer("Ground");
+            int platformMask = 1 << LayerMask.NameToLayer("Platform");
+            int noCollisionPlatformMask = 1 << LayerMask.NameToLayer("PlatformWithoutPlayerCollision");
             enemy.GetComponent<Animator>().SetTrigger("walk");
             enemy.transform.Translate(Vector2.left * wanderSpeed * Time.deltaTime);
             Collider2D isFrontGround = Physics2D.Raycast(frontGroundDetection.position, Vector2.down, groundDetectDistance, groundMask | platformMask | noCollisionPlatformMask).collider,

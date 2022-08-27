@@ -42,9 +42,9 @@ public class FishManAI : MonoBehaviour
         isRight = fishmanDetection.position.x - gameObject.transform.position.x > 0;
 
         if (fishmanDetection.hasTarget) {
-            if (Vector2.Distance(fishmanDetection.position, gameObject.transform.position) < meleeAttackRange) {
+            if (Mathf.Abs(fishmanDetection.position.x - gameObject.transform.position.x) < meleeAttackRange) {
                 currentState = new SwordAttack();
-            } else if (Vector2.Distance(fishmanDetection.position, gameObject.transform.position) < meleeEngageRange) {
+            } else if (Mathf.Abs(fishmanDetection.position.x - gameObject.transform.position.x) < meleeEngageRange) {
                 currentState = new WalkingTowardsTarget();
             } else if (Vector2.Distance(fishmanDetection.position, gameObject.transform.position) < rangedAttackRange) {
                 currentState = new HarpoonAttack();
@@ -62,9 +62,9 @@ public class FishManAI : MonoBehaviour
     {
         if (gameObject.GetComponent<EnemyDamage>().getHP() > 0) {
             
-            int groundMask = 1 << 8;
-            int platformMask = 1 << 10;
-            int noCollisionPlatformMask = 1 << 14;
+            int groundMask = 1 << LayerMask.NameToLayer("Ground");
+            int platformMask = 1 << LayerMask.NameToLayer("Platform");
+            int noCollisionPlatformMask = 1 << LayerMask.NameToLayer("PlatformWithoutPlayerCollision");
             
             gameObject.transform.Translate(Vector2.left * wanderSpeed * Time.deltaTime);
             Collider2D isFrontGround = Physics2D.Raycast(frontGroundDetection.position, Vector2.down, groundDetectDistance, groundMask | platformMask | noCollisionPlatformMask).collider,
@@ -110,7 +110,7 @@ public class FishManAI : MonoBehaviour
             gameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
     }
-    void instantiateHarpoon()
+    public void instantiateHarpoon()
     {
         var xDistance = fishmanDetection.position.x - gameObject.transform.position.x;
         var yDistance = fishmanDetection.position.y - gameObject.transform.position.y;
@@ -139,15 +139,11 @@ public class Idle : FishState{
 }
 
 public class SwordAttack : FishState{
-    public override async void Execute(FishManAI fish)
+    public override void Execute(FishManAI fish)
     {
         fish.rotateRelativeToPlayer();
         fish.animator.Play("SwordAttack");
         fish.timer += 120f/64f;
-
-        
-        
-        
         Debug.Log("Sword Attack");
         
     }
@@ -180,7 +176,7 @@ public class HarpoonAttack : FishState{
     {
         fish.rotateRelativeToPlayer();
         fish.animator.Play("Throw");
-
+        fish.Invoke("instantiateHarpoon", 1.2f);
         fish.timer += 150f/64f;
 
         Debug.Log("Harpoon Attack");

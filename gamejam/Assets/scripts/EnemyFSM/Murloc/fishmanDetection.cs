@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class fishmanDetection : MonoBehaviour
 {
-        [SerializeField] GameObject player;
+    [SerializeField] GameObject player;
     [SerializeField] GameObject enemy;
     [SerializeField] private float groundDetectDistance;
     [SerializeField] private Transform frontGroundDetection;
