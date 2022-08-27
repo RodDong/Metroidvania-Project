@@ -120,8 +120,8 @@ MonoBehaviour:
   frontGroundDetection: {fileID: 1052367050461801225}
   backGroundDetection: {fileID: 1052367051624918306}
   wall: {fileID: 0}
-  leftWall: 0
-  rightWall: 1
+  leftWall: 1
+  rightWall: 2
   hasTarget: 0
   position: {x: 0, y: 0, z: 0}
 --- !u!1 &1052367050461801224
@@ -251,7 +251,7 @@ BoxCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -309,7 +309,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1052367050608436481
 Transform:
   m_ObjectHideFlags: 0
@@ -433,6 +433,7 @@ MonoBehaviour:
   enemyParent: {fileID: 1052367050608436482}
   deathDuration: 1
   player: {fileID: 0}
+  originHP: 0
 --- !u!50 &1052367050608436492
 Rigidbody2D:
   serializedVersion: 4

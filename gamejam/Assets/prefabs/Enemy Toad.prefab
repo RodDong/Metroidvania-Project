@@ -561,7 +561,7 @@ GameObject:
   - component: {fileID: 8149241889296835388}
   - component: {fileID: 8149241889296835363}
   m_Layer: 7
-  m_Name: Toad
+  m_Name: Enemy Toad
   m_TagString: Boss1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
