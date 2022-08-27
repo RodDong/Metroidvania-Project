@@ -7,7 +7,14 @@ public class PotionManager : MonoBehaviour
 {
     [SerializeField] Health playerHealth;
     [SerializeField] TMP_Text potionText;
+    public int potionMaxCount;
     public int potionCount;
+    private void Start() {
+        if (potionMaxCount == 0) {
+            potionMaxCount = 1;
+        }
+        potionCount = potionMaxCount;
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E) && potionCount != 0) {
