@@ -19,7 +19,7 @@ public class PotionManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && potionCount != 0) {
             playerHealth.Recover();
-            playerHealth.Invoke("Recover", 0.1f);
+            playerHealth.Invoke("Recover", 0.05f);
             potionCount--;
         }
         potionText.SetText(potionCount.ToString());
