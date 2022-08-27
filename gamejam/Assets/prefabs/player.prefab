@@ -145,6 +145,7 @@ MonoBehaviour:
   hurt: {fileID: 8300000, guid: a0e736be98f155348b34314beb23f05c, type: 3}
   swing1: {fileID: 8300000, guid: 031e39df2f3b299488851c2e60887d4d, type: 3}
   swing2: {fileID: 8300000, guid: 227c36f96f7234647af16ff8502618de, type: 3}
+  deathMusic: {fileID: 0}
 --- !u!1 &5376801172422824355
 GameObject:
   m_ObjectHideFlags: 0
@@ -4987,6 +4988,7 @@ GameObject:
   - component: {fileID: 4888737657051059265}
   - component: {fileID: 1914391794825562642}
   - component: {fileID: 5674050915087484867}
+  - component: {fileID: 6799895932276836930}
   m_Layer: 6
   m_Name: player
   m_TagString: player
@@ -5097,6 +5099,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0c0f07eb7eae0b43a9c863b7a642763, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
   health: 6
   numHearts: 3
   hearts:
@@ -5170,10 +5173,25 @@ MonoBehaviour:
   isOnRoad: 0
   canJump: 0
   playerDamage: 10
+  canAttack: 0
   attacking: 0
   attackCollider: {fileID: 0}
   attackAnimator: {fileID: 0}
   rb: {fileID: 0}
+--- !u!114 &6799895932276836930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5674050915447243936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edf640ebb33c554489f55d128f2bffa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHealth: {fileID: 0}
+  potionCount: 1
 --- !u!1 &5674050916181114047
 GameObject:
   m_ObjectHideFlags: 0

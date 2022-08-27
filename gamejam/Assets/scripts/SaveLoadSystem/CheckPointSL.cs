@@ -6,8 +6,8 @@ public class CheckPointSL : MonoBehaviour, IDataManager
 {
     [SerializeField] bool activateSL = false;
     [SerializeField] GameObject saveMenu;
-    [SerializeField] float loadHeight;
-    public Vector3 playerPosition;
+    [SerializeField] GameObject player;
+    [HideInInspector] public Vector3 playerPosition;
     private bool onFire;
     private bool attackSaved;
 
@@ -30,15 +30,11 @@ public class CheckPointSL : MonoBehaviour, IDataManager
             saveMenu.GetComponent<Animator>().SetTrigger("start");
             DataManager.instance.SaveGame();
         }
-        if (GameObject.FindGameObjectWithTag("player").GetComponent<movement>().canAttack && !attackSaved) {
-            DataManager.instance.SaveGame();
-            attackSaved = true;
-        }
     }
 
     public void LoadData(GameData data) {
-        GameObject.FindGameObjectWithTag("player").transform.position = data.playerPosition;
-        GameObject.FindGameObjectWithTag("player").GetComponent<movement>().canAttack = data.canAttack;
+        player.transform.position = data.playerPosition;
+        player.GetComponent<movement>().canAttack = data.canAttack;
         attackSaved = data.attackSaved;
         if (GameObject.FindGameObjectWithTag("swordItem")) {
             GameObject.FindGameObjectWithTag("swordItem").SetActive(!data.canAttack);
@@ -46,16 +42,17 @@ public class CheckPointSL : MonoBehaviour, IDataManager
         if (GameObject.FindGameObjectWithTag("tutorial")) {
             GameObject.FindGameObjectWithTag("tutorial").SetActive(!data.canAttack);
         }
+        player.GetComponent<PotionManager>().potionCount = data.potionCount;
     }
 
     public void SaveData(ref GameData data) {
-        Vector3 temp = GameObject.FindGameObjectWithTag("player").GetComponent<movement>().position;
-        data.playerPosition = new Vector3(temp.x, loadHeight, temp.y);
-        data.canAttack = GameObject.FindGameObjectWithTag("player").GetComponent<movement>().canAttack;
+        data.playerPosition = player.GetComponent<movement>().position;
+        data.canAttack = player.GetComponent<movement>().canAttack;
         data.attackSaved = attackSaved;
         SpawnEnemy[] rooms = FindObjectsOfType<SpawnEnemy>();
         for (int i = 0; i < rooms.Length; i++) {
             rooms[i].isClear = false;
         }
+        data.potionCount = player.GetComponent<PotionManager>().potionCount;
     }
 }

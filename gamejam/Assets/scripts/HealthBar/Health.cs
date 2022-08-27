@@ -85,14 +85,15 @@ public class Health : MonoBehaviour
     }
 
     public void Recover() {
-        for (int i = hearts.Count - 1; i >= 0; i--) {
+        health += 1;
+        for (int i = 0; i < hearts.Count; i++) {
             Animator heartAnimator = hearts[i].GetComponent<Animator>();
-            if (heartAnimator.GetCurrentAnimatorStateInfo(0).IsName("soul_break")) {
-                heartAnimator.SetTrigger("break_recover");
-                break;
-            }
             if (heartAnimator.GetCurrentAnimatorStateInfo(0).IsName("soul_empty")) {
                 heartAnimator.SetTrigger("empty_recover");
+                break;
+            }
+            if (heartAnimator.GetCurrentAnimatorStateInfo(0).IsName("soul_break")) {
+                heartAnimator.SetTrigger("break_recover");
                 break;
             }
         }

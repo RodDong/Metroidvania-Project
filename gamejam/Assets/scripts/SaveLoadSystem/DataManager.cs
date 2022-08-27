@@ -44,7 +44,6 @@ public class DataManager : MonoBehaviour
         foreach (IDataManager dataManagerObj in dataMangerObjects) {
             dataManagerObj.SaveData(ref gameData);
         }
-
         Debug.Log("Save player position = " + gameData.playerPosition);
         dataHandler.Save(gameData);
     }
