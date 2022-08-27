@@ -15,7 +15,6 @@ public class movement : MonoBehaviour
     [HideInInspector] public float duration;
     // if coolDown > 0, player cannot attack
     [HideInInspector] public float coolDown;
-    [HideInInspector] public float healCoolDown = 2f;
     //game Objects
     [HideInInspector] public Vector3 position;
     [HideInInspector] public bool isRight;
@@ -104,25 +103,10 @@ public class movement : MonoBehaviour
             GameObject.FindGameObjectWithTag("swordItem").SetActive(!canAttack);
             GameObject.FindGameObjectWithTag("tutorial").SetActive(!canAttack);
         }
-        if(other.tag == "totemBlock"){
-            isProtected = true;
-        }
         
     }
 
-    private void OnTriggerStay2D(Collider2D other) {
-        healCoolDown -= Time.deltaTime;
-        if(other.tag == "totemHeal" && healCoolDown <= 0){
-            gameObject.GetComponent<Health>().Recover();
-        }
-        if(healCoolDown <=0){
-            healCoolDown = 2f;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other) {
-        if(other.tag == "totemBlock") isProtected = false;
-    }
+    
 
     //Collision handler for bool canJump
     private void OnCollisionEnter2D(Collision2D other)
@@ -138,7 +122,7 @@ public class movement : MonoBehaviour
         }
 
         //update makeSound and is Falling
-        if (!isProtected && (other.gameObject.tag == "ground" || other.gameObject.tag == "OneWayPlatform" || other.gameObject.tag == "road" ))
+        if (other.gameObject.tag == "ground" || other.gameObject.tag == "OneWayPlatform" || other.gameObject.tag == "road" )
         {
             canJump = true;
             if (isFalling)
@@ -156,7 +140,7 @@ public class movement : MonoBehaviour
     {
         //Process player movements (Space for jump, A & D for horizontal movements)
         Vector2 v = rb.velocity;
-        if (Input.GetKeyDown(KeyCode.Space) && canJump)
+        if (Input.GetKeyDown(KeyCode.Space) && canJump && !isProtected)
         {
             v.y = jump_init_v;
             canJump = false;

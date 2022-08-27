@@ -10,6 +10,7 @@ public class FishManAI : MonoBehaviour
     private float rangedAttackRange = 100f;
     private float wanderSpeed = 5f, flipCD = 1f;
     private float groundDetectDistance = 2f;
+    private bool isProtected = false;
 
     [SerializeField] GameObject player;
 
@@ -46,7 +47,7 @@ public class FishManAI : MonoBehaviour
                 currentState = new SwordAttack();
             } else if (Mathf.Abs(fishmanDetection.position.x - gameObject.transform.position.x) < meleeEngageRange) {
                 currentState = new WalkingTowardsTarget();
-            } else if (Vector2.Distance(fishmanDetection.position, gameObject.transform.position) < rangedAttackRange) {
+            } else if (Vector2.Distance(fishmanDetection.position, gameObject.transform.position) < rangedAttackRange && !isProtected) {
                 currentState = new HarpoonAttack();
             } else {
                 currentState = new WalkingTowardsTarget();
@@ -57,6 +58,19 @@ public class FishManAI : MonoBehaviour
 
         currentState.Execute(this);
     }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.gameObject.layer == LayerMask.NameToLayer("Block")){
+            isProtected = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other) {
+        if(other.gameObject.layer == LayerMask.NameToLayer("Block")){
+            isProtected = false;
+        }
+    }
+
 
     public void Wander()
     {
@@ -144,7 +158,6 @@ public class SwordAttack : FishState{
         fish.rotateRelativeToPlayer();
         fish.animator.Play("SwordAttack");
         fish.timer += 120f/64f;
-        Debug.Log("Sword Attack");
         
     }
 
@@ -156,7 +169,6 @@ public class Walk : FishState{
         fish.animator.Play("Walk");
         fish.Wander();
 
-        Debug.Log("Just walking");
     }
 }
 
@@ -167,7 +179,6 @@ public class WalkingTowardsTarget : FishState {
 
         fish.rotateRelativeToPlayer();
         fish.Wander();
-        Debug.Log("walking towards target");
     }
 }
 
