@@ -20,12 +20,12 @@ public class movement : MonoBehaviour
     [HideInInspector] public Vector3 position;
     [HideInInspector] public bool isRight;
     [HideInInspector] bool isFalling;
-    [HideInInspector] public bool makeSound, isOnRoad;
+    [HideInInspector] public bool makeSound, isOnRoad, isProtected;
     //Jump vars
     [HideInInspector] public bool canJump = false;
     [HideInInspector] public int playerDamage;
     //attack vars
-    [HideInInspector] public bool canAttack = false;
+    public bool canAttack = false;
     [HideInInspector] public bool attacking = false;
     [HideInInspector] public Collider2D attackCollider;
     public Animator attackAnimator;
@@ -104,7 +104,10 @@ public class movement : MonoBehaviour
             GameObject.FindGameObjectWithTag("swordItem").SetActive(!canAttack);
             GameObject.FindGameObjectWithTag("tutorial").SetActive(!canAttack);
         }
+        
     }
+
+    
 
     //Collision handler for bool canJump
     private void OnCollisionEnter2D(Collision2D other)
@@ -120,7 +123,7 @@ public class movement : MonoBehaviour
         }
 
         //update makeSound and is Falling
-        if (other.gameObject.tag == "ground" || other.gameObject.tag == "OneWayPlatform" || other.gameObject.tag == "road")
+        if (other.gameObject.tag == "ground" || other.gameObject.tag == "OneWayPlatform" || other.gameObject.tag == "road" )
         {
             canJump = true;
             if (isFalling)
@@ -138,7 +141,7 @@ public class movement : MonoBehaviour
     {
         //Process player movements (Space for jump, A & D for horizontal movements)
         Vector2 v = rb.velocity;
-        if (Input.GetKeyDown(KeyCode.Space) && canJump)
+        if (Input.GetKeyDown(KeyCode.Space) && canJump && !isProtected)
         {
             v.y = jump_init_v;
             canJump = false;

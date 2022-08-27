@@ -14,7 +14,7 @@ public class waterWheel : MonoBehaviour
 
     void Update()
     {
-        angle+=new Vector3(0, 0, 0.5f);
+        angle+=new Vector3(0, 0, speed);
         gameObject.transform.eulerAngles = angle;
     }
 }
