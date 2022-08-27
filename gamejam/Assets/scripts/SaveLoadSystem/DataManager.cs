@@ -16,13 +16,12 @@ public class DataManager : MonoBehaviour
             Debug.LogError("More than one DataManager in the scene!");
         }
         instance = this;
-    }
-
-    public void Start() {
         this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
         this.dataMangerObjects = FindAllDataManagerObjects();
         LoadGame();
     }
+
+    // move loadgame from onStart to onAwake (might have bug, not sure)
 
     public void NewGame() {
         this.gameData = new GameData();

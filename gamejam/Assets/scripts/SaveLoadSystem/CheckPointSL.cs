@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class CheckPointSL : MonoBehaviour, IDataManager
 {
     [SerializeField] bool activateSL = false;
     [SerializeField] GameObject saveMenu;
     [SerializeField] GameObject player;
+    [SerializeField] CinemachineBrain cinemachineBrain;
     [HideInInspector] public Vector3 playerPosition;
     private bool onFire;
     private bool attackSaved;
@@ -42,7 +44,10 @@ public class CheckPointSL : MonoBehaviour, IDataManager
         if (GameObject.FindGameObjectWithTag("tutorial")) {
             GameObject.FindGameObjectWithTag("tutorial").SetActive(!data.canAttack);
         }
-        player.GetComponent<PotionManager>().potionCount = data.potionCount;
+        player.GetComponent<PotionManager>().potionMaxCount = data.potionMaxCount;
+        if (data.activeCamera) {
+            data.activeCamera.enabled = true;
+        }
     }
 
     public void SaveData(ref GameData data) {
@@ -53,6 +58,7 @@ public class CheckPointSL : MonoBehaviour, IDataManager
         for (int i = 0; i < rooms.Length; i++) {
             rooms[i].isClear = false;
         }
-        data.potionCount = player.GetComponent<PotionManager>().potionCount;
+        data.potionMaxCount = player.GetComponent<PotionManager>().potionMaxCount;
+        data.activeCamera = cinemachineBrain.ActiveVirtualCamera.VirtualCameraGameObject.GetComponent<CinemachineVirtualCamera>();
     }
 }

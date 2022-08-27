@@ -18,7 +18,7 @@ public class fishmanDetection : MonoBehaviour
     public Vector3 position;
     private float wanderSpeed = 5f, flipCD = 1f;
     private WallList wallList;
-    float offset = 2f;
+    //float offset = 2f;
     bool isRight;
     float timer = 0.0f;
     void Start()

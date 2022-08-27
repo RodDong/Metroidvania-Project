@@ -2,18 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Cinemachine;
 
 public class DeathMenu : MonoBehaviour, IDataManager
 {
     public GameObject deathMenu;
     [SerializeField] GameObject player;
     [SerializeField] GameObject wall;
+    [SerializeField] CinemachineBrain cinemachineBrain;
     private EdgeCollider2D[] wallLists;
 
     private void Start() {
         wallLists = wall.GetComponents<EdgeCollider2D>();
     }
     public void Resume() {
+        // change blend mode to cut
+        cinemachineBrain.m_DefaultBlend.m_Style = CinemachineBlendDefinition.Style.Cut;
         // reset player health
         player.GetComponent<Health>().resetHealth();
 
@@ -28,6 +32,9 @@ public class DeathMenu : MonoBehaviour, IDataManager
         deathMenu.SetActive(false);
         DataManager.instance.LoadGame();
         Time.timeScale = 1f;
+
+        // change blend mode back to ease in out
+        Invoke("ResetCam", 1f);
     }
 
     public void Quit() {
@@ -41,5 +48,9 @@ public class DeathMenu : MonoBehaviour, IDataManager
 
     public void SaveData(ref GameData data) {
         data.playerPosition = GameObject.FindGameObjectWithTag("player").GetComponent<movement>().position;
+    }
+
+    private void ResetCam() {
+        cinemachineBrain.m_DefaultBlend.m_Style = CinemachineBlendDefinition.Style.EaseInOut;
     }
 }
