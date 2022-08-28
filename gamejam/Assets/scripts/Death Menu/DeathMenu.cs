@@ -10,10 +10,12 @@ public class DeathMenu : MonoBehaviour, IDataManager
     [SerializeField] GameObject player;
     [SerializeField] GameObject wall;
     [SerializeField] CinemachineBrain cinemachineBrain;
+    private SpawnEnemy[] enemySpawnControllers;
     private EdgeCollider2D[] wallLists;
 
     private void Start() {
         wallLists = wall.GetComponents<EdgeCollider2D>();
+        enemySpawnControllers = GameObject.FindObjectsOfType<SpawnEnemy>();
     }
     public void Resume() {
         // change blend mode to cut
@@ -28,6 +30,12 @@ public class DeathMenu : MonoBehaviour, IDataManager
 
         // reset player isdetected to false
         player.GetComponent<PlayerStatus>().isDetected = false;
+
+        foreach (SpawnEnemy enemySpawner in enemySpawnControllers) {
+            // To reset isClear after player died, uncomment this:
+            // enemySpawner.isClear = false;
+            enemySpawner.ResetEnemies();
+        }
 
         deathMenu.SetActive(false);
         DataManager.instance.LoadGame();

@@ -84,4 +84,24 @@ public class SpawnEnemy : MonoBehaviour
             wallLists[i].isTrigger = true;
         }
     }
+
+    public void ResetEnemies() {
+        for (int i = 0; i < enemyList.Count; i++) {
+            if (enemyList[i].GetComponent<melee_gator>() != null) {
+                enemyList[i].GetComponent<melee_gator>().enabled = true;
+            }
+            if (enemyList[i].GetComponent<Gator>() != null) {
+                enemyList[i].GetComponent<Gator>().enabled = true;
+            }
+            enemyList[i].SetActive(false);
+            enemyList[i].GetComponent<EnemyDamage>().setHP(enemyHPList[i]);
+            // reset enemy position
+            enemyList[i].GetComponent<Transform>().transform.position = enemyPosList[i].position;
+            enemyList[i].GetComponent<Transform>().transform.rotation = enemyPosList[i].rotation;
+            // reset enemy detection
+            if (enemyList[i].GetComponent<MeleeEnemyDetection>() != null) {
+                enemyList[i].GetComponent<MeleeEnemyDetection>().hasTarget = false;
+            }
+        }
+    }
 }

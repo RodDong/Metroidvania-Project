@@ -17,7 +17,6 @@ public class DustTrailVFX : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(PS.isStopped);
         Vector2 dustPos = player.transform.position;
         dustPos.y -= player.GetComponent<Collider2D>().bounds.size.y / 2;
         gameObject.transform.position = dustPos;
