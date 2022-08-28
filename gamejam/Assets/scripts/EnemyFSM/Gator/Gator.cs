@@ -5,7 +5,6 @@ using UnityEngine;
 public class Gator : MonoBehaviour
 {
     float attackRange = 30f;
-    bool attackCoolDown = false;
     GameObject player;
     GameObject arrowObj;
     private Animator attackAnimation;
@@ -14,6 +13,8 @@ public class Gator : MonoBehaviour
     private float yDistance;
     [SerializeField] GameObject arrow;
     [SerializeField] GameObject rangerEnemyDetection;
+    private float timer = 0f;
+    [SerializeField] float attackCD;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,11 @@ public class Gator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (timer > 0) {
+            timer -= Time.deltaTime;
+            return;
+        } 
+
         float distance = Vector3.Distance(rangerEnemyDetection.GetComponent<RangeEnemyDetection>().position, gameObject.transform.position);
         xDistance = rangerEnemyDetection.GetComponent<RangeEnemyDetection>().position.x - gameObject.transform.position.x;
         yDistance = rangerEnemyDetection.GetComponent<RangeEnemyDetection>().position.y - gameObject.transform.position.y;
@@ -34,20 +40,9 @@ public class Gator : MonoBehaviour
         {
 
             attackAnimation.SetTrigger("attack");
-            if (attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("shooting") && !attackCoolDown)
-            {
-                
-                Invoke("instantiateArrow", 0.35f);
-                attackCoolDown = true;
-            }
-            else if (attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("idle"))
-            {
-                
-                attackCoolDown = false;
-            }
-        }
-        if(attackAnimation.GetCurrentAnimatorStateInfo(0).IsName("returning")){
-            attackAnimation.ResetTrigger("attack");
+            timer += attackCD;
+            Invoke("instantiateArrow", 0.35f);
+            
         }
     }
 

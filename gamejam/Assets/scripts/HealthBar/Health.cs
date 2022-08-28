@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
+    [SerializeField] ParticleSystem bloodPS;
     [SerializeField] AudioSource audioSource;
     private AudioClip gettingHitSound;
     private AudioClip deathSound;
@@ -33,14 +34,14 @@ public class Health : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy")
-            || other.gameObject.layer == LayerMask.NameToLayer("Mouse")) {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy")) {
             TakeDamage();
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Projectile")) {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Projectile")
+        || other.gameObject.layer == LayerMask.NameToLayer("Mouse")) {
             TakeDamage();
         }
     }
@@ -55,6 +56,7 @@ public class Health : MonoBehaviour
     private void TakeDamage() {
         // update health
         health -= 1;
+        bloodPS.Play();
         audioSource.PlayOneShot(gettingHitSound);
         // update hearts
         for (int i = hearts.Count - 1; i >= 0; i--) {

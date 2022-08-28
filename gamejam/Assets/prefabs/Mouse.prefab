@@ -225,7 +225,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8518410956022374336
 Transform:
   m_ObjectHideFlags: 0
@@ -235,7 +235,7 @@ Transform:
   m_GameObject: {fileID: 8518410956022374340}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 39.93, y: -4.88, z: 0}
-  m_LocalScale: {x: 0.4497405, y: 0.51818436, z: 1}
+  m_LocalScale: {x: 0.202, y: 0.268, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8518410955572398378}
@@ -312,7 +312,7 @@ Rigidbody2D:
   m_Mass: 100
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -363,14 +363,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 8518410956022374333}
-  debugText: {fileID: 8518410955807761832}
   wanderSpeed: 3
   groundDetectDistance: 5
   frontGroundDetection: {fileID: 8518410955572398378}
   backGroundDetection: {fileID: 8518410956149259387}
   wall: {fileID: 0}
   leftWall: 0
-  rightWall: 0
+  rightWall: 1
 --- !u!114 &8518410956022374329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -387,6 +386,7 @@ MonoBehaviour:
   enemyParent: {fileID: 8518410956022374340}
   deathDuration: 0.15
   player: {fileID: 0}
+  originHP: 0
 --- !u!60 &8518410956022374328
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -397,7 +397,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

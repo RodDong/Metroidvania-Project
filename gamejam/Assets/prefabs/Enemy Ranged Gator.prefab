@@ -193,7 +193,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7757025709812918634
 Transform:
   m_ObjectHideFlags: 0
@@ -318,6 +318,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrow: {fileID: 551375371596192601, guid: 849e045e6ee51974199c14ce2fc1e379, type: 3}
   rangerEnemyDetection: {fileID: 7757025708876282257}
+  attackCD: 1.5
 --- !u!114 &7757025709812918647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -660,3 +661,4 @@ MonoBehaviour:
   enemyParent: {fileID: 7757025709812918642}
   deathDuration: 2
   player: {fileID: 0}
+  originHP: 0
