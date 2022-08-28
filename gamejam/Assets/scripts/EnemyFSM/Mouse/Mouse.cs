@@ -9,8 +9,6 @@ public class Mouse : MonoBehaviour
 
     public Animator animator;
 
-    public TMP_Text debugText;
-
     #region Wander
 
     [SerializeField]

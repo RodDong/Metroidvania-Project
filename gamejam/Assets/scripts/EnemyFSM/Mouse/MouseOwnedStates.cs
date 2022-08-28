@@ -14,7 +14,6 @@ public class MouseWander : IState<Mouse>
     public void Enter(Mouse enemy)
     {
         enemy.animator.Play("Wander");
-        enemy.debugText.SetText("State: Wander");
     }
 
     public void Execute(Mouse enemy)
@@ -48,7 +47,6 @@ public class MouseIdle : IState<Mouse>
     public void Enter(Mouse enemy)
     {
         enemy.animator.Play("Idle");
-        enemy.debugText.SetText("State: Idle");
     }
 
     public void Execute(Mouse enemy)
