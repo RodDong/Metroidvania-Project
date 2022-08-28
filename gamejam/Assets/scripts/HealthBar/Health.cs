@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
+    [SerializeField] ParticleSystem bloodPS;
     [SerializeField] AudioSource audioSource;
     private AudioClip gettingHitSound;
     private AudioClip deathSound;
@@ -55,6 +56,7 @@ public class Health : MonoBehaviour
     private void TakeDamage() {
         // update health
         health -= 1;
+        bloodPS.Play();
         audioSource.PlayOneShot(gettingHitSound);
         // update hearts
         for (int i = hearts.Count - 1; i >= 0; i--) {
