@@ -7,6 +7,7 @@ public class Health : MonoBehaviour
 {
     [SerializeField] ParticleSystem bloodPS;
     [SerializeField] AudioSource audioSource;
+    [SerializeField] BgmManager bgmManager;
     private AudioClip gettingHitSound;
     private AudioClip deathSound;
     // health bar elements
@@ -33,11 +34,11 @@ public class Health : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other) {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy")) {
-            TakeDamage();
-        }
-    }
+    // private void OnCollisionEnter2D(Collision2D other) {
+    //     if (other.gameObject.layer == LayerMask.NameToLayer("Enemy")) {
+    //         TakeDamage();
+    //     }
+    // }
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.layer == LayerMask.NameToLayer("Projectile")
@@ -51,6 +52,8 @@ public class Health : MonoBehaviour
         deathMenu.SetActive(true);
         Time.timeScale = 0f;
         audioSource.PlayOneShot(deathSound);
+        bgmManager.backgroundMusic1.Stop();
+        bgmManager.backgroundMusic2.Stop();
     }
 
     private void TakeDamage() {

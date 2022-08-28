@@ -10,6 +10,7 @@ public class DeathMenu : MonoBehaviour, IDataManager
     [SerializeField] GameObject player;
     [SerializeField] GameObject wall;
     [SerializeField] CinemachineBrain cinemachineBrain;
+    [SerializeField] BgmManager bgmManager;
     private SpawnEnemy[] enemySpawnControllers;
     private EdgeCollider2D[] wallLists;
 
@@ -27,6 +28,11 @@ public class DeathMenu : MonoBehaviour, IDataManager
         for (int i = 0; i < wallLists.Length; i++) {
             wallLists[i].isTrigger = true;
         }
+
+        // resume music
+        bgmManager.backgroundMusic1.time = 0f;
+        bgmManager.backgroundMusic2.time = 0f;
+        bgmManager.backgroundMusic1.Play();
 
         // reset player isdetected to false
         player.GetComponent<PlayerStatus>().isDetected = false;

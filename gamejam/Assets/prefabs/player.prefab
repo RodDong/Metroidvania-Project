@@ -5104,7 +5104,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bloodPS: {fileID: 1879000073}
   audioSource: {fileID: 347059666788476653}
-  health: 6
+  backgroundMusic: {fileID: 0}
+  health: 1000
   numHearts: 3
   hearts:
   - {fileID: 0}
@@ -10004,6 +10005,7 @@ GameObject:
   - component: {fileID: 932599129845637915}
   - component: {fileID: 6963316873894637635}
   - component: {fileID: 3459082901116755442}
+  - component: {fileID: 1747312259}
   m_Layer: 13
   m_Name: AttackArea
   m_TagString: attackArea
@@ -10124,3 +10126,24 @@ PolygonCollider2D:
       - {x: 0.40234375, y: 0.29296875}
       - {x: 0.29296875, y: 0.40234375}
       - {x: 0.15234375, y: 0.47265625}
+--- !u!50 &1747312259
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5674050916181114047}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
