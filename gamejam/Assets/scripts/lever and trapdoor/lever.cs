@@ -23,7 +23,6 @@ public class lever : MonoBehaviour
             timer = 0.2f;
             gameObject.GetComponent<Animator>().Play("lever");
             trapdoor.GetComponent<trapdoor>().isOpen = true;
-            trapdoor.GetComponent<Collider2D>().enabled = false;
         }
         if(timer <= 0){
             gameObject.GetComponent<Animator>().Play("Idle");

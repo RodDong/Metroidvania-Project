@@ -5,21 +5,23 @@ using UnityEngine;
 public class trapdoor : MonoBehaviour
 {
     public bool isOpen;
-    private float timer = 1.0f;
+    GameObject player;
 
     void Start()
     {
         isOpen = false;
+        player = GameObject.FindGameObjectWithTag("player");
     }
 
     void Update()
     {
-        if(timer <= 0){
-            gameObject.GetComponent<Animator>().Play("Open");
+        if(player.transform.position.y > transform.position.y + 6 && isOpen && !gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Close")){
+            gameObject.GetComponent<Collider2D>().enabled = true;
+            gameObject.GetComponent<Animator>().Play("Close");
+            isOpen = false;
         }
-        if(isOpen && timer > 0){
-            timer -= Time.deltaTime;
-            gameObject.GetComponent<Animator>().Play("Trapdoor");
+        if(isOpen && !gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Open")){
+            gameObject.GetComponent<Animator>().Play("Open");
         }
         
     }
