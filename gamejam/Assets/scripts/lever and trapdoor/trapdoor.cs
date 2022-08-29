@@ -21,6 +21,7 @@ public class trapdoor : MonoBehaviour
             isOpen = false;
         }
         if(isOpen && !gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Open")){
+            gameObject.GetComponent<Collider2D>().enabled = false;
             gameObject.GetComponent<Animator>().Play("Open");
         }
         

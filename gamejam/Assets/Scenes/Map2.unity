@@ -911,6 +911,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1025835969}
     - target: {fileID: 6139250151333763169, guid: 9ae518f7145260d48b4d2403964aa27a, type: 3}
+      propertyPath: maxhealth
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6139250151333763169, guid: 9ae518f7145260d48b4d2403964aa27a, type: 3}
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 512705226}
