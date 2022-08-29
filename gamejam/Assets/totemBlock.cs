@@ -14,7 +14,6 @@ public class totemBlock : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(player.GetComponent<movement>().canJump);
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
