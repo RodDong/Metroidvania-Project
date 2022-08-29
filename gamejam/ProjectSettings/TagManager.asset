@@ -19,6 +19,7 @@ TagManager:
   - tutorial
   - totemBlock
   - totemHeal
+  - spawnDetector
   layers:
   - Default
   - TransparentFX
