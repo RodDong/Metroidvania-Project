@@ -10,10 +10,13 @@ public class DeathMenu : MonoBehaviour, IDataManager
     [SerializeField] GameObject player;
     [SerializeField] GameObject wall;
     [SerializeField] CinemachineBrain cinemachineBrain;
+    [SerializeField] BgmManager bgmManager;
+    private SpawnEnemy[] enemySpawnControllers;
     private EdgeCollider2D[] wallLists;
 
     private void Start() {
         wallLists = wall.GetComponents<EdgeCollider2D>();
+        enemySpawnControllers = GameObject.FindObjectsOfType<SpawnEnemy>();
     }
     public void Resume() {
         // change blend mode to cut
@@ -26,8 +29,19 @@ public class DeathMenu : MonoBehaviour, IDataManager
             wallLists[i].isTrigger = true;
         }
 
+        // resume music
+        bgmManager.backgroundMusic1.time = 0f;
+        bgmManager.backgroundMusic2.time = 0f;
+        bgmManager.backgroundMusic1.Play();
+
         // reset player isdetected to false
         player.GetComponent<PlayerStatus>().isDetected = false;
+
+        foreach (SpawnEnemy enemySpawner in enemySpawnControllers) {
+            // To reset isClear after player died, uncomment this:
+            // enemySpawner.isClear = false;
+            enemySpawner.ResetEnemies();
+        }
 
         deathMenu.SetActive(false);
         DataManager.instance.LoadGame();

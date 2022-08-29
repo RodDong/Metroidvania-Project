@@ -5,11 +5,14 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
+    [SerializeField] ParticleSystem bloodPS;
     [SerializeField] AudioSource audioSource;
+    [SerializeField] BgmManager bgmManager;
     private AudioClip gettingHitSound;
     private AudioClip deathSound;
     // health bar elements
     public int health;
+    public int maxhealth;
     public int numHearts;
     public List<GameObject> hearts;
     // cooldown of immunity after being damaged
@@ -24,6 +27,7 @@ public class Health : MonoBehaviour
         Physics2D.IgnoreLayerCollision(playerLayer, projectileLayer, false);
         gettingHitSound = audioSource.GetComponent<PlayerAudio>().hurt;
         deathSound = audioSource.GetComponent<PlayerAudio>().deathMusic;
+        health = maxhealth;
     }
 
     private void Update() {
@@ -32,15 +36,15 @@ public class Health : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other) {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy")
-            || other.gameObject.layer == LayerMask.NameToLayer("Mouse")) {
-            TakeDamage();
-        }
-    }
+    // private void OnCollisionEnter2D(Collision2D other) {
+    //     if (other.gameObject.layer == LayerMask.NameToLayer("Enemy")) {
+    //         TakeDamage();
+    //     }
+    // }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Projectile")) {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Projectile")
+        || other.gameObject.layer == LayerMask.NameToLayer("Mouse")) {
             TakeDamage();
         }
     }
@@ -50,11 +54,14 @@ public class Health : MonoBehaviour
         deathMenu.SetActive(true);
         Time.timeScale = 0f;
         audioSource.PlayOneShot(deathSound);
+        bgmManager.backgroundMusic1.Stop();
+        bgmManager.backgroundMusic2.Stop();
     }
 
     private void TakeDamage() {
         // update health
         health -= 1;
+        bloodPS.Play();
         audioSource.PlayOneShot(gettingHitSound);
         // update hearts
         for (int i = hearts.Count - 1; i >= 0; i--) {
@@ -85,16 +92,18 @@ public class Health : MonoBehaviour
     }
 
     public void Recover() {
-        health += 1;
-        for (int i = 0; i < hearts.Count; i++) {
-            Animator heartAnimator = hearts[i].GetComponent<Animator>();
-            if (heartAnimator.GetCurrentAnimatorStateInfo(0).IsName("soul_empty")) {
-                heartAnimator.SetTrigger("empty_recover");
-                break;
-            }
-            if (heartAnimator.GetCurrentAnimatorStateInfo(0).IsName("soul_break")) {
-                heartAnimator.SetTrigger("break_recover");
-                break;
+        if (health < maxhealth) {
+            health += 1;
+            for (int i = 0; i < hearts.Count; i++) {
+                Animator heartAnimator = hearts[i].GetComponent<Animator>();
+                if (heartAnimator.GetCurrentAnimatorStateInfo(0).IsName("soul_empty")) {
+                    heartAnimator.SetTrigger("empty_recover");
+                    break;
+                }
+                if (heartAnimator.GetCurrentAnimatorStateInfo(0).IsName("soul_break")) {
+                    heartAnimator.SetTrigger("break_recover");
+                    break;
+                }
             }
         }
     }
@@ -110,7 +119,7 @@ public class Health : MonoBehaviour
 
     public void resetHealth() {
         isDead = false;
-        health = 6;
+        health = maxhealth;
         for (int i = 0; i < hearts.Count; i++) {
             Animator heartAnimator = hearts[i].GetComponent<Animator>();
             heartAnimator.SetTrigger("full_recover");

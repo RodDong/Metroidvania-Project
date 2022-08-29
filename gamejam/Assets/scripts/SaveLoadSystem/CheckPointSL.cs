@@ -48,6 +48,7 @@ public class CheckPointSL : MonoBehaviour, IDataManager
         if (data.activeCamera) {
             data.activeCamera.enabled = true;
         }
+        Invoke("ResetCam", 1f);
     }
 
     public void SaveData(ref GameData data) {
@@ -60,5 +61,9 @@ public class CheckPointSL : MonoBehaviour, IDataManager
         }
         data.potionMaxCount = player.GetComponent<PotionManager>().potionMaxCount;
         data.activeCamera = cinemachineBrain.ActiveVirtualCamera.VirtualCameraGameObject.GetComponent<CinemachineVirtualCamera>();
+    }
+
+    private void ResetCam() {
+        cinemachineBrain.m_DefaultBlend.m_Style = CinemachineBlendDefinition.Style.EaseInOut;
     }
 }
