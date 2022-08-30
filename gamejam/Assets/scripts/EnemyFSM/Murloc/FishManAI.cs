@@ -22,6 +22,7 @@ public class FishManAI : MonoBehaviour
     [SerializeField] Transform frontGroundDetection;
     [SerializeField] Transform backGroundDetection;
     [SerializeField] Collider2D daggerCollider;
+    [SerializeField] public ObjectPool harpoonPool;
 
     bool isRight;
     public float timer = 0.0f;
@@ -38,7 +39,6 @@ public class FishManAI : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(daggerCollider.enabled);
         if (timer > 0) {
             timer -= Time.deltaTime;
             return;
@@ -138,7 +138,7 @@ public class FishManAI : MonoBehaviour
         }
         Quaternion arrow_quaternion = new Quaternion();
         arrow_quaternion.eulerAngles = new Vector3(0, 0, arrow_rotation);
-        harpoonObj = ObjectPool.Instance.Spawn(gameObject.transform.position, arrow_quaternion);
+        harpoonObj = harpoonPool.Spawn(gameObject.transform.position, arrow_quaternion);
         harpoonObj.GetComponent<Rigidbody2D>().AddForce(new Vector3(xDistance, yDistance, 0) * 600 / (Mathf.Sqrt(xDistance * xDistance + yDistance * yDistance)));
     }
 
