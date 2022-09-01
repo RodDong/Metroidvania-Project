@@ -45,7 +45,11 @@ public class Mouse : MonoBehaviour
     private void Start()
     {
         MouseWander.Instance.Enter(this);
-        wallList = wall.GetComponent<WallList>();
+        try {
+            wallList = wall.GetComponent<WallList>();
+        } catch (UnassignedReferenceException e) {
+            Debug.Log(e.Message);
+        }
     }
 
     private void Update()
@@ -81,10 +85,12 @@ public class Mouse : MonoBehaviour
                         groundMask | platformMask | noCollisionPlatformMask).collider;
 
         noGroundOnBothSides = frontRayCollider == null && backRayCollider == null;
-        if (frontRayCollider == null
-        || frontGroundDetection.transform.position.x < wallList.wallPosLists[leftWall] 
-        || frontGroundDetection.transform.position.x > wallList.wallPosLists[rightWall])
+        if (frontRayCollider == null)
         {
+            Flip();
+        }
+        if (wallList != null && (frontGroundDetection.transform.position.x < wallList.wallPosLists[leftWall] 
+        || frontGroundDetection.transform.position.x > wallList.wallPosLists[rightWall])) {
             Flip();
         }
        
