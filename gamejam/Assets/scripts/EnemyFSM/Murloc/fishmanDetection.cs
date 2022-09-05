@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class fishmanDetection : MonoBehaviour
 {
-    [SerializeField] GameObject player;
+    GameObject player;
     [SerializeField] GameObject enemy;
     [SerializeField] private float groundDetectDistance;
     [SerializeField] private Transform frontGroundDetection;
@@ -23,7 +23,7 @@ public class fishmanDetection : MonoBehaviour
     float timer = 0.0f;
     void Start()
     {
-
+        player = GameObject.FindGameObjectWithTag("player");
         hasTarget = false;
 //        wallList = wall.GetComponent<WallList>();
     }

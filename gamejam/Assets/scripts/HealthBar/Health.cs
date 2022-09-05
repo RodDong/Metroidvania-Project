@@ -19,6 +19,7 @@ public class Health : MonoBehaviour
     public float immunityCooldown;
     public GameObject deathMenu;
     public bool isDead;
+    [HideInInspector] public bool isInWater = false;
 
     private void Start() {
         int playerLayer = LayerMask.NameToLayer("Player");
@@ -52,10 +53,12 @@ public class Health : MonoBehaviour
         bgmManager.backgroundMusic2.Stop();
     }
 
-    private void TakeDamage() {
+    public void TakeDamage() {
         // update health
         health -= 1;
-        bloodPS.Play();
+        if(!isInWater){
+            bloodPS.Play();
+        }
         audioSource.PlayOneShot(gettingHitSound);
         // update hearts
         for (int i = hearts.Count - 1; i >= 0; i--) {
