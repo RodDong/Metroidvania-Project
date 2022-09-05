@@ -9,10 +9,14 @@ public class GatorBossAnimatorController : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera bossCM;
     [SerializeField] GameObject bossToad;
     [SerializeField] GameObject player;
+    [SerializeField] AudioSource backgroundMusicController;
+    [SerializeField] AudioSource bossMusicController;
     private bool hasWatched;
     private bool start;
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "player" && !enemyManager.isClear && !hasWatched) {
+            backgroundMusicController.time = 0f;
+            backgroundMusicController.Stop();
             ProcessAnimation();
             hasWatched = true;
         }
@@ -45,6 +49,8 @@ public class GatorBossAnimatorController : MonoBehaviour
         bossCM.Follow = player.transform;
         bossToad.GetComponent<Toad>().enabled = true;
         player.GetComponent<movement>().enabled = true;
+        bossMusicController.time = 0f;
+        bossMusicController.Play();
         enabled = false;
     }
 }
