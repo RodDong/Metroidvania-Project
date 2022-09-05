@@ -12,6 +12,11 @@ public class CheckPointSL : MonoBehaviour, IDataManager
     [HideInInspector] public Vector3 playerPosition;
     private bool onFire;
     private bool attackSaved;
+    private Health playerHealth;
+
+    private void Start() {
+        playerHealth = player.GetComponent<Health>();
+    }
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.transform.tag == "player") {
@@ -30,6 +35,13 @@ public class CheckPointSL : MonoBehaviour, IDataManager
         playerPosition = gameObject.transform.position;
         if (onFire && Input.GetKeyDown(KeyCode.X) && activateSL) {
             saveMenu.GetComponent<Animator>().SetTrigger("start");
+
+            playerHealth.health = playerHealth.maxhealth;
+            for (int i = 0; i < playerHealth.hearts.Count; i++) {
+                Animator heartAnimator = playerHealth.hearts[i].GetComponent<Animator>();
+                heartAnimator.Play("soul_full");
+            }
+
             DataManager.instance.SaveGame();
         }
     }
