@@ -8,7 +8,7 @@ public class TrapDoor : MonoBehaviour
     [SerializeField] PlatformEffector2D effector;
     void Update()
     {
-        if (roomStatus.isClear) {
+        if (roomStatus.enemiesOfScene.GetComponentsInChildren<EnemyDamage>().GetLength(0) == 0) {
             if (Input.GetKeyDown(KeyCode.S)) {
                 effector.rotationalOffset = 180f;
             }

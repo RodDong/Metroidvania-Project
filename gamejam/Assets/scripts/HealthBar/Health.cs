@@ -36,12 +36,6 @@ public class Health : MonoBehaviour
         }
     }
 
-    // private void OnCollisionEnter2D(Collision2D other) {
-    //     if (other.gameObject.layer == LayerMask.NameToLayer("Enemy")) {
-    //         TakeDamage();
-    //     }
-    // }
-
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.layer == LayerMask.NameToLayer("Projectile")
         || other.gameObject.layer == LayerMask.NameToLayer("Mouse")) {

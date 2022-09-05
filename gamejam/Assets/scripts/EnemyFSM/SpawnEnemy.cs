@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpawnEnemy : MonoBehaviour
 {
     GameObject player;
-    [SerializeField] GameObject enemiesOfScene;
+    [SerializeField] public GameObject enemiesOfScene;
     [SerializeField] GameObject wall;
     [HideInInspector] public bool isDetected, isClear, isInRoom;
     private EdgeCollider2D[] wallLists;
