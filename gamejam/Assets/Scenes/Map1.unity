@@ -456,6 +456,14 @@ PrefabInstance:
       value: -0.39644873
       objectReference: {fileID: 0}
     - target: {fileID: 8149241889296835362, guid: 1c0856c5ae745b240bbdfe32f7305106, type: 3}
+      propertyPath: bossMusicController
+      value: 
+      objectReference: {fileID: 1320778959}
+    - target: {fileID: 8149241889296835362, guid: 1c0856c5ae745b240bbdfe32f7305106, type: 3}
+      propertyPath: backgroundMusicController
+      value: 
+      objectReference: {fileID: 521216832}
+    - target: {fileID: 8149241889296835362, guid: 1c0856c5ae745b240bbdfe32f7305106, type: 3}
       propertyPath: meleeSummonPositionList.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -758,7 +766,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7791798, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -4115,7 +4123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundMusic1: {fileID: 521216831}
-  backgroundMusic2: {fileID: 521216831}
+  backgroundMusic2: {fileID: 521216833}
 --- !u!82 &521216833
 AudioSource:
   m_ObjectHideFlags: 0
@@ -8924,7 +8932,7 @@ MonoBehaviour:
   bossCM: {fileID: 690532251}
   bossToad: {fileID: 1697904336}
   player: {fileID: 1879000047}
-  backgroundMusicController: {fileID: 521216831}
+  backgroundMusicController: {fileID: 521216832}
   bossMusicController: {fileID: 1320778959}
 --- !u!82 &1320778959
 AudioSource:

@@ -142,6 +142,8 @@ public class ToadDeath : IState<Toad>
     {
         Debug.Log("Death");
         enemy.animator.Play("Death");
+        enemy.bossMusicController.Stop();
+        enemy.backgroundMusicController.backgroundMusic1.Play();
         enemy.debugText.SetText("Death");
     }
 

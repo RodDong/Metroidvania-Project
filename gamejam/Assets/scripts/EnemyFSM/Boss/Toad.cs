@@ -51,11 +51,10 @@ public class Toad : MonoBehaviour
     [SerializeField]
     Rigidbody2D rb;
 
-    // [SerializeField]
-    // List<Transform> rangerSummonPositionList = new List<Transform>();
-
-    // [SerializeField]
-    // List<Transform> meleeSummonPositionList = new List<Transform>();
+    [SerializeField]
+    public AudioSource bossMusicController;
+    [SerializeField]
+    public BgmManager backgroundMusicController;
 
     public bool isRising, isFalling;
 
