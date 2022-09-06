@@ -892,7 +892,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &773028368
 Transform:
   m_ObjectHideFlags: 0
@@ -996,6 +996,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1080240846}
   - component: {fileID: 1080240847}
+  - component: {fileID: 1080240848}
   m_Layer: 8
   m_Name: boss road
   m_TagString: Untagged
@@ -1070,6 +1071,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1080240848
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080240845}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 45.980904, y: 3.48}
+    newSize: {x: 45.980904, y: 3.48}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 45.980904, y: 3.48}
+  m_EdgeRadius: 0
 --- !u!1001 &1175097091
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1470,6 +1497,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1184854500}
   - component: {fileID: 1184854501}
+  - component: {fileID: 1184854502}
   m_Layer: 8
   m_Name: boss road (2)
   m_TagString: Untagged
@@ -1544,6 +1572,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1184854502
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1184854499}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 45.980904, y: 3.48}
+    newSize: {x: 45.980904, y: 3.48}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 45.980904, y: 3.48}
+  m_EdgeRadius: 0
 --- !u!1 &1217603810
 GameObject:
   m_ObjectHideFlags: 0
@@ -1619,6 +1673,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1243538831}
   - component: {fileID: 1243538832}
+  - component: {fileID: 1243538833}
   m_Layer: 8
   m_Name: boss road (1)
   m_TagString: Untagged
@@ -1693,6 +1748,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1243538833
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243538830}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 45.980904, y: 3.48}
+    newSize: {x: 45.980904, y: 3.48}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 45.980904, y: 3.48}
+  m_EdgeRadius: 0
 --- !u!1 &1383319698
 GameObject:
   m_ObjectHideFlags: 0
@@ -2055,6 +2136,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94c68569087d17748baa7a0adbf1b4ec, type: 3}
+--- !u!1001 &6264107288945490640
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6264107290552660002, guid: 927573e994f4fcd4c913fb7ef1dfb14c, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6264107290552660002, guid: 927573e994f4fcd4c913fb7ef1dfb14c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 30.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 6264107290552660002, guid: 927573e994f4fcd4c913fb7ef1dfb14c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -13.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 6264107290552660002, guid: 927573e994f4fcd4c913fb7ef1dfb14c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 13.284289
+      objectReference: {fileID: 0}
+    - target: {fileID: 6264107290552660002, guid: 927573e994f4fcd4c913fb7ef1dfb14c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6264107290552660002, guid: 927573e994f4fcd4c913fb7ef1dfb14c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6264107290552660002, guid: 927573e994f4fcd4c913fb7ef1dfb14c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6264107290552660002, guid: 927573e994f4fcd4c913fb7ef1dfb14c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6264107290552660002, guid: 927573e994f4fcd4c913fb7ef1dfb14c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6264107290552660002, guid: 927573e994f4fcd4c913fb7ef1dfb14c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6264107290552660002, guid: 927573e994f4fcd4c913fb7ef1dfb14c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6264107290552660031, guid: 927573e994f4fcd4c913fb7ef1dfb14c, type: 3}
+      propertyPath: m_Name
+      value: piranha
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 927573e994f4fcd4c913fb7ef1dfb14c, type: 3}
 --- !u!1001 &8070483741687315593
 PrefabInstance:
   m_ObjectHideFlags: 0
