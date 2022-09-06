@@ -8,8 +8,6 @@ public class Toad : MonoBehaviour
     StateMachine<Toad> stateMachine;
     public Animator animator;
     public AudioSource audioPlayer;
-
-    public TMP_Text debugText;
     [HideInInspector] public EnemyDamage enemyHealth;
 
     int maxHP = 250;
@@ -57,6 +55,10 @@ public class Toad : MonoBehaviour
     public BgmManager backgroundMusicController;
     [SerializeField]
     public GameObject portal;
+    [SerializeField]
+    public GameObject bossDefeatMenu;
+    [SerializeField]
+    public EnemyGatorSummoner bossSummonGators;
 
     public bool isRising, isFalling;
 
