@@ -90,6 +90,11 @@ public class movement : MonoBehaviour
         if (rb.velocity.y < -3)
         {
             isFalling = true;
+        }else{
+            isFalling = false;
+        }
+        if(isFalling){
+            canJump = false;
         }
     }
 
@@ -129,12 +134,12 @@ public class movement : MonoBehaviour
             if (isFalling)
             {
                 makeSound = true;
-                isFalling = false;
                 audioSource.PlayOneShot(playerAudio.landing);
                 Invoke("disableSound", 0.1f);
             }
         }
     }
+
 
     //process movements via inputs 
     void processInput()

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 333154393513319476}
   - component: {fileID: 333154393513319477}
   - component: {fileID: 333154393513319478}
-  - component: {fileID: 735274362334625286}
+  - component: {fileID: 6148761881709143163}
   m_Layer: 10
   m_Name: Map2WoodPlatform
   m_TagString: OneWayPlatform
@@ -112,7 +112,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 7.7296753, y: 1.4066315}
   m_EdgeRadius: 0
---- !u!114 &735274362334625286
+--- !u!114 &6148761881709143163
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
