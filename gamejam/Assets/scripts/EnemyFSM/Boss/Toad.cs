@@ -55,6 +55,8 @@ public class Toad : MonoBehaviour
     public AudioSource bossMusicController;
     [SerializeField]
     public BgmManager backgroundMusicController;
+    [SerializeField]
+    public GameObject portal;
 
     public bool isRising, isFalling;
 
