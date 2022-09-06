@@ -42,6 +42,7 @@ public class GatorBossAnimatorController : MonoBehaviour
     void BossRoarAnimation() {
         Animator bossAnimator = bossToad.GetComponent<Animator>();
         bossToad.GetComponent<Animator>().Play("Roar");
+        bossToad.GetComponent<AudioSource>().Play();
         Invoke("EndBossAnimation", 1.5f);
     }
 
