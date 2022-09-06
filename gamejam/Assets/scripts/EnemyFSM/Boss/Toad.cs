@@ -162,7 +162,8 @@ if (hp < 1/2):
         // Stage 01
         if (enemyHealth.getHP() >= maxHP / 2)
         {
-            if((playerDistance <= attackRange || playerDistance <= detectRange) && playerMovement.makeSound == true){
+            if ((playerDistance <= attackRange || playerDistance <= detectRange) && playerMovement.makeSound == true)
+            {
                 player.GetComponent<PlayerStatus>().isDetected = true;
             }
             if (playerDistance <= attackRange && playerMovement.makeSound == true)
@@ -245,6 +246,7 @@ if (hp < 1/2):
         Debug.Log("Is Rising!");
 
         isRising = true;
+        isFalling = false;
         coll.enabled = false;
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
@@ -271,7 +273,7 @@ if (hp < 1/2):
     {
         Vector2 dir = landingPoint - transform.position;
         RaycastHit2D info = Physics2D.Raycast(transform.position, dir, dir.magnitude, 1 << LayerMask.NameToLayer("Ground") | 1 << LayerMask.NameToLayer("PlatformWithoutPlayerCollision") | 1 << LayerMask.NameToLayer("Platform"));
-        if (info.collider == null && dir.magnitude <= 3f)// || !info.collider.CompareTag("ground"))
+        if ((info.collider != null && dir.magnitude <= 3f) || landingPoint.y > transform.position.y)// || !info.collider.CompareTag("ground"))
         {
             Debug.Log("Enable Collider! " + transform.position + landingPoint);
             coll.enabled = true;

@@ -72,6 +72,7 @@ public class ToadJump : IState<Toad>
         // 已经落地
         if (!enemy.isRising && !enemy.isFalling)
         {
+            enemy.coll.enabled = true;
             enemy.ChangeState();
         }
     }
