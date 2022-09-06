@@ -13,9 +13,11 @@ public class CheckPointSL : MonoBehaviour, IDataManager
     private bool onFire;
     private bool attackSaved;
     private Health playerHealth;
+    private PotionManager playerPotion;
 
     private void Start() {
         playerHealth = player.GetComponent<Health>();
+        playerPotion = player.GetComponent<PotionManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
@@ -41,6 +43,8 @@ public class CheckPointSL : MonoBehaviour, IDataManager
                 Animator heartAnimator = playerHealth.hearts[i].GetComponent<Animator>();
                 heartAnimator.Play("soul_full");
             }
+
+            playerPotion.potionCount = playerPotion.potionMaxCount;
 
             DataManager.instance.SaveGame();
         }
