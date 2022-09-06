@@ -7,6 +7,7 @@ public class Toad : MonoBehaviour
 {
     StateMachine<Toad> stateMachine;
     public Animator animator;
+    public AudioSource audioPlayer;
 
     public TMP_Text debugText;
     [HideInInspector] public EnemyDamage enemyHealth;
@@ -158,7 +159,6 @@ if (hp < 1/2):
         }*/
 
         float playerDistance = PlayerDistance();
-
         // Stage 01
         if (enemyHealth.getHP() >= maxHP / 2)
         {
@@ -168,17 +168,7 @@ if (hp < 1/2):
             }
             if (playerDistance <= attackRange && playerMovement.makeSound == true)
             {
-                if ((gameObject.transform.eulerAngles.y > 90 && player.transform.position.x >= transform.position.x)
-                || (gameObject.transform.eulerAngles.y < 90 && player.transform.position.x <= transform.position.x))
-                {
-                    invokeAttack();
-                }
-                else
-                {
-
-                    Invoke("invokeAttack", 1f);
-                }
-
+                stateMachine.ChangeState(ToadAttack.Instance);
             }
             else if (playerDistance <= detectRange && canJump && playerMovement.makeSound == true)
             {
@@ -194,16 +184,7 @@ if (hp < 1/2):
         {
             if (playerDistance <= attackRange && playerMovement.makeSound == true)
             {
-                if ((gameObject.transform.eulerAngles.y > 90 && player.transform.position.x >= transform.position.x)
-                || (gameObject.transform.eulerAngles.y < 90 && player.transform.position.x <= transform.position.x))
-                {
-                    invokeAttack();
-                }
-                else
-                {
-
-                    Invoke("invokeAttack", 1f);
-                }
+                stateMachine.ChangeState(ToadAttack.Instance);
             }
             else if (playerDistance <= detectRange && canJump && playerMovement.makeSound == true)
             {
@@ -321,16 +302,26 @@ if (hp < 1/2):
         }
     }
 
-    public void Flip()
+    // flip the toad to face the player
+    // returns true if flip happened and false if no flipping is necessary
+    public bool Flip()
     {
+        Vector3 targetEulerAngle;
         if (player.transform.position.x <= transform.position.x)
         {
-            transform.eulerAngles = new Vector3(0, 0, 0);
+            targetEulerAngle = new Vector3(0, 0, 0);
         }
         else
         {
-            transform.eulerAngles = new Vector3(0, 180, 0);
+            targetEulerAngle = new Vector3(0, 180, 0);
         }
+        if (transform.eulerAngles == targetEulerAngle) {
+            return false;
+        } else {
+            transform.eulerAngles = targetEulerAngle;
+            return true;
+        }
+        
     }
 
     void SetCanJump2True()
@@ -338,14 +329,9 @@ if (hp < 1/2):
         canJump = true;
     }
 
-    void disableTongue()
+    public void disableTongue()
     {
         tongueCol.enabled = false;
-    }
-
-    void invokeAttack()
-    {
-        stateMachine.ChangeState(ToadAttack.Instance);
     }
 
 }
