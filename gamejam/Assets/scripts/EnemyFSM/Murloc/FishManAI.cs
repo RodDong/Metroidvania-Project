@@ -89,14 +89,12 @@ public class FishManAI : MonoBehaviour
             if (isFrontGround == null)
             {
                 Flip();
+            } 
+            Debug.Log(Mathf.Abs(gameObject.transform.position.x - initialPos.x));
+            Debug.Log("Roam " + roamDistance);
+            if ( Mathf.Abs(gameObject.transform.position.x - initialPos.x) > roamDistance) {
+                Flip();
             }
-            // if (gameObject.transform.position.x < wallList.wallPosLists[leftWall]) {
-            //     Flip();
-            // }
-            // if (gameObject.transform.position.x > wallList.wallPosLists[rightWall]) {
-            //     Flip();
-            // }
-            
         }
     }
 
@@ -113,6 +111,7 @@ public class FishManAI : MonoBehaviour
             {
                 gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
             }
+            gameObject.transform.position -= (transform.right);
         }        
     }
 
