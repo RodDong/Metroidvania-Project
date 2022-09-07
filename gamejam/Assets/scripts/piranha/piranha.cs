@@ -15,17 +15,22 @@ public class piranha : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gameObject.transform.position.y <= startPos.y && gameObject.GetComponent<Rigidbody2D>().velocity.y<0){
+        if (gameObject.transform.position.y <= startPos.y && gameObject.GetComponent<Rigidbody2D>().velocity.y<0){
             gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up*force, ForceMode2D.Impulse);
+            gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
 
-        if(gameObject.GetComponent<Rigidbody2D>().velocity.y>0){
-            gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
-        }else{
-            gameObject.transform.rotation = Quaternion.Euler(-180, 0, 0);
+        if (gameObject.GetComponent<Rigidbody2D>().velocity.y < 0 && gameObject.transform.rotation.eulerAngles.x == 0){
+            gameObject.transform.rotation = Quaternion.Euler(180, 0, 0);
         }
         
     }
 
-    
+    void OnTriggerEnter2D(Collider2D other) {
+        if (other.tag == "attackArea") {
+            transform.position = startPos;
+            gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+            gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        }
+    }
 }
