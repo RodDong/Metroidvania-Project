@@ -96,6 +96,9 @@ public class movement : MonoBehaviour
         if(isFalling){
             canJump = false;
         }
+        if (rb.velocity.y < -10) {
+            rb.velocity = new Vector2(rb.velocity.x, -10);
+        }
     }
 
     public void ChangeState(State state)
