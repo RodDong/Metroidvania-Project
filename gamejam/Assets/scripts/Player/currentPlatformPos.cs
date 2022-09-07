@@ -14,7 +14,6 @@ public class currentPlatformPos : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(curPlatformPos);
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
