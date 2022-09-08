@@ -90,8 +90,6 @@ public class FishManAI : MonoBehaviour
             {
                 Flip();
             } 
-            Debug.Log(Mathf.Abs(gameObject.transform.position.x - initialPos.x));
-            Debug.Log("Roam " + roamDistance);
             if ( Mathf.Abs(gameObject.transform.position.x - initialPos.x) > roamDistance) {
                 Flip();
             }

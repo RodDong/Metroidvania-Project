@@ -20,7 +20,6 @@ public class EnemyCreator : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D other) {
-        Debug.Log("triggered " + other.tag);
         if (other.tag == "spawnDetector" && gameObject.transform.Find("enemyOnPlatform") == null) {
             
             Vector3 enemyPos = gameObject.transform.position;

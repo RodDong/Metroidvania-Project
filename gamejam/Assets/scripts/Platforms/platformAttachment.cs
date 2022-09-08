@@ -19,7 +19,6 @@ public class platformAttachment : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.tag == "player"){
-            Debug.Log(other.gameObject.tag);
             other.transform.parent = transform;
         }
     }

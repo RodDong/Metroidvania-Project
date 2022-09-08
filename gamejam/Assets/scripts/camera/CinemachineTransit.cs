@@ -7,8 +7,6 @@ public class CinemachineTransit : MonoBehaviour
 {
     [SerializeField]
     GameObject currentCamera;
-    [SerializeField]
-    GameObject nextCamera;
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "player") {
             currentCamera.GetComponent<CinemachineVirtualCamera>().enabled = true;
