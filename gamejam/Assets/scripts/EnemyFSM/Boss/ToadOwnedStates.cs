@@ -18,7 +18,6 @@ public class ToadIdle : IState<Toad>
     public void Enter(Toad enemy)
     {
         enemy.animator.Play("Idle");
-        enemy.debugText.SetText("Idle");
     }
 
     public void Execute(Toad enemy)
@@ -50,7 +49,6 @@ public class ToadJump : IState<Toad>
     public void Enter(Toad enemy)
     {
         enemy.animator.Play("Jump");
-        enemy.debugText.SetText("Jump");
         enemy.Flip();
         enemy.Jump();
     }
@@ -106,7 +104,6 @@ public class ToadAttack : IState<Toad>
             enemy.animator.Play("Attack");
         }
         
-        enemy.debugText.SetText("Attack");
         enemy.tongueCol.enabled = true;
     }
     
@@ -142,7 +139,11 @@ public class ToadDeath : IState<Toad>
     {
         Debug.Log("Death");
         enemy.animator.Play("Death");
-        enemy.debugText.SetText("Death");
+        enemy.bossMusicController.Stop();
+        enemy.backgroundMusicController.backgroundMusic1.Play();
+        enemy.bossSummonGators.DisableAll();
+        enemy.portal.SetActive(true);
+        enemy.bossDefeatMenu.SetActive(true);
     }
 
     public void Execute(Toad enemy)
@@ -170,7 +171,6 @@ public class ToadRoar : IState<Toad>
     {
         Debug.Log("Roar");
         enemy.animator.Play("Roar");
-        enemy.debugText.SetText("Roar");
         enemy.audioPlayer.Play();
     }
 

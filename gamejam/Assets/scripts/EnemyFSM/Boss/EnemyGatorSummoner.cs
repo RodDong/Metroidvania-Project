@@ -25,4 +25,13 @@ public class EnemyGatorSummoner : MonoBehaviour
             hasSummonMelees = true;
         }
     }
+
+    public void DisableAll() {
+        for (int i = 0; i < meleeGators.Count; i++) {
+            meleeGators[i].SetActive(false);
+        }
+        for (int i = 0; i < rangerGators.Count; i++) {
+            rangerGators[i].SetActive(false);
+        }
+    }
 }
