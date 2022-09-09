@@ -5,7 +5,7 @@ using UnityEngine;
 public class FishManAI : MonoBehaviour
 {
     private FishState currentState;
-    [SerializeField]public Animator animator;
+    [SerializeField] public Animator animator;
     private float meleeAttackRange = 3f, meleeEngageRange = 15f;
     private float rangedAttackRange = 100f;
     private float wanderSpeed = 5f, flipCD = 1f;
@@ -139,10 +139,6 @@ public class FishManAI : MonoBehaviour
         harpoonObj.GetComponent<Rigidbody2D>().AddForce(new Vector3(xDistance, yDistance, 0) * 600 / (Mathf.Sqrt(xDistance * xDistance + yDistance * yDistance)));
     }
 
-    public void setDagger(bool isOn) {
-        daggerCollider.enabled = isOn;
-    }
-
 }
 public abstract class FishState{
     public abstract void Execute(FishManAI fish);
@@ -152,7 +148,6 @@ public class Idle : FishState{
     public override void Execute(FishManAI fish)
     {
         fish.animator.Play("Idle");
-        fish.setDagger(false);
     }
 }
 
@@ -161,7 +156,6 @@ public class SwordAttack : FishState{
     {
         fish.rotateRelativeToPlayer();
         fish.animator.Play("SwordAttack");
-        fish.setDagger(true);
         fish.timer += 120f/64f;
         
     }
@@ -173,9 +167,6 @@ public class Walk : FishState{
     {
         fish.animator.Play("Walk");
         fish.Wander();
-        fish.setDagger(false);
-
-
     }
 }
 
@@ -186,8 +177,6 @@ public class WalkingTowardsTarget : FishState {
 
         fish.rotateRelativeToPlayer();
         fish.Wander();
-        fish.setDagger(false);
-
     }
 }
 
@@ -198,8 +187,6 @@ public class HarpoonAttack : FishState{
         fish.animator.Play("Throw");
         fish.Invoke("instantiateHarpoon", 1.2f);
         fish.timer += 150f/64f;
-        fish.setDagger(false);
-
 
         Debug.Log("Harpoon Attack");
     }
