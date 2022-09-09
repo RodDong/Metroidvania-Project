@@ -51,7 +51,6 @@ public class SpawnEnemy : MonoBehaviour
         wallControl();
     }
     private void OnTriggerEnter2D(Collider2D other) {
-        // TODO: reload enemy status
         if (other.tag == "player" && !isClear) {
             isInRoom = true;
             for (int i = 0; i < enemyList.Count; i++) {
