@@ -2467,7 +2467,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentCamera: {fileID: 1978166436}
-  nextCamera: {fileID: 1552218263}
 --- !u!114 &240345810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2861,7 +2860,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentCamera: {fileID: 132707507}
-  nextCamera: {fileID: 1574785622}
 --- !u!4 &297919828 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1052367050608436481, guid: 8d5db6295dc2a714384fdf349264c6b7, type: 3}
@@ -3092,7 +3090,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentCamera: {fileID: 1574785622}
-  nextCamera: {fileID: 1978166436}
 --- !u!114 &331915197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9249,7 +9246,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentCamera: {fileID: 1552218263}
-  nextCamera: {fileID: 176498838}
 --- !u!114 &1282419643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9346,7 +9342,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentCamera: {fileID: 690532248}
-  nextCamera: {fileID: 690532248}
 --- !u!114 &1320778957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9785,7 +9780,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentCamera: {fileID: 1042569125}
-  nextCamera: {fileID: 690532248}
 --- !u!114 &1377598362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10182,7 +10176,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentCamera: {fileID: 176498838}
-  nextCamera: {fileID: 1042569125}
 --- !u!114 &1472596524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11421,6 +11414,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toadParent: {fileID: 1697904336}
+  enemyHealth: {fileID: 1046969688}
   toadParts: []
   toadPartColors: []
 --- !u!1 &1714893774
