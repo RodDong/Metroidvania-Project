@@ -5,6 +5,7 @@ using UnityEngine;
 public class ToadVFX : MonoBehaviour
 {
     [SerializeField] GameObject toadParent;
+    [SerializeField] EnemyDamage enemyHealth;
     [HideInInspector] public SpriteRenderer[] toadParts;
     [HideInInspector] public List<Color> toadPartColors;
 
@@ -17,7 +18,7 @@ public class ToadVFX : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "attackArea" && this.gameObject.layer != LayerMask.NameToLayer("projectile"))
+        if (other.tag == "attackArea" && this.gameObject.layer != LayerMask.NameToLayer("projectile") && !enemyHealth.isDead)
         {
             foreach (var spriteRenderer in toadParts) {
                 if (spriteRenderer != null)

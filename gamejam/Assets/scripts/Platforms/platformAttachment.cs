@@ -18,13 +18,14 @@ public class platformAttachment : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        if(other.gameObject.tag == "player"){
+        if (other.gameObject.tag == "player") {
             other.transform.parent = transform;
         }
     }
 
     private void OnCollisionExit2D(Collision2D other) {
-        other.transform.parent = null;
+        if (other.gameObject.tag == "player") {
+            other.transform.parent = null;
+        }
     }
-
 }

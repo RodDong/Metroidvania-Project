@@ -13,6 +13,7 @@ public class EnemyDamage : EnemyBase
     [HideInInspector] public float originHP;
     Color c;
     Renderer spriteRenderer;
+    public bool isDead;
 
     private void Start()
     {
@@ -49,14 +50,18 @@ public class EnemyDamage : EnemyBase
 
     private void ProcessDeath()
     {
-        if (this.getHP() <= 0)
+        if (this.getHP() <= 0 && !isDead)
         {
             if (this.gameObject.tag != "enemy_mouse" && this.gameObject.tag!="Boss1")
             {
                 gameObject.GetComponent<Animator>().SetTrigger("death");
             }
+            if (GetComponent<FishManAI>() != null) {
+                GetComponent<FishManAI>().enabled = false;
+            }
             Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), player.GetComponent<Collider2D>());
             Invoke("disableEnemy", deathDuration);
+            isDead = true;
         }
     }
 

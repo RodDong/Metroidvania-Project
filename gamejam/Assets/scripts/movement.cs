@@ -89,10 +89,10 @@ public class movement : MonoBehaviour
         if (rb.velocity.y < -3)
         {
             isFalling = true;
-        }else{
+        } else {
             isFalling = false;
         }
-        if(isFalling){
+        if (isFalling) {
             canJump = false;
         }
         if (rb.velocity.y < -10) {
