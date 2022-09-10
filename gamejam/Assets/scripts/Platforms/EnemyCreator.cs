@@ -7,27 +7,34 @@ public class EnemyCreator : MonoBehaviour
     [SerializeField] Collider2D spawnDetector;
     [SerializeField] ObjectPool enemyPool;
     [SerializeField] ObjectPool harpoonPool;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] bool willDropdown;
+    [SerializeField] GameObject bossRoom;
+    [SerializeField] Collider2D trapDoor;
+    [SerializeField] Collider2D trapDoorChild;
+    private GameObject enemySpawned;
 
     void OnTriggerEnter2D(Collider2D other) {
-        if (other.tag == "spawnDetector" && gameObject.transform.Find("enemyOnPlatform") == null) {
-            
+        if (other.tag == "spawnDetector" && gameObject.transform.Find("enemyOnPlatform") == null && enemySpawned == null) {
             Vector3 enemyPos = gameObject.transform.position;
             enemyPos.y += 3;
-            GameObject enemy = enemyPool.Spawn(enemyPos, new Quaternion());
-            enemy.name = "enemyOnPlatform";
-            enemy.GetComponent<FishManAI>().harpoonPool = harpoonPool;
-            enemy.transform.parent = gameObject.transform;
+            enemySpawned = enemyPool.Spawn(enemyPos, new Quaternion());
+            enemySpawned.name = "enemyOnPlatform";
+            enemySpawned.GetComponent<FishManAI>().harpoonPool = harpoonPool;
+            enemySpawned.GetComponent<FishManAI>().enabled = false;
+            enemySpawned.GetComponent<EnemyDamage>().canDestroy = true;
+            enemySpawned.transform.parent = gameObject.transform;
+        }
+        if (enemySpawned && willDropdown && other.tag == "dropdownDetector") {
+            enemySpawned.GetComponent<FishManAI>().enabled = true;
+            enemySpawned.transform.parent = bossRoom.transform;
+            Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), enemySpawned.GetComponent<CapsuleCollider2D>());
+        }
+        if (enemySpawned && !willDropdown && other.tag == "trapDoorDetector") {
+            Physics2D.IgnoreCollision(enemySpawned.GetComponent<CapsuleCollider2D>(), trapDoor);
+            Physics2D.IgnoreCollision(enemySpawned.GetComponent<CapsuleCollider2D>(), trapDoorChild);
+        }
+        if (enemySpawned && !willDropdown && other.tag == "destroyDetector") {
+            GameObject.Destroy(enemySpawned);
         }
     }
 }
