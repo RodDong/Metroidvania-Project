@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class thorn : MonoBehaviour
 {
-    float spawnGap;
-    float duration;
+    float spawnGap = 0.1f;
+    float duration = 1.0f;
     int index = 0;
     List<Transform> thorns = new List<Transform>();
     // Start is called before the first frame update
     void Start()
     {
-        spawnGap = 0.1f;
-        duration = 1.0f;
         foreach(Transform child in transform){  
             thorns.Add(child);
         }
@@ -33,6 +31,11 @@ public class thorn : MonoBehaviour
         spawnGap-=Time.deltaTime;
         duration-=Time.deltaTime;
 
+    }
+
+    public void ResetAnimation(){
+        spawnGap = 0.1f;
+        duration = 1.0f;
     }
 
 }
