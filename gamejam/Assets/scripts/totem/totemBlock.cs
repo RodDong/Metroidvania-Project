@@ -18,12 +18,14 @@ public class totemBlock : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(LayerMask.LayerToName(other.gameObject.layer) == "Player"){
+            transform.GetChild(0).gameObject.SetActive(true);
             player.GetComponent<movement>().isProtected = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D other) {
         if(LayerMask.LayerToName(other.gameObject.layer) == "Player"){
+            transform.GetChild(0).gameObject.SetActive(false);
             player.GetComponent<movement>().isProtected = false;
         }
     }
