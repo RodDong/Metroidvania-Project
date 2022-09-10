@@ -10,4 +10,5 @@ public class TimeManager : MonoBehaviour
         Time.timeScale = timeScale;
         Application.targetFrameRate = 60;
     }
+    
 }
