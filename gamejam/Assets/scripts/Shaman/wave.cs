@@ -6,19 +6,15 @@ public class wave : MonoBehaviour
 {
     Vector3 tempPos = new Vector3(0,0,0);
     Vector3 tempScale = new Vector3(0,0,0);
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        
-        transform.localScale/=0.01f;
+        float temp = gameObject.GetComponent<Renderer>().bounds.size.y;
+        transform.localScale /= 1.005f;
         tempPos = transform.position;
+        tempPos.y -= (temp - gameObject.GetComponent<Renderer>().bounds.size.y)/2;
+        transform.position = tempPos;
     }
+
     private void OnTriggerEnter2D(Collider2D other) {
         
         if(LayerMask.LayerToName(other.gameObject.layer) == "InvisibleWall" ){
