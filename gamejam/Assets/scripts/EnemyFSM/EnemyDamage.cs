@@ -8,7 +8,6 @@ public class EnemyDamage : EnemyBase
     GameObject enemyParent;
     [SerializeField]
     float deathDuration;
-    [SerializeField]
     GameObject player;
     [SerializeField]
     public bool canDestroy;

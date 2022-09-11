@@ -26,7 +26,7 @@ public class shamanDetection : MonoBehaviour
             player.GetComponent<PlayerStatus>().isDetected = true;
         }
         isRight = (position.x - enemy.transform.position.x) > 0;
-        if(playerMovement.makeSound && Mathf.Abs(player.transform.position.x - enemy.transform.position.x)<10.0f){
+        if(playerMovement.makeSound && Mathf.Abs(player.transform.position.x - enemy.transform.position.x)<100.0f){
             position = player.transform.position;
             hasTarget = true;
             Invoke("loseTarget",0.5f);
