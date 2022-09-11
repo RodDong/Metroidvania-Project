@@ -21,6 +21,9 @@ TagManager:
   - totemHeal
   - spawnDetector
   - piranha
+  - dropdownDetector
+  - trapDoorDetector
+  - destroyDetector
   layers:
   - Default
   - TransparentFX

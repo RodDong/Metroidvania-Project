@@ -31,6 +31,6 @@ public class CollisionManager : MonoBehaviour
         Physics2D.IgnoreLayerCollision(noCollisionPlatformLayer, noCollisionPlatformLayer);
         Physics2D.IgnoreLayerCollision(noCollisionPlatformLayer, platformLayer);
         Physics2D.IgnoreLayerCollision(platformLayer, platformLayer);
-        Physics2D.IgnoreLayerCollision(invisibleWallLayer, enemyLayer);
+        //Physics2D.IgnoreLayerCollision(invisibleWallLayer, enemyLayer);
     }
 }

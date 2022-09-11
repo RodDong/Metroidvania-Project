@@ -11,7 +11,7 @@ public class FishManAI : MonoBehaviour
     private float wanderSpeed = 5f, flipCD = 1f;
     private float groundDetectDistance = 2f;
     private bool isProtected = false;
-    [SerializeField] float roamDistance;
+    [SerializeField] public float roamDistance;
     private Vector2 initialPos;
 
     [SerializeField] GameObject player;
