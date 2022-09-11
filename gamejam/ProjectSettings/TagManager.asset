@@ -20,6 +20,10 @@ TagManager:
   - totemBlock
   - totemHeal
   - spawnDetector
+  - piranha
+  - dropdownDetector
+  - trapDoorDetector
+  - destroyDetector
   layers:
   - Default
   - TransparentFX

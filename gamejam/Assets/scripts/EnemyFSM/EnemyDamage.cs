@@ -10,6 +10,8 @@ public class EnemyDamage : EnemyBase
     float deathDuration;
     [SerializeField]
     GameObject player;
+    [SerializeField]
+    public bool canDestroy;
     [HideInInspector] public float originHP;
     Color c;
     Renderer spriteRenderer;
@@ -17,6 +19,7 @@ public class EnemyDamage : EnemyBase
 
     private void Start()
     {
+        player = GameObject.FindGameObjectWithTag("player");
         spriteRenderer = this.gameObject.GetComponent<Renderer>();
         if (spriteRenderer != null)
         {
@@ -67,7 +70,11 @@ public class EnemyDamage : EnemyBase
 
     private void disableEnemy()
     {
-        enemyParent.gameObject.SetActive(false);
+        if (!canDestroy) {
+            enemyParent.gameObject.SetActive(false);
+        } else {
+            GameObject.Destroy(enemyParent);
+        }
     }
 
     private void resetColor()
