@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading.Tasks;
 
 public class shamanStateMachine : MonoBehaviour
 {
@@ -14,7 +15,9 @@ public class shamanStateMachine : MonoBehaviour
     [SerializeField] ObjectPool wavePool;
     [SerializeField] public GameObject icePlatform1, icePlatform2;
     [HideInInspector] public bool isRight, waveInstantiated;
+    [SerializeField] GameObject iceShards;
     private float waveCD = 3.0f;
+    private float shardsCD = 5.0f;
     private int fullHP = 300;
     Quaternion faceRight = new Quaternion();
     Quaternion faceLeft = new Quaternion();
@@ -37,6 +40,7 @@ public class shamanStateMachine : MonoBehaviour
     {
         shamanAnimatorInfo = animator.GetCurrentAnimatorStateInfo(0);
         waveCD-=Time.deltaTime;
+        shardsCD-=Time.deltaTime;
         isRight = shamanDetect.position.x - gameObject.transform.position.x > 0;
         
         bossCollider.enabled = (curState.getStateName() != "shamanBuildPlatform");
@@ -57,7 +61,8 @@ public class shamanStateMachine : MonoBehaviour
             if(curState.getStateName() != "shamanRainIce" && curState.getStateName() != "shamanBuildPlatform"){
                 curState = new shamanBuildPlatform();
             }
-            else if(curState.getStateName() == "shamanBuildPlatform" && shamanAnimatorInfo.normalizedTime>=0.9f){
+            else if(curState.getStateName() == "shamanRainIce" ||
+                (curState.getStateName() == "shamanBuildPlatform" && shamanAnimatorInfo.normalizedTime>=0.9f)){
                 if(gameObject.GetComponent<EnemyDamage>().getHP() <= fullHP/4 && gameObject.GetComponent<EnemyDamage>().getHP() >= 0){
                     gameObject.transform.position = icePlatform2.transform.position;
                     gameObject.transform.rotation = faceLeft;
@@ -65,8 +70,14 @@ public class shamanStateMachine : MonoBehaviour
                     gameObject.transform.position = icePlatform1.transform.position;
                     gameObject.transform.rotation = faceRight;
                 }
-                curState = new shamanRainIce();
+                if (shardsCD <= 0) {
+                    shardsCD = 5.0f;
+                    curState = new shamanRainIce();
+                } else if (curState.getStateName() == "shamanRainIce" && shamanAnimatorInfo.normalizedTime>=3.0f) {
+                    curState = new shamanBuildPlatform();
+                }
             }
+            
         }else if(gameObject.GetComponent<EnemyDamage>().getHP() <= fullHP/2 && gameObject.GetComponent<EnemyDamage>().getHP() > fullHP/4){
             gameObject.transform.position = originPos;
             if(shamanDetect.hasTarget && curState.getStateName()!="shamanWaveAttack"){
@@ -92,11 +103,11 @@ public class shamanStateMachine : MonoBehaviour
     {
         if (isRight)
         {
-            gameObject.transform.localRotation = Quaternion.Euler(0, 180, 0);
+            gameObject.transform.localRotation = faceLeft;
         }
         else
         {
-            gameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            gameObject.transform.localRotation = faceRight;
         }
     }
     public void instantiateWave(){
@@ -109,6 +120,16 @@ public class shamanStateMachine : MonoBehaviour
         wave2.GetComponent<Rigidbody2D>().AddForce(Vector2.left * 3, ForceMode2D.Impulse);
         wave1.GetComponent<Rigidbody2D>().AddForce(Vector2.right * 3, ForceMode2D.Impulse);
     }
+
+    public async void summonIceShards() {
+        for (int i = 0; i < iceShards.transform.childCount; i++) {
+            await Task.Delay(200);
+            if (gameObject.transform.eulerAngles.y == 0)
+                iceShards.transform.GetChild(i).gameObject.SetActive(true);
+            else
+                iceShards.transform.GetChild(iceShards.transform.childCount - 1 - i).gameObject.SetActive(true);
+        }
+    }
 }
 
 public abstract class ShamanState{
@@ -120,6 +141,7 @@ public class shamanIdle : ShamanState{
     public override void Execute(shamanStateMachine shaman){
         shaman.waveInstantiated = false;
         shaman.animator.Play("Idle");
+
     }
     public override string getStateName()
     {
@@ -165,9 +187,15 @@ public class shamanWaveAttack : ShamanState{
 public class shamanBuildPlatform : ShamanState{
     public override void Execute(shamanStateMachine shaman)
     {
-        shaman.animator.Play("Create Ice");
-        shaman.icePlatform1.SetActive(true);
-        shaman.icePlatform2.SetActive(true);
+        if (shaman.shamanAnimatorInfo.IsName("Raise Idle")) {
+            shaman.animator.Play("PutDown");
+        } else if (shaman.shamanAnimatorInfo.normalizedTime >= 0.8f && shaman.shamanAnimatorInfo.IsName("PutDown")) {
+            shaman.animator.Play("Create Ice");
+        } else if (!shaman.shamanAnimatorInfo.IsName("PutDown")) {
+            shaman.animator.Play("Create Ice");
+            shaman.icePlatform1.SetActive(true);
+            shaman.icePlatform2.SetActive(true);
+        }
     }
     public override string getStateName()
     {
@@ -178,11 +206,12 @@ public class shamanBuildPlatform : ShamanState{
 public class shamanRainIce : ShamanState{
     public override void Execute(shamanStateMachine shaman)
     {
-        if(shaman.shamanAnimatorInfo.IsName("Create Ice")){
-            shaman.animator.Play("RaiseArm");
-        }else if(shaman.shamanAnimatorInfo.normalizedTime >= 0.8f && shaman.shamanAnimatorInfo.IsName("RaiseArm")){
+        if (shaman.shamanAnimatorInfo.normalizedTime >= 0.8f && shaman.shamanAnimatorInfo.IsName("RaiseArm")){
             shaman.animator.Play("Raise Idle");
-        }
+        } else if (!shaman.shamanAnimatorInfo.IsName("Raise Idle")) { 
+            shaman.animator.Play("RaiseArm");
+            shaman.summonIceShards();
+        } 
     }
     public override string getStateName()
     {
