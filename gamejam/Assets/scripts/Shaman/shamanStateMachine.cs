@@ -115,8 +115,8 @@ public class shamanStateMachine : MonoBehaviour
         Quaternion tempQuaternion2 = new Quaternion();
         tempQuaternion1.eulerAngles = new Vector3(0,180,0);
         tempQuaternion2.eulerAngles = new Vector3(0,0,0);
-        wave1 = wavePool.Spawn(new Vector2(transform.position.x+1f, transform.position.y+1.5f), tempQuaternion1);
-        wave2 = wavePool.Spawn(new Vector2(transform.position.x-1f, transform.position.y+1.5f), tempQuaternion2);
+        wave1 = wavePool.Spawn(new Vector2(transform.position.x+1f, transform.position.y+1.8f), tempQuaternion1);
+        wave2 = wavePool.Spawn(new Vector2(transform.position.x-1f, transform.position.y+1.8f), tempQuaternion2);
         wave2.GetComponent<Rigidbody2D>().AddForce(Vector2.left * 3, ForceMode2D.Impulse);
         wave1.GetComponent<Rigidbody2D>().AddForce(Vector2.right * 3, ForceMode2D.Impulse);
     }
