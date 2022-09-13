@@ -22,7 +22,7 @@ public class leverWithoutSave : MonoBehaviour
         if(inRange && Input.GetKeyDown(KeyCode.X)){
             timer = 0.2f;
             gameObject.GetComponent<Animator>().Play("lever");
-            trapdoor.GetComponent<trapdoorRoom3>().isOpen = true;
+            trapdoor.GetComponent<trapdoor>().isOpen = true;
         }
         if(timer <= 0){
             gameObject.GetComponent<Animator>().Play("Idle");

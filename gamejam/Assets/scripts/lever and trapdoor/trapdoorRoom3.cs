@@ -20,8 +20,5 @@ public class trapdoorRoom3 : MonoBehaviour
             gameObject.transform.GetChild(0).GetComponent<Collider2D>().enabled = false;
             gameObject.GetComponent<Animator>().Play("Open");
         }
-        
-        
-        
     }
 }

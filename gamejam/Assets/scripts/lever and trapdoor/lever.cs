@@ -24,14 +24,6 @@ public class lever : MonoBehaviour, IDataManager
         if (inRange && Input.GetKeyDown(KeyCode.X)) {
             saveMenu.GetComponent<Animator>().SetTrigger("start");
 
-            playerHealth.health = playerHealth.maxhealth;
-            for (int i = 0; i < playerHealth.hearts.Count; i++) {
-                Animator heartAnimator = playerHealth.hearts[i].GetComponent<Animator>();
-                heartAnimator.Play("soul_full");
-            }
-
-            playerPotion.potionCount = playerPotion.potionMaxCount;
-
             DataManager.instance.SaveGame();
 
             timer = 0.2f;
