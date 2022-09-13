@@ -27,33 +27,18 @@ public class SpawnEnemy : MonoBehaviour
         // No enabled child object found, reset enemy health and position
         if (enemiesOfScene.GetComponentsInChildren<EnemyDamage>().GetLength(0) == 0 && enemyList[0].GetComponent<EnemyDamage>().getHP() <= 0) {
             isClear = true;
-            for (int i = 0; i < enemyList.Count; i++) {
-                if (enemyList[i].GetComponent<melee_gator>() != null) {
-                    enemyList[i].GetComponent<melee_gator>().enabled = true;
-                }
-                if (enemyList[i].GetComponent<Gator>() != null) {
-                    enemyList[i].GetComponent<Gator>().enabled = true;
-                }
-                enemyList[i].GetComponent<EnemyDamage>().setHP(enemyHPList[i]);
-                enemyList[i].GetComponent<EnemyDamage>().isDead = false;
-                // reset enemy position
-                enemyList[i].GetComponent<Transform>().transform.position = enemyPosList[i].position;
-                enemyList[i].GetComponent<Transform>().transform.rotation = enemyPosList[i].rotation;
-                // reset enemy detection
-                if (enemyList[i].GetComponent<MeleeEnemyDetection>() != null) {
-                    enemyList[i].GetComponent<MeleeEnemyDetection>().hasTarget = false;
-                }
-            }
+            ResetEnemies();
         }
-        if(Input.GetKeyDown(KeyCode.Q)) {
-            clearArea();
-        }
+        // if(Input.GetKeyDown(KeyCode.Q)) {
+        //     clearArea();
+        // }
 
         wallControl();
     }
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "player" && !isClear) {
             isInRoom = true;
+            ResetEnemies();
             for (int i = 0; i < enemyList.Count; i++) {
                 if (!enemyList[i].activeSelf) {
                     enemyList[i].SetActive(true);
@@ -95,6 +80,7 @@ public class SpawnEnemy : MonoBehaviour
             }
             enemyList[i].SetActive(false);
             enemyList[i].GetComponent<EnemyDamage>().setHP(enemyHPList[i]);
+            enemyList[i].GetComponent<EnemyDamage>().isDead = false;
             // reset enemy position
             enemyList[i].GetComponent<Transform>().transform.position = enemyPosList[i].position;
             enemyList[i].GetComponent<Transform>().transform.rotation = enemyPosList[i].rotation;

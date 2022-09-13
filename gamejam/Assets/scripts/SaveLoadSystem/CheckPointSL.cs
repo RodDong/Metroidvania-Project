@@ -48,6 +48,12 @@ public class CheckPointSL : MonoBehaviour, IDataManager
 
             DataManager.instance.SaveGame();
         }
+
+        if (!attackSaved && player.GetComponent<movement>().canAttack) {
+            player.GetComponent<movement>().position = new Vector3(-10.32f, -5.26f, 0);
+            attackSaved = true;
+            DataManager.instance.SaveGame();
+        }
     }
 
     public void LoadData(GameData data) {
@@ -61,6 +67,7 @@ public class CheckPointSL : MonoBehaviour, IDataManager
             GameObject.FindGameObjectWithTag("tutorial").SetActive(!data.canAttack);
         }
         player.GetComponent<PotionManager>().potionMaxCount = data.potionMaxCount;
+        player.GetComponent<PotionManager>().potionCount = data.potionMaxCount;
         if (data.activeCamera) {
             data.activeCamera.enabled = true;
         }

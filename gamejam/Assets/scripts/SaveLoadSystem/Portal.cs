@@ -3,9 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Portal : MonoBehaviour
+public class Portal : MonoBehaviour, IDataManager
 {
     private bool isOnPortal;
+    private GameObject player;
+
+    private void Start() {
+        player = GameObject.FindGameObjectWithTag("player");
+    }
+
     private void OnTriggerEnter2D(Collider2D other) {
         isOnPortal = true;
     }
@@ -16,7 +22,14 @@ public class Portal : MonoBehaviour
 
     private void Update() {
         if (isOnPortal && Input.GetKeyDown(KeyCode.X)) {
+            player.GetComponent<movement>().position = new Vector3(-36.7f, -19.2f, 0);
+            DataManager.instance.SaveGame();
             SceneManager.LoadScene("Map2");
         }
+    }
+
+    public void LoadData(GameData data) {}
+
+    public void SaveData(ref GameData data) {
     }
 }

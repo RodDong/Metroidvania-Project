@@ -9,7 +9,7 @@ public class Map2EnemyController : MonoBehaviour
     private List<GameObject> fishmanList = new List<GameObject>();
     private List<int> fishmanHPList = new List<int>();
     private List<Transform> fishmanPosList = new List<Transform>();
-    private bool isClear;
+    public bool isClear;
 
     private void Start() {
         for (int i = 0; i < enemiesOfScene.transform.childCount; i++) {
@@ -38,7 +38,7 @@ public class Map2EnemyController : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.tag == "player") {
+        if (other.tag == "player" && !isClear) {
             for (int i = 0; i < fishmanList.Count; i++) {
                 if (!fishmanList[i].activeSelf) {
                     fishmanList[i].GetComponent<FishManAI>().enabled = true;
