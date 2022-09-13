@@ -174,7 +174,7 @@ Transform:
   m_GameObject: {fileID: 5376801172422824355}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0.005, y: -0.51, z: 0.05}
-  m_LocalScale: {x: 0.352297, y: 1, z: 0.46462104}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5674050915087484864}
@@ -263,7 +263,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.75
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -814,9 +814,9 @@ ParticleSystem:
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
-    m_Position: {x: 0, y: 0, z: 0}
+    m_Position: {x: -0.4, y: 0, z: -0.15}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 1, y: 1, z: 1}
+    m_Scale: {x: 0.49, y: 1, z: 0.16}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -4926,8 +4926,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1957984505
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -5104,8 +5104,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bloodPS: {fileID: 1879000073}
   audioSource: {fileID: 347059666788476653}
-  backgroundMusic: {fileID: 0}
+  bgmManager: {fileID: 0}
   health: 1000
+  maxhealth: 0
   numHearts: 3
   hearts:
   - {fileID: 0}
@@ -5114,6 +5115,7 @@ MonoBehaviour:
   immunityCooldown: 1
   deathMenu: {fileID: 0}
   isDead: 0
+  isInWater: 0
 --- !u!114 &4888737657051059265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5183,7 +5185,8 @@ MonoBehaviour:
   attacking: 0
   attackCollider: {fileID: 0}
   attackAnimator: {fileID: 0}
-  rb: {fileID: 0}
+  playerAudio: {fileID: 0}
+  attackSound: {fileID: 0}
 --- !u!114 &6799895932276836930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9947,7 +9950,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1957984505
-  m_SortingLayer: 2
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
