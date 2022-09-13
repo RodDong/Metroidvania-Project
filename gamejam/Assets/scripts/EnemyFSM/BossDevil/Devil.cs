@@ -82,7 +82,7 @@ public class Devil : MonoBehaviour
     {
         public override void Execute(Devil enemy)
         {
-            throw new System.NotImplementedException();
+            // TODO: DO SOMETHING
         }
     }
 }
