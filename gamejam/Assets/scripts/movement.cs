@@ -30,7 +30,6 @@ public class movement : MonoBehaviour
     [HideInInspector] public Collider2D attackCollider;
     public Animator attackAnimator;
     float jump_init_v = 20f;
-    [SerializeField]
     Rigidbody2D rb;
     // FSM components
     private State currentState;
