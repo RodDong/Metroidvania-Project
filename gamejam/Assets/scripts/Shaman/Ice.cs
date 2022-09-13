@@ -22,8 +22,9 @@ public class Ice : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D other) {
-        Debug.Log("destroy");
-        reset();
-        gameObject.SetActive(false);
+        if (other.tag == "player" || other.gameObject.layer == LayerMask.NameToLayer("Ground") ) {
+            reset();
+            gameObject.SetActive(false);
+        }
     }
 }

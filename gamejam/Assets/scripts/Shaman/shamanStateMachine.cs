@@ -23,6 +23,12 @@ public class shamanStateMachine : MonoBehaviour
     Quaternion faceLeft = new Quaternion();
     Vector3 originPos;
 
+    void OnTriggerEnter2D(Collider2D other) {
+        if (other.tag == "attackArea") {
+            Debug.Log("HIT");
+        }
+    }
+
     void Start()
     {
         //Shaman spawn facing left 
@@ -43,7 +49,7 @@ public class shamanStateMachine : MonoBehaviour
         shardsCD-=Time.deltaTime;
         isRight = shamanDetect.position.x - gameObject.transform.position.x > 0;
         
-        bossCollider.enabled = (curState.getStateName() != "shamanBuildPlatform");
+        bossCollider.enabled = (curState.getStateName() != "shamanBuildPlatform" || transform.position != originPos);
         if(gameObject.GetComponent<EnemyDamage>().getHP() > 3*fullHP/4){
 
             if(shamanDetect.hasTarget && curState.getStateName()!="shamanWaveAttack"){
