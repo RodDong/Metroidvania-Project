@@ -48,5 +48,6 @@ public class bossLever : MonoBehaviour
     void activateRoom(){
         waterWheel.GetComponent<waterWheel>().speed = -0.025f;
         boss2.SetActive(true);
+        gameObject.SetActive(false);
     }
 }

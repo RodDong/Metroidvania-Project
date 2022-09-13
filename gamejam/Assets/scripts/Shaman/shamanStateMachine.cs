@@ -16,6 +16,8 @@ public class shamanStateMachine : MonoBehaviour
     [SerializeField] public GameObject icePlatform1, icePlatform2;
     [HideInInspector] public bool isRight, waveInstantiated;
     [SerializeField] GameObject iceShards;
+    [SerializeField] GameObject exit1, exit2;
+    [SerializeField] GameObject portal;
     private float waveCD = 3.0f;
     private float shardsCD = 5.0f;
     private int fullHP = 300;
@@ -101,6 +103,9 @@ public class shamanStateMachine : MonoBehaviour
 
         }else if(gameObject.GetComponent<EnemyDamage>().getHP()<=0){
             curState = new shamanDeath();
+            portal.SetActive(true);
+            exit1.GetComponent<trapdoorRoom3>().isOpen = true;
+            exit2.GetComponent<trapdoorRoom3>().isOpen = true;
         }
         
         curState.Execute(this);

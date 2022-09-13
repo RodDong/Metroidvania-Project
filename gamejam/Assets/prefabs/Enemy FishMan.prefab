@@ -304,7 +304,7 @@ Transform:
   m_GameObject: {fileID: 638060224350620035}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.73, y: -9.87, z: 1}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
+  m_LocalScale: {x: 0.12, y: 0.12, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2302762657664405388}
@@ -391,7 +391,7 @@ MonoBehaviour:
   HP: 30
   enemyParent: {fileID: 638060224350620035}
   deathDuration: 3.2
-  player: {fileID: 0}
+  canDestroy: 0
   originHP: 0
   isDead: 0
 --- !u!114 &8766143787648347587
