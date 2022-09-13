@@ -24,6 +24,7 @@ TagManager:
   - dropdownDetector
   - trapDoorDetector
   - destroyDetector
+  - boss2
   layers:
   - Default
   - TransparentFX

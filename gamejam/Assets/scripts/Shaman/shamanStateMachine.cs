@@ -18,6 +18,7 @@ public class shamanStateMachine : MonoBehaviour
     [SerializeField] GameObject iceShards;
     [SerializeField] GameObject exit1, exit2;
     [SerializeField] GameObject portal;
+    [SerializeField] public GameObject bossDefeatMenu;
     private float waveCD = 3.0f;
     private float shardsCD = 5.0f;
     private int fullHP = 300;
@@ -57,24 +58,23 @@ public class shamanStateMachine : MonoBehaviour
             if(shamanDetect.hasTarget && curState.getStateName()!="shamanWaveAttack"){
                 waveCD = 5.0f;
                 curState = new shamanEarthSpike();
-            }else if(waveCD<=0.0f && !shamanDetect.hasTarget){
+            } else if (waveCD<=0.0f && !shamanDetect.hasTarget){
                 waveCD = 5.0f;
                 curState = new shamanWaveAttack();
-            }else if ((curState.getStateName()=="shamanWaveAttack" && shamanAnimatorInfo.normalizedTime>=0.9f) || (curState.getStateName() == "shamanEarthSpike"&& shamanAnimatorInfo.normalizedTime>=0.9f)){
+            } else if ((curState.getStateName()=="shamanWaveAttack" && shamanAnimatorInfo.normalizedTime>=0.9f) || (curState.getStateName() == "shamanEarthSpike"&& shamanAnimatorInfo.normalizedTime>=0.9f)){
                 curState = new shamanIdle();
             }
 
-        }
-        else if((gameObject.GetComponent<EnemyDamage>().getHP() <= 3*fullHP/4 && gameObject.GetComponent<EnemyDamage>().getHP() >= fullHP/2) || (gameObject.GetComponent<EnemyDamage>().getHP() <= fullHP/4 && gameObject.GetComponent<EnemyDamage>().getHP() >= 0)){
+        } else if ((gameObject.GetComponent<EnemyDamage>().getHP() <= 3*fullHP/4 && gameObject.GetComponent<EnemyDamage>().getHP() >= fullHP/2) || (gameObject.GetComponent<EnemyDamage>().getHP() <= fullHP/4 && gameObject.GetComponent<EnemyDamage>().getHP() >= 0)){
             if(curState.getStateName() != "shamanRainIce" && curState.getStateName() != "shamanBuildPlatform"){
                 curState = new shamanBuildPlatform();
             }
-            else if(curState.getStateName() == "shamanRainIce" ||
+            else if (curState.getStateName() == "shamanRainIce" ||
                 (curState.getStateName() == "shamanBuildPlatform" && shamanAnimatorInfo.normalizedTime>=0.9f)){
                 if(gameObject.GetComponent<EnemyDamage>().getHP() <= fullHP/4 && gameObject.GetComponent<EnemyDamage>().getHP() >= 0){
                     gameObject.transform.position = icePlatform2.transform.position;
                     gameObject.transform.rotation = faceLeft;
-                }else{
+                } else {
                     gameObject.transform.position = icePlatform1.transform.position;
                     gameObject.transform.rotation = faceRight;
                 }
@@ -86,22 +86,21 @@ public class shamanStateMachine : MonoBehaviour
                 }
             }
             
-        }else if(gameObject.GetComponent<EnemyDamage>().getHP() <= fullHP/2 && gameObject.GetComponent<EnemyDamage>().getHP() > fullHP/4){
+        } else if (gameObject.GetComponent<EnemyDamage>().getHP() <= fullHP/2 && gameObject.GetComponent<EnemyDamage>().getHP() > fullHP/4){
             gameObject.transform.position = originPos;
-            if(shamanDetect.hasTarget && curState.getStateName()!="shamanWaveAttack"){
+            if (shamanDetect.hasTarget && curState.getStateName()!="shamanWaveAttack"){
                 waveCD = 5.0f;
                 curState = new shamanEarthSpike();
-            }else if(waveCD<=0.0f && !shamanDetect.hasTarget){
+            } else if (waveCD<=0.0f && !shamanDetect.hasTarget){
                 waveCD = 5.0f;
                 curState = new shamanWaveAttack();
-            }else if ((curState.getStateName()=="shamanWaveAttack" && shamanAnimatorInfo.normalizedTime>=0.9f) 
+            } else if ((curState.getStateName()=="shamanWaveAttack" && shamanAnimatorInfo.normalizedTime>=0.9f) 
             || (curState.getStateName() == "shamanEarthSpike"&& shamanAnimatorInfo.normalizedTime>=0.9f) 
             || curState.getStateName() == "shamanRainIce"){
-                Debug.Log(2);
                 curState = new shamanIdle();
             }
 
-        }else if(gameObject.GetComponent<EnemyDamage>().getHP()<=0){
+        } else if (gameObject.GetComponent<EnemyDamage>().getHP()<=0){
             curState = new shamanDeath();
             portal.SetActive(true);
             exit1.GetComponent<trapdoorRoom3>().isOpen = true;
@@ -233,6 +232,7 @@ public class shamanRainIce : ShamanState{
 public class shamanDeath : ShamanState{
     public override void Execute(shamanStateMachine shaman){
         shaman.animator.Play("Death");
+        shaman.bossDefeatMenu.SetActive(true);
     }
     public override string getStateName(){
         return "shamanDeath";

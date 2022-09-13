@@ -6,6 +6,7 @@ using System.Linq;
 public class DataManager : MonoBehaviour
 {
     [SerializeField] private string fileName;
+    [SerializeField] private Vector3 initialLocation;
     private GameData gameData;
     private List<IDataManager> dataMangerObjects;
     public FileDataHandler dataHandler;
@@ -21,10 +22,9 @@ public class DataManager : MonoBehaviour
         LoadGame();
     }
 
-    // move loadgame from onStart to onAwake (might have bug, not sure)
-
     public void NewGame() {
         this.gameData = new GameData();
+        this.gameData.playerPosition = initialLocation;
     }
     public void LoadGame() {
         this.gameData = dataHandler.Load();

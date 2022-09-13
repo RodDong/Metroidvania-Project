@@ -67,6 +67,9 @@ public class Devil : MonoBehaviour
             }
 
             // transitions
+            if (enemy.gameObject.GetComponent<EnemyDamage>().isDead) {
+                enemy.ChangeState(new DeathState());
+            }
         }
     }
 
@@ -105,9 +108,14 @@ public class Devil : MonoBehaviour
             var step = enemy.rushSpeed * Time.deltaTime;
             enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, targetPos, step);
 
+            // transitions
             if (Vector3.Distance(enemy.transform.position, targetPos) < 0.5f) {
                 enemy.transform.eulerAngles = Vector3.zero;
                 enemy.ChangeState(new FollowState());
+            }
+
+            if (enemy.gameObject.GetComponent<EnemyDamage>().isDead) {
+                enemy.ChangeState(new DeathState());
             }
         }
     }
@@ -131,9 +139,14 @@ public class Devil : MonoBehaviour
                 timer = 0.3f;
             }
 
+            // transitions
             if (enemy.animator.GetCurrentAnimatorStateInfo(0).IsName("range")
             && enemy.animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f) {
                 enemy.ChangeState(new FollowState());
+            }
+
+            if (enemy.gameObject.GetComponent<EnemyDamage>().isDead) {
+                enemy.ChangeState(new DeathState());
             }
         }
     }
@@ -145,9 +158,13 @@ public class Devil : MonoBehaviour
             // in-state logic
             enemy.animator.Play("fire");
 
+            // transitions
             if (enemy.animator.GetCurrentAnimatorStateInfo(0).IsName("fire")
             && enemy.animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f) {
                 enemy.ChangeState(new FollowState());
+            }
+            if (enemy.gameObject.GetComponent<EnemyDamage>().isDead) {
+                enemy.ChangeState(new DeathState());
             }
         }
     }
