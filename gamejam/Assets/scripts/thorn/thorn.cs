@@ -19,7 +19,6 @@ public class thorn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(duration);
         if(duration < -1){
             gameObject.SetActive(false);
         }

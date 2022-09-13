@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class PlatformCollision : MonoBehaviour
 {
-    [SerializeField] GameObject player;
+    GameObject player;
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("player");
     }
 
     // Update is called once per frame
