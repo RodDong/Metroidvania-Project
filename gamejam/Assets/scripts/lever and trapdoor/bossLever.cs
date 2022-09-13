@@ -6,6 +6,7 @@ public class bossLever : MonoBehaviour
 {
     GameObject player;
     [SerializeField] GameObject waterWheel;
+    [SerializeField] GameObject boss2;
     private bool inRange;
     private float timer;
     bool Spawn = false;
@@ -23,7 +24,7 @@ public class bossLever : MonoBehaviour
         if(inRange && Input.GetKeyDown(KeyCode.X)){
             timer = 0.2f;
             gameObject.GetComponent<Animator>().Play("bossLever");
-            waterWheel.GetComponent<waterWheel>().speed = -0.025f;
+            Invoke("activateRoom", 0.75f);
             Spawn = true;
         }
         if(timer <= 0){
@@ -42,5 +43,10 @@ public class bossLever : MonoBehaviour
         if(other.tag == "player"){
             inRange = false;
         }   
+    }
+
+    void activateRoom(){
+        waterWheel.GetComponent<waterWheel>().speed = -0.025f;
+        boss2.SetActive(true);
     }
 }
