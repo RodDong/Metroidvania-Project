@@ -17,7 +17,7 @@ public class shamanStateMachine : MonoBehaviour
     [HideInInspector] public bool isRight, waveInstantiated;
     [SerializeField] GameObject iceShards;
     [SerializeField] GameObject exit1, exit2;
-    [SerializeField] GameObject portal;
+    [SerializeField] GameObject portal, enemyCreator;
     [SerializeField] public GameObject bossDefeatMenu;
     private float waveCD = 3.0f;
     private float shardsCD = 5.0f;
@@ -105,6 +105,7 @@ public class shamanStateMachine : MonoBehaviour
             portal.SetActive(true);
             exit1.GetComponent<trapdoorRoom3>().isOpen = true;
             exit2.GetComponent<trapdoorRoom3>().isOpen = true;
+            enemyCreator.SetActive(false);
         }
         
         curState.Execute(this);

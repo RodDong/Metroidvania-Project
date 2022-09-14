@@ -10,6 +10,7 @@ public class Map2EnemyController : MonoBehaviour
     private List<int> fishmanHPList = new List<int>();
     private List<Transform> fishmanPosList = new List<Transform>();
     public bool isClear;
+    [SerializeField] public GameObject boss;
 
     private void Start() {
         for (int i = 0; i < enemiesOfScene.transform.childCount; i++) {
@@ -32,13 +33,13 @@ public class Map2EnemyController : MonoBehaviour
                 fishmanList[i].GetComponent<EnemyDamage>().isDead = false;
                 fishmanList[i].GetComponent<Transform>().transform.position = fishmanPosList[i].position;
                 fishmanList[i].GetComponent<Transform>().transform.rotation = fishmanPosList[i].rotation;
-                fishmanList[i].GetComponent<FishmanBone>().ResetBones();
+//                fishmanList[i].GetComponent<FishmanBone>().ResetBones();
             }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.tag == "player" && !isClear) {
+        if (other.tag == "player" && !isClear && boss.GetComponent<EnemyDamage>().getHP() > 0) {
             for (int i = 0; i < fishmanList.Count; i++) {
                 if (!fishmanList[i].activeSelf) {
                     fishmanList[i].GetComponent<FishManAI>().enabled = true;

@@ -6,8 +6,8 @@ public class FishManAI : MonoBehaviour
 {
     private FishState currentState;
     [SerializeField] public Animator animator;
-    private float meleeAttackRange = 3f, meleeEngageRange = 7f;
-    private float rangedAttackRange = 100f;
+    private float meleeAttackRange = 0.1f, meleeEngageRange = 1f;
+    private float rangedAttackRange = 50f;
     private float wanderSpeed = 5f, flipCD = 1f;
     private float groundDetectDistance = 2f;
     private bool isProtected = false;
