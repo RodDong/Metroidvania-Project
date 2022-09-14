@@ -19,6 +19,7 @@ public class BossController : MonoBehaviour
         boss.GetComponent<EnemyDamage>().isDead = false;
         boss.GetComponent<Transform>().transform.position = bossPos.position;
         boss.GetComponent<Transform>().transform.rotation = bossPos.rotation;
+        boss.GetComponent<shamanStateMachine>().shamanMusic.Stop();
         boss.SetActive(false);
     }
 }

@@ -22,6 +22,20 @@ public class GatorBossAnimatorController : MonoBehaviour
             ProcessAnimation();
             hasWatched = true;
         }
+        if(other.tag == "player" && hasWatched){
+            backgroundMusicController.backgroundMusic1.time = 0f;
+            backgroundMusicController.backgroundMusic1.Stop();
+            backgroundMusicController.backgroundMusic2.time = 0f;
+            backgroundMusicController.backgroundMusic2.Stop();
+            bossMusicController.time = 0f;
+            bossMusicController.Play();
+        }
+    }
+    private void OnTriggerExit2D(Collider2D other) {
+        if(other.tag == "player"){
+            bossMusicController.time = 0f;
+            bossMusicController.Stop();
+        }
     }
 
     void ProcessAnimation() {

@@ -21,6 +21,7 @@ public class shamanStateMachine : MonoBehaviour
     [SerializeField] public GameObject bossDefeatMenu;
     [SerializeField] public GameObject spawnEnemyDetector;
     [SerializeField] public FishmanBone shamanBone;
+    [SerializeField] public AudioSource shamanMusic, backGroundMusic;
     private float waveCD = 3.0f;
     private float shardsCD = 5.0f;
     private int fullHP = 300;
@@ -103,6 +104,8 @@ public class shamanStateMachine : MonoBehaviour
 
         } else if (gameObject.GetComponent<EnemyDamage>().getHP()<=0){
             curState = new shamanDeath();
+            shamanMusic.Stop();
+            backGroundMusic.Play();
             portal.SetActive(true);
             exit1.GetComponent<trapdoorRoom3>().isOpen = true;
             exit2.GetComponent<trapdoorRoom3>().isOpen = true;

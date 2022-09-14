@@ -13,12 +13,14 @@ public class BgmManager : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer >= 227.7 && backgroundMusic1.time >= 227.7f) {
-            backgroundMusic2.time = 80f;
+        if (timer >= 195.7f && backgroundMusic1.time >= 195.7f) {
+            backgroundMusic1.Stop();
+            backgroundMusic1.time = 0f;
+            backgroundMusic2.time = 48f;
             backgroundMusic2.Play();
         }
-        if (timer >= 375.7f && backgroundMusic2.time >= 227.7f) {
-            backgroundMusic1.time = 80f;
+        if (timer >= 343.4f && backgroundMusic2.time >= 195.7f) {
+            backgroundMusic1.time = 48f;
             backgroundMusic1.Play();
             timer = 0f;
         }

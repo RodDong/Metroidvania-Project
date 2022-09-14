@@ -3771,6 +3771,10 @@ PrefabInstance:
       propertyPath: wall
       value: 
       objectReference: {fileID: 144705162}
+    - target: {fileID: 347059666788476653, guid: 9ae518f7145260d48b4d2403964aa27a, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 507494303277947131, guid: 9ae518f7145260d48b4d2403964aa27a, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -4323,7 +4327,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: a94f37e783b296a4082a55dc1fbf2817, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 3
+  m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0

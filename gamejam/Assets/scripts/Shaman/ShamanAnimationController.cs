@@ -8,7 +8,7 @@ public class ShamanAnimationController : MonoBehaviour
     [SerializeField] GameObject shaman;
     [SerializeField] waterWheel waterwheel;
     [SerializeField] Animator shamanVFX;
-    [SerializeField] BgmManager backgroundMusicController;
+    [SerializeField] AudioSource backgroundMusicController;
     [SerializeField] AudioSource bossMusicController;
     [SerializeField] AudioSource shamanVFXSound;
     private bool hasPlayed;
@@ -30,6 +30,8 @@ public class ShamanAnimationController : MonoBehaviour
             if (shamanAnimator.GetCurrentAnimatorStateInfo(0).IsName("RaiseArm")
             && shamanAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f
             && !isPlaying) {
+                backgroundMusicController.time = 0.0f;
+                backgroundMusicController.Stop();
                 shamanVFX.Play("start");
                 shamanVFXSound.Play();
                 isPlaying = true;
@@ -39,6 +41,7 @@ public class ShamanAnimationController : MonoBehaviour
             && shamanVFX.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f) {
                 shamanAnimator.Play("PutDown");
                 Invoke("endAnimation", 0.67f);
+                
             }
         }
     }
@@ -50,6 +53,7 @@ public class ShamanAnimationController : MonoBehaviour
     }
 
     void endAnimation() {
+        bossMusicController.Play();
         player.GetComponent<movement>().enabled = true;
         shaman.GetComponent<shamanStateMachine>().enabled = true;
         enabled = false;

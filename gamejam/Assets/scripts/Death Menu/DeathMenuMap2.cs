@@ -9,7 +9,7 @@ public class DeathMenuMap2 : MonoBehaviour, IDataManager
     public GameObject deathMenu;
     [SerializeField] GameObject player;
     [SerializeField] CinemachineBrain cinemachineBrain;
-    [SerializeField] BgmManager bgmManager;
+    [SerializeField] AudioSource bgm;
     private Map2EnemyController[] enemySpawnControllers;
     private BossController bosscontroller;
 
@@ -24,9 +24,8 @@ public class DeathMenuMap2 : MonoBehaviour, IDataManager
         player.GetComponent<Health>().resetHealth();
 
         // resume music
-        // bgmManager.backgroundMusic1.time = 0f;
-        // bgmManager.backgroundMusic2.time = 0f;
-        // bgmManager.backgroundMusic1.Play();
+        bgm.time = 0f;
+        bgm.Play();
 
         // reset player isdetected to false
         player.GetComponent<PlayerStatus>().isDetected = false;

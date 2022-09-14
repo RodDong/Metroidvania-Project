@@ -31,9 +31,9 @@ public class DeathMenu : MonoBehaviour, IDataManager
         }
 
         // resume music
-        // bgmManager.backgroundMusic1.time = 0f;
-        // bgmManager.backgroundMusic2.time = 0f;
-        // bgmManager.backgroundMusic1.Play();
+        bgmManager.backgroundMusic1.time = 0f;
+        bgmManager.backgroundMusic2.time = 0f;
+        bgmManager.backgroundMusic1.Play();
 
         // reset player isdetected to false
         player.GetComponent<PlayerStatus>().isDetected = false;

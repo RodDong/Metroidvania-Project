@@ -36,12 +36,6 @@ public class Toad : MonoBehaviour
     float repulseForce = 5f;
 
     [SerializeField]
-    GameObject ranger;
-
-    [SerializeField]
-    GameObject melee;
-
-    [SerializeField]
     public Collider2D coll;
     [SerializeField]
     public Collider2D tongueCol;
