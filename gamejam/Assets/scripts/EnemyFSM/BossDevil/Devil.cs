@@ -117,15 +117,15 @@ public class Devil : MonoBehaviour
                 targetPos = enemy.transform.position;
 
                 if (xDiff > 0) {
-                    targetPos.x -= 20;
-                    targetPos.y -= 20 * tangent;
+                    targetPos.x -= 10;
+                    targetPos.y -= 10 * tangent;
                 } else {
                     Vector3 temp = enemy.transform.localScale;
                     temp.x *= -1;
                     enemy.transform.localScale = temp;
                     enemy.isFacingRight = !enemy.isFacingRight;
-                    targetPos.x += 20;
-                    targetPos.y += 20 * tangent;
+                    targetPos.x += 10;
+                    targetPos.y += 10 * tangent;
                 }
 
                 hasRecord = true;

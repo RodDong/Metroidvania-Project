@@ -522,7 +522,7 @@ Transform:
   - {fileID: 558934204}
   - {fileID: 868626732}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &178548545
 GameObject:
@@ -2978,6 +2978,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86923d0b9d4ee3640966e01846a9fde7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &898027314
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 898027315}
+  m_Layer: 0
+  m_Name: DevilAnimationController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &898027315
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 898027314}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.3106828, y: -2.7072194, z: -10.076935}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &899930811
 GameObject:
   m_ObjectHideFlags: 0
@@ -3217,7 +3248,7 @@ Transform:
   - {fileID: 1657957550}
   - {fileID: 1389900343}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &916528415
 GameObject:
@@ -5102,7 +5133,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!68 &1218285551
 EdgeCollider2D:
@@ -5439,7 +5470,7 @@ Transform:
   - {fileID: 618230874}
   - {fileID: 1890375287}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1354444872
 GameObject:
@@ -8087,7 +8118,7 @@ Transform:
   - {fileID: 1047197238}
   - {fileID: 1160215807}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1810677881
 GameObject:
@@ -8502,6 +8533,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Devil
       objectReference: {fileID: 0}
+    - target: {fileID: 9350850708285352, guid: 84a4223df843f104eb0d593dc36806b2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9350850708285356, guid: 84a4223df843f104eb0d593dc36806b2, type: 3}
       propertyPath: fires
       value: 
@@ -8512,11 +8547,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9350850708285357, guid: 84a4223df843f104eb0d593dc36806b2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.44
+      value: -0.03
       objectReference: {fileID: 0}
     - target: {fileID: 9350850708285357, guid: 84a4223df843f104eb0d593dc36806b2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.495472
+      value: 7.89
       objectReference: {fileID: 0}
     - target: {fileID: 9350850708285357, guid: 84a4223df843f104eb0d593dc36806b2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9018,7 +9053,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!60 &2035582252
 PolygonCollider2D:
