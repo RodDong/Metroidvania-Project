@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Cinemachine;
 
-public class DeathMenu : MonoBehaviour, IDataManager
+public class DeathMenuMap2 : MonoBehaviour, IDataManager
 {
     public GameObject deathMenu;
     [SerializeField] GameObject player;

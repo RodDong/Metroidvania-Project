@@ -8,7 +8,7 @@ public class FishmanBone : MonoBehaviour
     private List<Vector3> bonePos = new List<Vector3>();
     private List<Quaternion> boneRot = new List<Quaternion>();
 
-    private void Awake() {
+    private void Start() {
         Transform[] boneList = bone.GetComponentsInChildren<Transform>(true);
         for (int i = 0; i < boneList.Length; i++) {
             bonePos.Add(boneList[i].position);

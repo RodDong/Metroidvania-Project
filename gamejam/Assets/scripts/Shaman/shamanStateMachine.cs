@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 public class shamanStateMachine : MonoBehaviour
 {
-    private ShamanState curState;
+    [HideInInspector]public ShamanState curState;
     [HideInInspector] public Animator animator;
     [SerializeField] public shamanDetection shamanDetect;
     [HideInInspector] public AnimatorStateInfo shamanAnimatorInfo;
@@ -20,6 +20,7 @@ public class shamanStateMachine : MonoBehaviour
     [SerializeField] GameObject portal, enemyCreator;
     [SerializeField] public GameObject bossDefeatMenu;
     [SerializeField] public GameObject spawnEnemyDetector;
+    [SerializeField] public FishmanBone shamanBone;
     private float waveCD = 3.0f;
     private float shardsCD = 5.0f;
     private int fullHP = 300;
