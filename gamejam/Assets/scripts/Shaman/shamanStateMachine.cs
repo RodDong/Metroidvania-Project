@@ -219,7 +219,7 @@ public class shamanRainIce : ShamanState{
     {
         if (shaman.shamanAnimatorInfo.normalizedTime >= 0.8f && shaman.shamanAnimatorInfo.IsName("RaiseArm")){
             shaman.animator.Play("Raise Idle");
-        } else if (!shaman.shamanAnimatorInfo.IsName("Raise Idle")) { 
+        } else if (!shaman.shamanAnimatorInfo.IsName("Raise Idle") && !shaman.shamanAnimatorInfo.IsName("RaiseArm")) { 
             shaman.animator.Play("RaiseArm");
             shaman.summonIceShards();
         } 
