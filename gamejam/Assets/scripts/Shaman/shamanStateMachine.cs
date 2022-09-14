@@ -17,8 +17,9 @@ public class shamanStateMachine : MonoBehaviour
     [HideInInspector] public bool isRight, waveInstantiated;
     [SerializeField] GameObject iceShards;
     [SerializeField] GameObject exit1, exit2;
-    [SerializeField] GameObject portal;
+    [SerializeField] GameObject portal, enemyCreator;
     [SerializeField] public GameObject bossDefeatMenu;
+    [SerializeField] public GameObject spawnEnemyDetector;
     private float waveCD = 3.0f;
     private float shardsCD = 5.0f;
     private int fullHP = 300;
@@ -104,6 +105,7 @@ public class shamanStateMachine : MonoBehaviour
             portal.SetActive(true);
             exit1.GetComponent<trapdoorRoom3>().isOpen = true;
             exit2.GetComponent<trapdoorRoom3>().isOpen = true;
+            enemyCreator.SetActive(false);
         }
         
         curState.Execute(this);
@@ -217,7 +219,7 @@ public class shamanRainIce : ShamanState{
     {
         if (shaman.shamanAnimatorInfo.normalizedTime >= 0.8f && shaman.shamanAnimatorInfo.IsName("RaiseArm")){
             shaman.animator.Play("Raise Idle");
-        } else if (!shaman.shamanAnimatorInfo.IsName("Raise Idle")) { 
+        } else if (!shaman.shamanAnimatorInfo.IsName("Raise Idle") && !shaman.shamanAnimatorInfo.IsName("RaiseArm")) { 
             shaman.animator.Play("RaiseArm");
             shaman.summonIceShards();
         } 
@@ -232,6 +234,7 @@ public class shamanDeath : ShamanState{
     public override void Execute(shamanStateMachine shaman){
         shaman.animator.Play("Death");
         shaman.bossDefeatMenu.SetActive(true);
+        shaman.spawnEnemyDetector.SetActive(false);
     }
     public override string getStateName(){
         return "shamanDeath";

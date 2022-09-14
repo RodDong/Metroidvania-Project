@@ -5,6 +5,7 @@ using UnityEngine;
 public class Devil : MonoBehaviour
 {
     [SerializeField] GameObject danmaku_prefab;
+    [SerializeField] GameObject fires;
     private State currentState;
     private Animator animator;
     private GameObject target;
@@ -14,10 +15,10 @@ public class Devil : MonoBehaviour
 
     void Start()
     {
-        currentState = new DeathState();
+        currentState = new FollowState();
         animator = GetComponent<Animator>();
-        target = GameObject.FindGameObjectWithTag("Player");
-        moveSpeed = 1.0f;
+        target = GameObject.FindGameObjectWithTag("player");
+        moveSpeed = 2.0f;
         rushSpeed = 15.0f;
     }
 
@@ -46,6 +47,7 @@ public class Devil : MonoBehaviour
     }
 
     public class FollowState : State {
+        private float coolDown = 4.0f;
         public override void Execute(Devil enemy)
         {
             // in-state logic
@@ -70,6 +72,30 @@ public class Devil : MonoBehaviour
             if (enemy.gameObject.GetComponent<EnemyDamage>().isDead) {
                 enemy.ChangeState(new DeathState());
             }
+
+            if (coolDown > 0) {
+                coolDown -= Time.deltaTime;
+            }
+
+            if (coolDown <= 0) {
+                if (enemy.GetComponent<EnemyDamage>().getHP() >= 200) {
+                    int randomNum = Random.Range(0, 100);
+                    if (randomNum < 70) {
+                        enemy.ChangeState(new RangeState());
+                    } else {
+                        enemy.ChangeState(new RushState());
+                    }
+                } else {
+                    int randomNum = Random.Range(0, 100);
+                    if (randomNum < 20) {
+                        enemy.ChangeState(new FireState());
+                    } else if (randomNum < 60) {
+                        enemy.ChangeState(new RushState());
+                    } else {
+                        enemy.ChangeState(new RangeState());
+                    }
+                }
+            }
         }
     }
 
@@ -91,15 +117,15 @@ public class Devil : MonoBehaviour
                 targetPos = enemy.target.transform.position;
 
                 if (xDiff > 0) {
-                    targetPos.x -= 7;
-                    targetPos.y -= 7 * tangent;
+                    targetPos.x -= 5;
+                    targetPos.y -= 5 * tangent;
                 } else {
                     Vector3 temp = enemy.transform.localScale;
                     temp.x *= -1;
                     enemy.transform.localScale = temp;
                     enemy.isFacingRight = !enemy.isFacingRight;
-                    targetPos.x += 7;
-                    targetPos.y += 7 * tangent;
+                    targetPos.x += 5;
+                    targetPos.y += 5 * tangent;
                 }
 
                 hasRecord = true;
@@ -157,13 +183,17 @@ public class Devil : MonoBehaviour
         {
             // in-state logic
             enemy.animator.Play("fire");
+            enemy.fires.SetActive(true);
 
             // transitions
             if (enemy.animator.GetCurrentAnimatorStateInfo(0).IsName("fire")
             && enemy.animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f) {
+                enemy.fires.SetActive(false);
                 enemy.ChangeState(new FollowState());
             }
+
             if (enemy.gameObject.GetComponent<EnemyDamage>().isDead) {
+                enemy.fires.SetActive(false);
                 enemy.ChangeState(new DeathState());
             }
         }

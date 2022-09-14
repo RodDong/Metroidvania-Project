@@ -25,6 +25,7 @@ TagManager:
   - trapDoorDetector
   - destroyDetector
   - boss2
+  - boss3
   layers:
   - Default
   - TransparentFX

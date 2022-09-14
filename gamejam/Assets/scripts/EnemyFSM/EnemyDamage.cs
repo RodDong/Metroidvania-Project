@@ -54,7 +54,7 @@ public class EnemyDamage : EnemyBase
     {
         if (this.getHP() <= 0 && !isDead)
         {
-            if (this.gameObject.tag != "enemy_mouse" && this.gameObject.tag!="Boss1" && this.gameObject.tag != "boss2")
+            if (this.gameObject.tag != "enemy_mouse" && this.gameObject.tag!="Boss1" && this.gameObject.tag != "boss2" && this.gameObject.tag != "boss3")
             {
                 gameObject.GetComponent<Animator>().SetTrigger("death");
             }

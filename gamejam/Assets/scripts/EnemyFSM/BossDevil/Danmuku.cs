@@ -5,10 +5,10 @@ using UnityEngine;
 public class Danmuku : MonoBehaviour
 {
     private GameObject target;
-    private float speed = 10.0f;
+    private float speed = 8.0f;
     void Start()
     {
-        target = GameObject.FindGameObjectWithTag("Player");
+        target = GameObject.FindGameObjectWithTag("player");
         Invoke("destroy", 3.0f);
     }
 
@@ -16,6 +16,12 @@ public class Danmuku : MonoBehaviour
         changeDirection();
         var step = speed * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, target.transform.position, step);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.tag == "player") {
+            Destroy(this.gameObject);
+        }
     }
 
     private void changeDirection() {

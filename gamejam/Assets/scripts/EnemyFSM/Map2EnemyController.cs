@@ -10,6 +10,7 @@ public class Map2EnemyController : MonoBehaviour
     private List<int> fishmanHPList = new List<int>();
     private List<Transform> fishmanPosList = new List<Transform>();
     public bool isClear;
+    [SerializeField] public GameObject boss;
 
     private void Start() {
         for (int i = 0; i < enemiesOfScene.transform.childCount; i++) {
