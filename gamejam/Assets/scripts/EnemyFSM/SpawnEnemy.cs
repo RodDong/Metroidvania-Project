@@ -29,9 +29,6 @@ public class SpawnEnemy : MonoBehaviour
             isClear = true;
             ResetEnemies();
         }
-        // if(Input.GetKeyDown(KeyCode.Q)) {
-        //     clearArea();
-        // }
 
         wallControl();
     }
