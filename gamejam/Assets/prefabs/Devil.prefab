@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 9350850708285359}
   - component: {fileID: 9350850708285356}
   - component: {fileID: 9350850708285347}
-  m_Layer: 0
+  - component: {fileID: 386804770}
+  m_Layer: 16
   m_Name: Devil
-  m_TagString: Untagged
+  m_TagString: boss3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 9350850708285352}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.3, y: 0.8, z: -10.078497}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0}
+  m_LocalScale: {x: 0.13, y: 0.13, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -93,8 +94,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1957984505
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ac61c1adb56b6de4ebf363d273e04734, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -120,6 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   danmaku_prefab: {fileID: 2218884716626152978, guid: efb7cb90ec21e694c8c09c7dc43304fc, type: 3}
+  fires: {fileID: 0}
 --- !u!61 &9350850708285347
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -130,7 +132,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -5.708723, y: 1.3779664}
@@ -146,3 +148,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 11.139164, y: 15.597972}
   m_EdgeRadius: 0
+--- !u!114 &386804770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9350850708285352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7b609f3b3fa2ba4b8f454b5e1c555c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: 400
+  enemyParent: {fileID: 9350850708285352}
+  deathDuration: 1
+  canDestroy: 0
+  originHP: 0
+  isDead: 0

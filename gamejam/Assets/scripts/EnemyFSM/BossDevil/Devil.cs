@@ -114,18 +114,18 @@ public class Devil : MonoBehaviour
                 tangent = yDiff / xDiff;
                 float degrees = Mathf.Atan2(yDiff, xDiff) * Mathf.Rad2Deg;
                 enemy.transform.eulerAngles = new Vector3(0, 0, degrees);
-                targetPos = enemy.target.transform.position;
+                targetPos = enemy.transform.position;
 
                 if (xDiff > 0) {
-                    targetPos.x -= 5;
-                    targetPos.y -= 5 * tangent;
+                    targetPos.x -= 20;
+                    targetPos.y -= 20 * tangent;
                 } else {
                     Vector3 temp = enemy.transform.localScale;
                     temp.x *= -1;
                     enemy.transform.localScale = temp;
                     enemy.isFacingRight = !enemy.isFacingRight;
-                    targetPos.x += 5;
-                    targetPos.y += 5 * tangent;
+                    targetPos.x += 20;
+                    targetPos.y += 20 * tangent;
                 }
 
                 hasRecord = true;
