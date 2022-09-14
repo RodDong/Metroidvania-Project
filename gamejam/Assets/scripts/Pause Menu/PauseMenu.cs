@@ -30,7 +30,6 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
     void Pause() {
-        Debug.Log(1);
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;

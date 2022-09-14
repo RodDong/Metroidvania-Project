@@ -55,7 +55,6 @@ public class ToadJump : IState<Toad>
 
     public void Execute(Toad enemy)
     {
-        Debug.Log(enemy.transform.position.y);
         if (enemy.isFalling && enemy.coll.enabled == false)
         {
             enemy.Flip();
@@ -113,7 +112,6 @@ public class ToadAttack : IState<Toad>
         if (enemy.animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") &&
             enemy.animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
         {
-            Debug.Log("Leaving Attack State");
             enemy.ChangeState();
         }
     }
@@ -137,7 +135,6 @@ public class ToadDeath : IState<Toad>
 
     public void Enter(Toad enemy)
     {
-        Debug.Log("Death");
         enemy.animator.Play("Death");
         enemy.bossMusicController.Stop();
         enemy.backgroundMusicController.backgroundMusic1.Play();
@@ -148,7 +145,6 @@ public class ToadDeath : IState<Toad>
 
     public void Execute(Toad enemy)
     {
-        Debug.Log("Execute State Death");
     }
 
     public void Exit(Toad enemy)
@@ -169,7 +165,6 @@ public class ToadRoar : IState<Toad>
 
     public void Enter(Toad enemy)
     {
-        Debug.Log("Roar");
         enemy.animator.Play("Roar");
         enemy.audioPlayer.Play();
     }

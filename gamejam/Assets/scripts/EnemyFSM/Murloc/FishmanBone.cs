@@ -8,8 +8,8 @@ public class FishmanBone : MonoBehaviour
     private List<Vector3> bonePos = new List<Vector3>();
     private List<Quaternion> boneRot = new List<Quaternion>();
 
-    private void Start() {
-        Transform[] boneList = bone.GetComponentsInChildren<Transform>();
+    private void Awake() {
+        Transform[] boneList = bone.GetComponentsInChildren<Transform>(true);
         for (int i = 0; i < boneList.Length; i++) {
             bonePos.Add(boneList[i].position);
             boneRot.Add(boneList[i].rotation);
@@ -17,11 +17,10 @@ public class FishmanBone : MonoBehaviour
     }
 
     public void ResetBones() {
-        int i = 0;
-        foreach (Transform trans in bone.GetComponentsInChildren<Transform>()) {
-            trans.position = bonePos[i];
-            trans.rotation = boneRot[i];
-            i++;
+        Transform[] boneList = bone.GetComponentsInChildren<Transform>(true);
+        for (int i = 0; i < boneList.Length; i++) {
+            boneList[i].position = bonePos[i];
+            boneList[i].rotation = boneRot[i];
         }
     }
 }

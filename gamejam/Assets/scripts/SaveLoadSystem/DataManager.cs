@@ -14,7 +14,6 @@ public class DataManager : MonoBehaviour
 
     private void Awake() {
         if (instance != null) {
-            Debug.LogError("More than one DataManager in the scene!");
         }
         instance = this;
         this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
@@ -29,21 +28,17 @@ public class DataManager : MonoBehaviour
     public void LoadGame() {
         this.gameData = dataHandler.Load();
         if (this.gameData == null) {
-            Debug.Log("No data was found, set to default.");
             NewGame();
         }
 
         foreach (IDataManager dataManagerObj in dataMangerObjects) {
             dataManagerObj.LoadData(gameData);
         }
-
-        Debug.Log("Load player position = " + gameData.playerPosition);
     }
     public void SaveGame() {
         foreach (IDataManager dataManagerObj in dataMangerObjects) {
             dataManagerObj.SaveData(ref gameData);
         }
-        Debug.Log("Save player position = " + gameData.playerPosition);
         dataHandler.Save(gameData);
     }
 
