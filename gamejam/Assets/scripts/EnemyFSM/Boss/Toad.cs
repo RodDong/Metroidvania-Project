@@ -5,7 +5,7 @@ using TMPro;
 
 public class Toad : MonoBehaviour
 {
-    StateMachine<Toad> stateMachine;
+    [HideInInspector] public StateMachine<Toad> stateMachine;
     public Animator animator;
     public AudioSource audioPlayer;
     [HideInInspector] public EnemyDamage enemyHealth;
@@ -59,6 +59,7 @@ public class Toad : MonoBehaviour
     public GameObject bossDefeatMenu;
     [SerializeField]
     public EnemyGatorSummoner bossSummonGators;
+    [SerializeField] public FishmanBone ToadBone;
 
     public bool isRising, isFalling;
 

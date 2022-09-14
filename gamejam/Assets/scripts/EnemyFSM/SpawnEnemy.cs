@@ -78,6 +78,11 @@ public class SpawnEnemy : MonoBehaviour
             if (enemyList[i].GetComponent<Gator>() != null) {
                 enemyList[i].GetComponent<Gator>().enabled = true;
             }
+            if (enemyList[i].GetComponent<Toad>() != null){
+                enemyList[i].GetComponent<Toad>().stateMachine.SetCurrentState(ToadIdle.Instance);
+                enemyList[i].GetComponent<Toad>().ToadBone.ResetBones();
+            }
+            
             enemyList[i].SetActive(false);
             enemyList[i].GetComponent<EnemyDamage>().setHP(enemyHPList[i]);
             enemyList[i].GetComponent<EnemyDamage>().isDead = false;

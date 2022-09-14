@@ -467,6 +467,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 175034378}
     - target: {fileID: 8149241889296835362, guid: 1c0856c5ae745b240bbdfe32f7305106, type: 3}
+      propertyPath: ToadBone
+      value: 
+      objectReference: {fileID: 1231047554}
+    - target: {fileID: 8149241889296835362, guid: 1c0856c5ae745b240bbdfe32f7305106, type: 3}
       propertyPath: bossDefeatMenu
       value: 
       objectReference: {fileID: 599555360}
@@ -528,11 +532,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8149241889296835391, guid: 1c0856c5ae745b240bbdfe32f7305106, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.019989014
+      value: 128.52
       objectReference: {fileID: 0}
     - target: {fileID: 8149241889296835391, guid: 1c0856c5ae745b240bbdfe32f7305106, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.7399998
+      value: -6.336846
       objectReference: {fileID: 0}
     - target: {fileID: 8149241889296835391, guid: 1c0856c5ae745b240bbdfe32f7305106, type: 3}
       propertyPath: m_LocalPosition.z
@@ -785,7 +789,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.7780548, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -4155,7 +4159,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 521216825}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.8202028, y: -2.8979702, z: -20}
+  m_LocalPosition: {x: -1.8185368, y: -2.8979797, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7104,6 +7108,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &995023398 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8570389181908202495, guid: 1c0856c5ae745b240bbdfe32f7305106, type: 3}
+  m_PrefabInstance: {fileID: 61966048}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &997470875
 GameObject:
   m_ObjectHideFlags: 3
@@ -8837,6 +8846,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1231047553}
+  - component: {fileID: 1231047554}
   m_Layer: 0
   m_Name: boss
   m_TagString: Untagged
@@ -8852,7 +8862,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1231047552}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 130.91, y: -3.65, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8860,6 +8870,19 @@ Transform:
   m_Father: {fileID: 238060753}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1231047554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1231047552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d97a26393c0ebd34b82519ceb3e3463b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bone: {fileID: 995023398}
 --- !u!1001 &1239739422
 PrefabInstance:
   m_ObjectHideFlags: 0
