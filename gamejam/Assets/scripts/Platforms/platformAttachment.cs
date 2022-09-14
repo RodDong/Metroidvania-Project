@@ -5,10 +5,12 @@ using UnityEngine;
 public class platformAttachment : MonoBehaviour
 {
     GameObject player;
+    Transform playerEmptyParent;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("player");
+        playerEmptyParent = player.transform.parent;
     }
 
     // Update is called once per frame
@@ -25,7 +27,7 @@ public class platformAttachment : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D other) {
         if (other.gameObject.tag == "player") {
-            other.transform.parent = null;
+            other.transform.parent = playerEmptyParent;
         }
     }
 }

@@ -187,7 +187,5 @@ public class HarpoonAttack : FishState{
         fish.animator.Play("Throw");
         fish.Invoke("instantiateHarpoon", 1.2f);
         fish.timer += 150f/64f;
-
-        Debug.Log("Harpoon Attack");
     }
 }

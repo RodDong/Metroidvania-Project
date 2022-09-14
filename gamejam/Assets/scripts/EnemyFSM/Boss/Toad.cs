@@ -246,8 +246,6 @@ if (hp < 1/2):
 
     public void Jump()
     {
-        Debug.Log("Is Rising!");
-
         isRising = true;
         isFalling = false;
         coll.enabled = false;
@@ -259,7 +257,6 @@ if (hp < 1/2):
     /// </summary>
     public void TitanFall()
     {
-        Debug.Log("Is Falling!");
         isRising = false;
         isFalling = true;
 
@@ -278,7 +275,6 @@ if (hp < 1/2):
         RaycastHit2D info = Physics2D.Raycast(transform.position, dir, dir.magnitude, 1 << LayerMask.NameToLayer("Ground") | 1 << LayerMask.NameToLayer("PlatformWithoutPlayerCollision") | 1 << LayerMask.NameToLayer("Platform"));
         if ((info.collider != null && dir.magnitude <= 3f) || landingPoint.y > transform.position.y)// || !info.collider.CompareTag("ground"))
         {
-            Debug.Log("Enable Collider! " + transform.position + landingPoint);
             coll.enabled = true;
         }
     }
@@ -297,7 +293,6 @@ if (hp < 1/2):
         }
         else if (other.collider.CompareTag("player") && isFalling)
         {
-            Debug.Log("Fall on player! Add force" + transform.right * repulseForce);
             playerMovement.playerRepulse(transform.right * repulseForce);
             isFalling = false;
             canJump = false;

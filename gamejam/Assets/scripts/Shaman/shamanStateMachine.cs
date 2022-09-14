@@ -28,7 +28,6 @@ public class shamanStateMachine : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "attackArea") {
-            Debug.Log("HIT");
         }
     }
 

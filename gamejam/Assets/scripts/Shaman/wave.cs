@@ -18,7 +18,6 @@ public class wave : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         
         if(LayerMask.LayerToName(other.gameObject.layer) == "InvisibleWall" ){
-            Debug.Log("destroy");
             ObjectPool.Instance.Kill(this.gameObject);
         }
     }

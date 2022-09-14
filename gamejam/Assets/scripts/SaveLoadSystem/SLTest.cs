@@ -11,11 +11,9 @@ public class SLTest : MonoBehaviour, IDataManager
         playerPosition = gameObject.transform.position;
 
         if (Input.GetKeyDown(KeyCode.S) && activateSL) {
-            Debug.Log("Press S to save");
             DataManager.instance.SaveGame();
         }
         if (Input.GetKeyDown(KeyCode.L) && activateSL) {
-            Debug.Log("Press L to load");
             DataManager.instance.LoadGame();
         }
     }
