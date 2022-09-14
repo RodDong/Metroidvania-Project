@@ -18,6 +18,7 @@ public class DeathMenu : MonoBehaviour, IDataManager
         wallLists = wall.GetComponents<EdgeCollider2D>();
         enemySpawnControllers = GameObject.FindObjectsOfType<SpawnEnemy>();
     }
+
     public void Resume() {
         // change blend mode to cut
         cinemachineBrain.m_DefaultBlend.m_Style = CinemachineBlendDefinition.Style.Cut;

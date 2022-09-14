@@ -8,26 +8,20 @@ public class DeathMenuMap2 : MonoBehaviour, IDataManager
 {
     public GameObject deathMenu;
     [SerializeField] GameObject player;
-    [SerializeField] GameObject wall;
     [SerializeField] CinemachineBrain cinemachineBrain;
     [SerializeField] BgmManager bgmManager;
-    private SpawnEnemy[] enemySpawnControllers;
-    private EdgeCollider2D[] wallLists;
+    private Map2EnemyController[] enemySpawnControllers;
+    private BossController bosscontroller;
 
     private void Start() {
-        wallLists = wall.GetComponents<EdgeCollider2D>();
-        enemySpawnControllers = GameObject.FindObjectsOfType<SpawnEnemy>();
+        enemySpawnControllers = GameObject.FindObjectsOfType<Map2EnemyController>();
+        bosscontroller = GameObject.FindObjectOfType<BossController>();
     }
     public void Resume() {
         // change blend mode to cut
         cinemachineBrain.m_DefaultBlend.m_Style = CinemachineBlendDefinition.Style.Cut;
         // reset player health
         player.GetComponent<Health>().resetHealth();
-
-        // reset wall status
-        for (int i = 0; i < wallLists.Length; i++) {
-            wallLists[i].isTrigger = true;
-        }
 
         // resume music
         // bgmManager.backgroundMusic1.time = 0f;
@@ -37,11 +31,13 @@ public class DeathMenuMap2 : MonoBehaviour, IDataManager
         // reset player isdetected to false
         player.GetComponent<PlayerStatus>().isDetected = false;
 
-        foreach (SpawnEnemy enemySpawner in enemySpawnControllers) {
+        foreach (Map2EnemyController enemySpawner in enemySpawnControllers) {
             // To reset isClear after player died, uncomment this:
             // enemySpawner.isClear = false;
             enemySpawner.ResetEnemies();
         }
+
+        bosscontroller.ResetBoss();
 
         deathMenu.SetActive(false);
         DataManager.instance.LoadGame();

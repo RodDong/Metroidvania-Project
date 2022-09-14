@@ -26,6 +26,7 @@ TagManager:
   - destroyDetector
   - boss2
   - boss3
+  - fishman
   layers:
   - Default
   - TransparentFX

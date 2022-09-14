@@ -67,7 +67,7 @@ public class EnemyDamage : EnemyBase
         }
     }
 
-    private void disableEnemy()
+    public void disableEnemy()
     {
         if (!canDestroy) {
             enemyParent.gameObject.SetActive(false);

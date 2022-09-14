@@ -236,8 +236,15 @@ public class shamanDeath : ShamanState{
         shaman.animator.Play("Death");
         shaman.bossDefeatMenu.SetActive(true);
         shaman.spawnEnemyDetector.SetActive(false);
+        ResetFishman();
     }
     public override string getStateName(){
         return "shamanDeath";
+    }
+    public void ResetFishman() {
+        GameObject[] fishmanArray = GameObject.FindGameObjectsWithTag("fishman");
+        foreach (var fishman in fishmanArray) {
+            fishman.GetComponent<EnemyDamage>().disableEnemy();
+        }
     }
 }
