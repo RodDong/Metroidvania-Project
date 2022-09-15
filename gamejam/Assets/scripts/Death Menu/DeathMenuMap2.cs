@@ -9,7 +9,10 @@ public class DeathMenuMap2 : MonoBehaviour, IDataManager
     public GameObject deathMenu;
     [SerializeField] GameObject player;
     [SerializeField] CinemachineBrain cinemachineBrain;
-    [SerializeField] AudioSource bgm;
+    [SerializeField] AudioSource backgroundMusicController;
+    [SerializeField] AudioSource bossMusicController;
+    [SerializeField] AudioSource deathMusic;
+    [SerializeField] GameObject waterWheel;
     private Map2EnemyController[] enemySpawnControllers;
     private BossController bosscontroller;
 
@@ -17,6 +20,24 @@ public class DeathMenuMap2 : MonoBehaviour, IDataManager
         enemySpawnControllers = GameObject.FindObjectsOfType<Map2EnemyController>();
         bosscontroller = GameObject.FindObjectOfType<BossController>();
     }
+
+    private void Update() {
+        if (player.GetComponent<Health>().health <= 0) {
+            if (bossMusicController.isPlaying) {
+                bossMusicController.Stop();
+            }
+            if (backgroundMusicController.isPlaying) {
+                backgroundMusicController.Stop();
+            }
+            waterWheel.GetComponent<waterWheel>().speed = 0;
+            waterWheel.transform.eulerAngles = new Vector3(0, 0, 0);
+            GameObject[] fishmanArray = GameObject.FindGameObjectsWithTag("fishman");
+            foreach (var fishman in fishmanArray) {
+                fishman.GetComponent<EnemyDamage>().disableEnemy();
+            }
+        }
+    }
+
     public void Resume() {
         // change blend mode to cut
         cinemachineBrain.m_DefaultBlend.m_Style = CinemachineBlendDefinition.Style.Cut;
@@ -24,8 +45,11 @@ public class DeathMenuMap2 : MonoBehaviour, IDataManager
         player.GetComponent<Health>().resetHealth();
 
         // resume music
-        bgm.time = 0f;
-        bgm.Play();
+        if (deathMusic.isPlaying) {
+            deathMusic.Stop();
+        }
+        backgroundMusicController.time = 0f;
+        backgroundMusicController.Play();
 
         // reset player isdetected to false
         player.GetComponent<PlayerStatus>().isDetected = false;

@@ -12,6 +12,9 @@ public class DeathMenu : MonoBehaviour, IDataManager
     [SerializeField] CinemachineBrain cinemachineBrain;
     [SerializeField] BgmManager bgmManager;
     [SerializeField] AudioSource bossMusicController;
+    [SerializeField] AudioSource backgroundMusic1;
+    [SerializeField] AudioSource backgroundMusic2;
+    [SerializeField] AudioSource deathMusic;
     private SpawnEnemy[] enemySpawnControllers;
     private EdgeCollider2D[] wallLists;
 
@@ -24,6 +27,12 @@ public class DeathMenu : MonoBehaviour, IDataManager
         if (player.GetComponent<Health>().health <= 0) {
             if (bossMusicController.isPlaying) {
                 bossMusicController.Stop();
+            }
+            if (backgroundMusic1.isPlaying) {
+                backgroundMusic1.Stop();
+            }
+            if (backgroundMusic2.isPlaying) {
+                backgroundMusic2.Stop();
             }
         }
     }
@@ -40,6 +49,9 @@ public class DeathMenu : MonoBehaviour, IDataManager
         }
 
         // resume music
+        if (deathMusic.isPlaying) {
+            deathMusic.Stop();
+        }
         bgmManager.backgroundMusic1.time = 0f;
         bgmManager.backgroundMusic2.time = 0f;
         bgmManager.timer = 0f;

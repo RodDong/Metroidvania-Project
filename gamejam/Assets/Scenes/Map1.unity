@@ -14588,6 +14588,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 521216832}
     - target: {fileID: 1008947461355126519, guid: 05e10dd659ef6bf449ffa6c35fd83a56, type: 3}
+      propertyPath: deathMusic
+      value: 
+      objectReference: {fileID: 1819696343}
+    - target: {fileID: 1008947461355126519, guid: 05e10dd659ef6bf449ffa6c35fd83a56, type: 3}
       propertyPath: bossBgmManger
       value: 
       objectReference: {fileID: 1320778959}
@@ -14595,6 +14599,14 @@ PrefabInstance:
       propertyPath: backgroundMusic
       value: 
       objectReference: {fileID: 521216831}
+    - target: {fileID: 1008947461355126519, guid: 05e10dd659ef6bf449ffa6c35fd83a56, type: 3}
+      propertyPath: backgroundMusic1
+      value: 
+      objectReference: {fileID: 521216831}
+    - target: {fileID: 1008947461355126519, guid: 05e10dd659ef6bf449ffa6c35fd83a56, type: 3}
+      propertyPath: backgroundMusic2
+      value: 
+      objectReference: {fileID: 521216833}
     - target: {fileID: 1008947461355126519, guid: 05e10dd659ef6bf449ffa6c35fd83a56, type: 3}
       propertyPath: cinemachineBrain
       value: 

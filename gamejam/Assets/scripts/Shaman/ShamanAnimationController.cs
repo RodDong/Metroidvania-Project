@@ -16,6 +16,7 @@ public class ShamanAnimationController : MonoBehaviour
     private Animator CMAnimator;
     private GameObject player;
     private bool isPlaying;
+    private bool hasEnd;
     private void Start() {
         shamanAnimator = shaman.GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("player");
@@ -38,7 +39,9 @@ public class ShamanAnimationController : MonoBehaviour
             }
 
             if (shamanVFX.GetCurrentAnimatorStateInfo(0).IsName("start")
-            && shamanVFX.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f) {
+            && shamanVFX.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f
+            && !hasEnd) {
+                hasEnd = true;
                 shamanAnimator.Play("PutDown");
                 Invoke("endAnimation", 0.67f);
                 
