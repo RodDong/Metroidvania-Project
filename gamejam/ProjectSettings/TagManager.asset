@@ -27,6 +27,7 @@ TagManager:
   - boss2
   - boss3
   - fishman
+  - danmaku
   layers:
   - Default
   - TransparentFX

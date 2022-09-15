@@ -6,6 +6,7 @@ public class Devil : MonoBehaviour
 {
     [SerializeField] GameObject danmaku_prefab;
     [SerializeField] GameObject fires;
+    [SerializeField] GameObject bossDefeatMenu;
     private State currentState;
     private Animator animator;
     private GameObject target;
@@ -25,6 +26,7 @@ public class Devil : MonoBehaviour
     void Update()
     {
         currentState.Execute(this);
+
     }
 
     public void ChangeState(State state)
@@ -211,6 +213,7 @@ public class Devil : MonoBehaviour
                 Destroy(enemy.gameObject);
                 // play boss defeat animation
                 // 播片
+                enemy.bossDefeatMenu.SetActive(true);
             }
         }
     }

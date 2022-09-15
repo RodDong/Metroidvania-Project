@@ -5,7 +5,6 @@ using Cinemachine;
 
 public class lever : MonoBehaviour, IDataManager
 {
-    [SerializeField] bool activateSL = false;
     [SerializeField] GameObject saveMenu;
     [SerializeField] CinemachineBrain cinemachineBrain;
     [HideInInspector] public Vector3 playerPosition;

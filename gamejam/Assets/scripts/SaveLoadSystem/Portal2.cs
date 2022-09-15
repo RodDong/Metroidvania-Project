@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Portal : MonoBehaviour, IDataManager
+public class Portal2 : MonoBehaviour, IDataManager
 {
     private bool isOnPortal;
     private GameObject player;
@@ -22,16 +22,16 @@ public class Portal : MonoBehaviour, IDataManager
 
     private void Update() {
         if (isOnPortal && Input.GetKeyDown(KeyCode.X)) {
-            player.GetComponent<movement>().position = new Vector3(-36.7f, -19.2f, 0);
-            player.GetComponent<PotionManager>().potionMaxCount = 3;
+            player.GetComponent<movement>().position = new Vector3(-16.58f, -7.01f, 0);
+            player.GetComponent<PotionManager>().potionMaxCount = 4;
             DataManager.instance.SaveGame();
-            SceneManager.LoadScene("Map2");
+            SceneManager.LoadScene("Map3");
         }
     }
 
     public void LoadData(GameData data) {}
 
     public void SaveData(ref GameData data) {
-        data.potionMaxCount = 3;
+        data.potionMaxCount = 4;
     }
 }

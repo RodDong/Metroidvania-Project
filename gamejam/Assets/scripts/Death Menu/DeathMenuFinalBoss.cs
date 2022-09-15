@@ -12,6 +12,7 @@ public class DeathMenuFinalBoss : MonoBehaviour, IDataManager
     [SerializeField] AudioSource backgroundMusic1;
     [SerializeField] AudioSource deathMusic;
     [SerializeField] GameObject boss;
+    [SerializeField] GameObject fires;
     private SpawnEnemy[] enemySpawnControllers;
     Vector3 originPos;
 
@@ -35,6 +36,15 @@ public class DeathMenuFinalBoss : MonoBehaviour, IDataManager
         cinemachineBrain.m_DefaultBlend.m_Style = CinemachineBlendDefinition.Style.Cut;
         // reset player health
         player.GetComponent<Health>().resetHealth();
+
+        // reset projectiles
+        GameObject[] danmakus = GameObject.FindGameObjectsWithTag("danmaku");
+        foreach (var danmaku in danmakus) {
+            Destroy(danmaku);
+        }
+
+        // reset fire
+        fires.SetActive(false);
 
         // resume music
         if (deathMusic.isPlaying) {

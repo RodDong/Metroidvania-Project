@@ -50,6 +50,8 @@ public class Toad : MonoBehaviour
     [SerializeField]
     public GameObject portal;
     [SerializeField]
+    public GameObject portalText;
+    [SerializeField]
     public GameObject bossDefeatMenu;
     [SerializeField]
     public EnemyGatorSummoner bossSummonGators;

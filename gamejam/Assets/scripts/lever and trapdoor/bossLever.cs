@@ -9,7 +9,6 @@ public class bossLever : MonoBehaviour
     [SerializeField] GameObject boss2;
     private bool inRange;
     private float timer;
-    bool Spawn = false;
 
     void Start()
     {
@@ -25,7 +24,6 @@ public class bossLever : MonoBehaviour
             timer = 0.2f;
             gameObject.GetComponent<Animator>().Play("bossLever");
             Invoke("activateRoom", 0.75f);
-            Spawn = true;
         }
         if(timer <= 0){
             gameObject.GetComponent<Animator>().Play("Idle");

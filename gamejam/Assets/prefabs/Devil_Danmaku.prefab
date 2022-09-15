@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2218884716626152981}
   m_Layer: 11
   m_Name: Devil_Danmaku
-  m_TagString: Untagged
+  m_TagString: danmaku
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

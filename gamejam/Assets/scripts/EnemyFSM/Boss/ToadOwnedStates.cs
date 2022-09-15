@@ -139,6 +139,7 @@ public class ToadDeath : IState<Toad>
         enemy.bossMusicController.Stop();
         enemy.bossSummonGators.DisableAll();
         enemy.portal.SetActive(true);
+        enemy.portalText.SetActive(true);
         enemy.bossDefeatMenu.SetActive(true);
     }
 
