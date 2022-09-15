@@ -1039,7 +1039,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8803956200439226974, guid: 15f399c3619ac444c8913e45d133d9a2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.134404
+      value: 3.72
       objectReference: {fileID: 0}
     - target: {fileID: 8803956200439226974, guid: 15f399c3619ac444c8913e45d133d9a2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5787,7 +5787,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.1617217, y: 0.0150051415}
+  m_Offset: {x: -0.1617217, y: -0.21007007}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -5798,7 +5798,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.3299685, y: 1.192863}
+  m_Size: {x: 4.3299685, y: 1.6430134}
   m_EdgeRadius: 0
 --- !u!212 &788470811
 SpriteRenderer:
@@ -5859,7 +5859,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 788470806}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86923d0b9d4ee3640966e01846a9fde7, type: 3}
   m_Name: 
@@ -11183,7 +11183,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.141006, y: 0.018770486}
+  m_Offset: {x: -0.141006, y: -0.23212379}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -11194,7 +11194,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.3278, y: 1.2606363}
+  m_Size: {x: 4.3278, y: 1.7624248}
   m_EdgeRadius: 0
 --- !u!212 &1384672485
 SpriteRenderer:
@@ -11255,7 +11255,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1384672480}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86923d0b9d4ee3640966e01846a9fde7, type: 3}
   m_Name: 
@@ -14235,7 +14235,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.22406197, y: -0.09009215}
+  m_Offset: {x: -0.22406197, y: -0.2662615}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -14246,7 +14246,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.311264, y: 1.1531458}
+  m_Size: {x: 4.311264, y: 1.5054846}
   m_EdgeRadius: 0
 --- !u!212 &1706929753
 SpriteRenderer:
@@ -14307,7 +14307,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1706929748}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86923d0b9d4ee3640966e01846a9fde7, type: 3}
   m_Name: 
@@ -16886,7 +16886,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8070483742355153776, guid: cd85e7eaeab85e740bbb25378fe0f43a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.3324041
+      value: 2.98
       objectReference: {fileID: 0}
     - target: {fileID: 8070483742355153776, guid: cd85e7eaeab85e740bbb25378fe0f43a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -17565,7 +17565,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.12575388, y: -0.009300947}
+  m_Offset: {x: -0.12575388, y: -0.17656323}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -17576,7 +17576,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.2892685, y: 1.1919885}
+  m_Size: {x: 4.2892685, y: 1.5265131}
   m_EdgeRadius: 0
 --- !u!212 &2100661244
 SpriteRenderer:
@@ -17637,7 +17637,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2100661239}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86923d0b9d4ee3640966e01846a9fde7, type: 3}
   m_Name: 

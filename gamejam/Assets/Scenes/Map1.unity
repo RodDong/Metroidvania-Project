@@ -428,19 +428,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7299633150037922267, guid: 1c0856c5ae745b240bbdfe32f7305106, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.8139417
+      value: 0.8139431
       objectReference: {fileID: 0}
     - target: {fileID: 7299633150037922267, guid: 1c0856c5ae745b240bbdfe32f7305106, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.58094656
+      value: 0.5809447
       objectReference: {fileID: 0}
     - target: {fileID: 7904970693669317028, guid: 1c0856c5ae745b240bbdfe32f7305106, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.717063
+      value: 0.7170624
       objectReference: {fileID: 0}
     - target: {fileID: 7904970693669317028, guid: 1c0856c5ae745b240bbdfe32f7305106, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.6970084
+      value: 0.697009
       objectReference: {fileID: 0}
     - target: {fileID: 8149241888301061212, guid: 1c0856c5ae745b240bbdfe32f7305106, type: 3}
       propertyPath: m_LocalRotation.w
@@ -456,11 +456,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8149241889018556212, guid: 1c0856c5ae745b240bbdfe32f7305106, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.91805685
+      value: 0.9180575
       objectReference: {fileID: 0}
     - target: {fileID: 8149241889018556212, guid: 1c0856c5ae745b240bbdfe32f7305106, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.39644873
+      value: -0.39644736
       objectReference: {fileID: 0}
     - target: {fileID: 8149241889296835362, guid: 1c0856c5ae745b240bbdfe32f7305106, type: 3}
       propertyPath: portal
@@ -536,7 +536,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8149241889296835391, guid: 1c0856c5ae745b240bbdfe32f7305106, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.29
+      value: -6.35
       objectReference: {fileID: 0}
     - target: {fileID: 8149241889296835391, guid: 1c0856c5ae745b240bbdfe32f7305106, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1041,8 +1041,8 @@ GameObject:
   - component: {fileID: 144705165}
   - component: {fileID: 144705164}
   - component: {fileID: 144705163}
-  - component: {fileID: 144705170}
   - component: {fileID: 144705171}
+  - component: {fileID: 144705170}
   m_Layer: 15
   m_Name: Invisible Wall
   m_TagString: Untagged
@@ -9497,8 +9497,8 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -12.193771, y: 21.184252}
-      - {x: -12.162857, y: -8.127634}
+    - - {x: -10.617004, y: 21.184252}
+      - {x: -10.270737, y: -8.127634}
       - {x: 33.292328, y: -8.072403}
       - {x: 33.38051, y: -8.1634865}
       - {x: 33.275528, y: 20.95583}
@@ -9579,7 +9579,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 0.5
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
