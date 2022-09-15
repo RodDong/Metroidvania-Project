@@ -21,6 +21,13 @@ public class GatorBossAnimatorController : MonoBehaviour
             backgroundMusicController.backgroundMusic2.Stop();
             ProcessAnimation();
             hasWatched = true;
+        }else if (other.tag == "player" && !bossMusicController.isPlaying){
+            backgroundMusicController.backgroundMusic1.time = 0f;
+            backgroundMusicController.backgroundMusic1.Stop();
+            backgroundMusicController.backgroundMusic2.time = 0f;
+            backgroundMusicController.backgroundMusic2.Stop();
+            bossMusicController.time = 0f;
+            bossMusicController.Play();
         }
     }
 
