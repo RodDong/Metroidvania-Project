@@ -1617,7 +1617,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d9bc9a01941d6e64ea5c0c1a4dc548dc, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -2577,7 +2577,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &637178985
 Transform:
   m_ObjectHideFlags: 0
@@ -3392,6 +3392,7 @@ MonoBehaviour:
   bossCM: {fileID: 178548549}
   devil: {fileID: 1020882259}
   devilAnimator: {fileID: 1891400202}
+  backgroundMusic: {fileID: 367540020}
 --- !u!61 &898027317
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9300,7 +9301,7 @@ GameObject:
   - component: {fileID: 1891400201}
   - component: {fileID: 1891400202}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: BossContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9460,6 +9461,7 @@ MonoBehaviour:
   cinemachineBrain: {fileID: 367540015}
   backgroundMusic1: {fileID: 367540020}
   deathMusic: {fileID: 1047197236}
+  boss: {fileID: 1020882259}
 --- !u!1001 &1923253936
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9545,7 +9547,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9350850708285359, guid: 84a4223df843f104eb0d593dc36806b2, type: 3}
       propertyPath: m_WasSpriteAssigned
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84a4223df843f104eb0d593dc36806b2, type: 3}

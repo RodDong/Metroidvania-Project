@@ -11,16 +11,20 @@ public class DeathMenuFinalBoss : MonoBehaviour, IDataManager
     [SerializeField] CinemachineBrain cinemachineBrain;
     [SerializeField] AudioSource backgroundMusic1;
     [SerializeField] AudioSource deathMusic;
+    [SerializeField] GameObject boss;
     private SpawnEnemy[] enemySpawnControllers;
+    Vector3 originPos;
 
     private void Start() {
         player = GameObject.FindGameObjectWithTag("player");
         enemySpawnControllers = GameObject.FindObjectsOfType<SpawnEnemy>();
+        originPos = boss.transform.position;
     }
 
     private void Update() {
         if (player.GetComponent<Health>().health <= 0) {
             if (backgroundMusic1.isPlaying) {
+                backgroundMusic1.time = 0.0f;
                 backgroundMusic1.Stop();
             }
         }
@@ -36,15 +40,9 @@ public class DeathMenuFinalBoss : MonoBehaviour, IDataManager
         if (deathMusic.isPlaying) {
             deathMusic.Stop();
         }
-
-        // reset player isdetected to false
-        player.GetComponent<PlayerStatus>().isDetected = false;
-
-        foreach (SpawnEnemy enemySpawner in enemySpawnControllers) {
-            // To reset isClear after player died, uncomment this:
-            // enemySpawner.isClear = false;
-            enemySpawner.ResetEnemies();
-        }
+        boss.GetComponent<EnemyDamage>().setHP(boss.GetComponent<EnemyDamage>().originHP);
+        boss.transform.position = originPos;
+        boss.SetActive(false);
 
         deathMenu.SetActive(false);
         DataManager.instance.LoadGame();

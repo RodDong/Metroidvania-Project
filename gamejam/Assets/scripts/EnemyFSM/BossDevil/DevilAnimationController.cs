@@ -9,11 +9,16 @@ public class DevilAnimationController : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera bossCM;
     [SerializeField] GameObject devil;
     [SerializeField] Animator devilAnimator;
+    [SerializeField] AudioSource backgroundMusic;
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (!hasPlayed && other.tag == "player") {
+            if(!backgroundMusic.isPlaying)backgroundMusic.Play();
             ProcessAnimation();
             hasPlayed = true;
+        }else if(other.tag == "player"){
+            if(!backgroundMusic.isPlaying)backgroundMusic.Play();
+            devil.SetActive(true);
         }
     }
 

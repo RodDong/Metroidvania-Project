@@ -11,7 +11,7 @@ public class EnemyDamage : EnemyBase
     GameObject player;
     [SerializeField]
     public bool canDestroy;
-    [HideInInspector] public float originHP;
+    [HideInInspector] public int originHP;
     Color c;
     Renderer spriteRenderer;
     public bool isDead;
