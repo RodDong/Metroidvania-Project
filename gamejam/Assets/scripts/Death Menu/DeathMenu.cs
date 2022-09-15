@@ -11,12 +11,21 @@ public class DeathMenu : MonoBehaviour, IDataManager
     [SerializeField] GameObject wall;
     [SerializeField] CinemachineBrain cinemachineBrain;
     [SerializeField] BgmManager bgmManager;
+    [SerializeField] AudioSource bossMusicController;
     private SpawnEnemy[] enemySpawnControllers;
     private EdgeCollider2D[] wallLists;
 
     private void Start() {
         wallLists = wall.GetComponents<EdgeCollider2D>();
         enemySpawnControllers = GameObject.FindObjectsOfType<SpawnEnemy>();
+    }
+
+    private void Update() {
+        if (player.GetComponent<Health>().health <= 0) {
+            if (bossMusicController.isPlaying) {
+                bossMusicController.Stop();
+            }
+        }
     }
 
     public void Resume() {
@@ -33,6 +42,7 @@ public class DeathMenu : MonoBehaviour, IDataManager
         // resume music
         bgmManager.backgroundMusic1.time = 0f;
         bgmManager.backgroundMusic2.time = 0f;
+        bgmManager.timer = 0f;
         bgmManager.backgroundMusic1.Play();
 
         // reset player isdetected to false

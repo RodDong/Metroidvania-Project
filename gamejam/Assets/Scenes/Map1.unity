@@ -789,7 +789,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7780548, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -4163,7 +4163,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 521216825}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.8185368, y: -2.8979797, z: -20}
+  m_LocalPosition: {x: -1.8202028, y: -2.8979702, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4218,7 +4218,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -4314,6 +4314,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgroundMusic1: {fileID: 521216831}
   backgroundMusic2: {fileID: 521216833}
+  timer: 0
 --- !u!82 &521216833
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4328,7 +4329,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -14587,6 +14588,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 521216832}
     - target: {fileID: 1008947461355126519, guid: 05e10dd659ef6bf449ffa6c35fd83a56, type: 3}
+      propertyPath: bossBgmManger
+      value: 
+      objectReference: {fileID: 1320778959}
+    - target: {fileID: 1008947461355126519, guid: 05e10dd659ef6bf449ffa6c35fd83a56, type: 3}
       propertyPath: backgroundMusic
       value: 
       objectReference: {fileID: 521216831}
@@ -14594,6 +14599,10 @@ PrefabInstance:
       propertyPath: cinemachineBrain
       value: 
       objectReference: {fileID: 521216830}
+    - target: {fileID: 1008947461355126519, guid: 05e10dd659ef6bf449ffa6c35fd83a56, type: 3}
+      propertyPath: bossMusicController
+      value: 
+      objectReference: {fileID: 1320778959}
     - target: {fileID: 1008947461355126520, guid: 05e10dd659ef6bf449ffa6c35fd83a56, type: 3}
       propertyPath: m_Name
       value: Canvas
