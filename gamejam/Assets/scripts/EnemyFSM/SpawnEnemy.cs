@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpawnEnemy : MonoBehaviour
 {
     GameObject player;
-    [SerializeField] GameObject enemiesOfScene;
+    [SerializeField] public GameObject enemiesOfScene;
     [SerializeField] GameObject wall;
     [HideInInspector] public bool isDetected, isClear, isInRoom;
     private EdgeCollider2D[] wallLists;
@@ -27,33 +27,15 @@ public class SpawnEnemy : MonoBehaviour
         // No enabled child object found, reset enemy health and position
         if (enemiesOfScene.GetComponentsInChildren<EnemyDamage>().GetLength(0) == 0 && enemyList[0].GetComponent<EnemyDamage>().getHP() <= 0) {
             isClear = true;
-            for (int i = 0; i < enemyList.Count; i++) {
-                if (enemyList[i].GetComponent<melee_gator>() != null) {
-                    enemyList[i].GetComponent<melee_gator>().enabled = true;
-                }
-                if (enemyList[i].GetComponent<Gator>() != null) {
-                    enemyList[i].GetComponent<Gator>().enabled = true;
-                }
-                enemyList[i].GetComponent<EnemyDamage>().setHP(enemyHPList[i]);
-                // reset enemy position
-                enemyList[i].GetComponent<Transform>().transform.position = enemyPosList[i].position;
-                enemyList[i].GetComponent<Transform>().transform.rotation = enemyPosList[i].rotation;
-                // reset enemy detection
-                if (enemyList[i].GetComponent<MeleeEnemyDetection>() != null) {
-                    enemyList[i].GetComponent<MeleeEnemyDetection>().hasTarget = false;
-                }
-            }
-        }
-        if(Input.GetKeyDown(KeyCode.Q)) {
-            clearArea();
+            ResetEnemies();
         }
 
         wallControl();
     }
     private void OnTriggerEnter2D(Collider2D other) {
-        // TODO: reload enemy status
         if (other.tag == "player" && !isClear) {
             isInRoom = true;
+            ResetEnemies();
             for (int i = 0; i < enemyList.Count; i++) {
                 if (!enemyList[i].activeSelf) {
                     enemyList[i].SetActive(true);
@@ -82,6 +64,33 @@ public class SpawnEnemy : MonoBehaviour
         isInRoom = false;
         for (int i = 0; i < wallLists.Length; i++) {
             wallLists[i].isTrigger = true;
+        }
+    }
+
+    public void ResetEnemies() {
+        for (int i = 0; i < enemyList.Count; i++) {
+            if (enemyList[i].GetComponent<melee_gator>() != null) {
+                enemyList[i].GetComponent<melee_gator>().enabled = true;
+            }
+            if (enemyList[i].GetComponent<Gator>() != null) {
+                enemyList[i].GetComponent<Gator>().enabled = true;
+            }
+            if (enemyList[i].GetComponent<Toad>() != null){
+                enemyList[i].GetComponent<Toad>().bossSummonGators.DisableAll();
+                enemyList[i].GetComponent<Toad>().stateMachine.SetCurrentState(ToadIdle.Instance);
+                enemyList[i].GetComponent<Toad>().ToadBone.ResetBones();
+            }
+            
+            enemyList[i].SetActive(false);
+            enemyList[i].GetComponent<EnemyDamage>().setHP(enemyHPList[i]);
+            enemyList[i].GetComponent<EnemyDamage>().isDead = false;
+            // reset enemy position
+            enemyList[i].GetComponent<Transform>().transform.position = enemyPosList[i].position;
+            enemyList[i].GetComponent<Transform>().transform.rotation = enemyPosList[i].rotation;
+            // reset enemy detection
+            if (enemyList[i].GetComponent<MeleeEnemyDetection>() != null) {
+                enemyList[i].GetComponent<MeleeEnemyDetection>().hasTarget = false;
+            }
         }
     }
 }

@@ -24,7 +24,7 @@ public class DustTrailVFX : MonoBehaviour
             playing = false;
             PS.Stop();
             
-        } else if (PS.isStopped && !player.GetComponent<movement>().isOnRoad) {
+        } else if (!playing && player.GetComponent<movement>().canJump) {
             playing = true;
             PS.Play();
         }

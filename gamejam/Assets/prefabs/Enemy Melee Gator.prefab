@@ -251,7 +251,7 @@ BoxCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -703,9 +703,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundDetection: {fileID: 1052367049959184839}
   playerDustTrail: {fileID: 0}
-  distance: 20
-  startAngle: -30
-  finishAngle: 30
+  distance: 10
+  startAngle: -5
+  finishAngle: 5
   segments: 10
   direction: -1
 --- !u!1 &1052367051624918309

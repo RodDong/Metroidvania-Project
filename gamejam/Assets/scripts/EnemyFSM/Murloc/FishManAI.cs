@@ -5,21 +5,24 @@ using UnityEngine;
 public class FishManAI : MonoBehaviour
 {
     private FishState currentState;
-    [SerializeField]public Animator animator;
-    private float meleeAttackRange = 5f, meleeEngageRange = 20f;
-    private float rangedAttackRange = 100f;
+    [SerializeField] public Animator animator;
+    private float meleeAttackRange = 0.1f, meleeEngageRange = 1f;
+    private float rangedAttackRange = 50f;
     private float wanderSpeed = 5f, flipCD = 1f;
     private float groundDetectDistance = 2f;
     private bool isProtected = false;
+    [SerializeField] public float roamDistance;
+    private Vector2 initialPos;
 
     [SerializeField] GameObject player;
 
     //ground detection vars
-    [SerializeField] GameObject spearCollider;
     [SerializeField] GameObject VisionDetectArea;
     [SerializeField] GameObject SoundDetectArea;
     [SerializeField] Transform frontGroundDetection;
     [SerializeField] Transform backGroundDetection;
+    [SerializeField] Collider2D daggerCollider;
+    [SerializeField] public ObjectPool harpoonPool;
 
     bool isRight;
     public float timer = 0.0f;
@@ -31,6 +34,7 @@ public class FishManAI : MonoBehaviour
         currentState = new Idle();
         // animator = gameObject.GetComponent<Animator>();
         fishmanDetection = SoundDetectArea.GetComponent<fishmanDetection>();
+        initialPos = gameObject.transform.position;
     }
 
     void Update()
@@ -41,7 +45,7 @@ public class FishManAI : MonoBehaviour
         }
 
         isRight = fishmanDetection.position.x - gameObject.transform.position.x > 0;
-
+        // roamDistance can be used to limit how far the fish can walk from its starting pos.
         if (fishmanDetection.hasTarget) {
             if (Mathf.Abs(fishmanDetection.position.x - gameObject.transform.position.x) < meleeAttackRange) {
                 currentState = new SwordAttack();
@@ -75,7 +79,6 @@ public class FishManAI : MonoBehaviour
     public void Wander()
     {
         if (gameObject.GetComponent<EnemyDamage>().getHP() > 0) {
-            
             int groundMask = 1 << LayerMask.NameToLayer("Ground");
             int platformMask = 1 << LayerMask.NameToLayer("Platform");
             int noCollisionPlatformMask = 1 << LayerMask.NameToLayer("PlatformWithoutPlayerCollision");
@@ -86,14 +89,10 @@ public class FishManAI : MonoBehaviour
             if (isFrontGround == null)
             {
                 Flip();
+            } 
+            if ( Mathf.Abs(gameObject.transform.position.x - initialPos.x) > roamDistance) {
+                Flip();
             }
-            // if (gameObject.transform.position.x < wallList.wallPosLists[leftWall]) {
-            //     Flip();
-            // }
-            // if (gameObject.transform.position.x > wallList.wallPosLists[rightWall]) {
-            //     Flip();
-            // }
-            
         }
     }
 
@@ -110,6 +109,7 @@ public class FishManAI : MonoBehaviour
             {
                 gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
             }
+            gameObject.transform.position -= (transform.right);
         }        
     }
 
@@ -135,7 +135,7 @@ public class FishManAI : MonoBehaviour
         }
         Quaternion arrow_quaternion = new Quaternion();
         arrow_quaternion.eulerAngles = new Vector3(0, 0, arrow_rotation);
-        harpoonObj = ObjectPool.Instance.Spawn(gameObject.transform.position, arrow_quaternion);
+        harpoonObj = harpoonPool.Spawn(gameObject.transform.position, arrow_quaternion);
         harpoonObj.GetComponent<Rigidbody2D>().AddForce(new Vector3(xDistance, yDistance, 0) * 600 / (Mathf.Sqrt(xDistance * xDistance + yDistance * yDistance)));
     }
 
@@ -148,7 +148,6 @@ public class Idle : FishState{
     public override void Execute(FishManAI fish)
     {
         fish.animator.Play("Idle");
-        
     }
 }
 
@@ -168,7 +167,6 @@ public class Walk : FishState{
     {
         fish.animator.Play("Walk");
         fish.Wander();
-
     }
 }
 
@@ -189,7 +187,5 @@ public class HarpoonAttack : FishState{
         fish.animator.Play("Throw");
         fish.Invoke("instantiateHarpoon", 1.2f);
         fish.timer += 150f/64f;
-
-        Debug.Log("Harpoon Attack");
     }
 }

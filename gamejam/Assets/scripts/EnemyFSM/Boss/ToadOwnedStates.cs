@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 
@@ -17,7 +18,6 @@ public class ToadIdle : IState<Toad>
     public void Enter(Toad enemy)
     {
         enemy.animator.Play("Idle");
-        enemy.debugText.SetText("Idle");
     }
 
     public void Execute(Toad enemy)
@@ -49,7 +49,6 @@ public class ToadJump : IState<Toad>
     public void Enter(Toad enemy)
     {
         enemy.animator.Play("Jump");
-        enemy.debugText.SetText("Jump");
         enemy.Flip();
         enemy.Jump();
     }
@@ -70,6 +69,7 @@ public class ToadJump : IState<Toad>
         // 已经落地
         if (!enemy.isRising && !enemy.isFalling)
         {
+            enemy.coll.enabled = true;
             enemy.ChangeState();
         }
     }
@@ -94,17 +94,23 @@ public class ToadAttack : IState<Toad>
 
     #endregion
 
-    public void Enter(Toad enemy)
+    public async void Enter(Toad enemy) 
     {
-        enemy.animator.Play("Attack");
-        enemy.debugText.SetText("Attack");
+        if (enemy.Flip()) {
+            await Task.Delay(1000);
+            enemy.animator.Play("Attack");
+        } else {
+            enemy.animator.Play("Attack");
+        }
+        
         enemy.tongueCol.enabled = true;
     }
+    
 
     public void Execute(Toad enemy)
     {
-        enemy.Flip();
-        if (enemy.animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+        if (enemy.animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") &&
+            enemy.animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
         {
             enemy.ChangeState();
         }
@@ -112,7 +118,7 @@ public class ToadAttack : IState<Toad>
 
     public void Exit(Toad enemy)
     {
-        enemy.tongueCol.enabled = false;
+        enemy.disableTongue();
     }
 
 }
@@ -129,9 +135,12 @@ public class ToadDeath : IState<Toad>
 
     public void Enter(Toad enemy)
     {
-        Debug.Log("Death");
         enemy.animator.Play("Death");
-        enemy.debugText.SetText("Death");
+        enemy.bossMusicController.Stop();
+        enemy.bossSummonGators.DisableAll();
+        enemy.portal.SetActive(true);
+        enemy.portalText.SetActive(true);
+        enemy.bossDefeatMenu.SetActive(true);
     }
 
     public void Execute(Toad enemy)
@@ -140,7 +149,10 @@ public class ToadDeath : IState<Toad>
 
     public void Exit(Toad enemy)
     {
-
+        enemy.backgroundMusicController.backgroundMusic1.time = 0f;
+        enemy.backgroundMusicController.backgroundMusic2.time = 0f;
+        enemy.backgroundMusicController.timer = 0f;
+        enemy.backgroundMusicController.backgroundMusic1.Play();
     }
 }
 
@@ -156,9 +168,8 @@ public class ToadRoar : IState<Toad>
 
     public void Enter(Toad enemy)
     {
-        Debug.Log("Roar");
         enemy.animator.Play("Roar");
-        enemy.debugText.SetText("Roar");
+        enemy.audioPlayer.Play();
     }
 
     public void Execute(Toad enemy)
@@ -172,6 +183,6 @@ public class ToadRoar : IState<Toad>
 
     public void Exit(Toad enemy)
     {
-
+        enemy.audioPlayer.Stop();
     }
 }

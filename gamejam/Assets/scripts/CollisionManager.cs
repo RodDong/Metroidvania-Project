@@ -13,13 +13,14 @@ public class CollisionManager : MonoBehaviour
         int noCollisionPlatformLayer = LayerMask.NameToLayer("PlatformWithoutPlayerCollision");
         int attackLayer = LayerMask.NameToLayer("AttackArea");
         int detectLayer = LayerMask.NameToLayer("DetectArea");
-        int mouseLyaer = LayerMask.NameToLayer("Mouse");
+        int mouseLayer = LayerMask.NameToLayer("Mouse");
+        int invisibleWallLayer = LayerMask.NameToLayer("InvisibleWall");
         Physics2D.IgnoreLayerCollision(enemyLayer, playerLayer, false);
         Physics2D.IgnoreLayerCollision(projectileLayer, playerLayer, false);
 
         Physics2D.IgnoreLayerCollision(enemyLayer, enemyLayer);
         Physics2D.IgnoreLayerCollision(enemyLayer, projectileLayer);
-        Physics2D.IgnoreLayerCollision(enemyLayer, mouseLyaer);
+        Physics2D.IgnoreLayerCollision(enemyLayer, mouseLayer);
         Physics2D.IgnoreLayerCollision(projectileLayer, platformLayer);
         Physics2D.IgnoreLayerCollision(projectileLayer, noCollisionPlatformLayer);
         Physics2D.IgnoreLayerCollision(attackLayer, detectLayer);
@@ -27,5 +28,9 @@ public class CollisionManager : MonoBehaviour
         Physics2D.IgnoreLayerCollision(playerLayer, noCollisionPlatformLayer);
         Physics2D.IgnoreLayerCollision(playerLayer, enemyLayer);
         Physics2D.IgnoreLayerCollision(playerLayer, attackLayer);
+        Physics2D.IgnoreLayerCollision(noCollisionPlatformLayer, noCollisionPlatformLayer);
+        Physics2D.IgnoreLayerCollision(noCollisionPlatformLayer, platformLayer);
+        Physics2D.IgnoreLayerCollision(platformLayer, platformLayer);
+        //Physics2D.IgnoreLayerCollision(invisibleWallLayer, enemyLayer);
     }
 }

@@ -17,6 +17,17 @@ TagManager:
   - BossTongue
   - swordItem
   - tutorial
+  - totemBlock
+  - totemHeal
+  - spawnDetector
+  - piranha
+  - dropdownDetector
+  - trapDoorDetector
+  - destroyDetector
+  - boss2
+  - boss3
+  - fishman
+  - danmaku
   layers:
   - Default
   - TransparentFX
@@ -35,8 +46,8 @@ TagManager:
   - PlatformWithoutPlayerCollision
   - InvisibleWall
   - Mouse
-  - 
-  - 
+  - Block
+  - Heal
   - 
   - 
   - 
@@ -59,6 +70,15 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: waterWheel3
+    uniqueID: 2042850349
+    locked: 0
+  - name: waterWheel1
+    uniqueID: 467524303
+    locked: 0
+  - name: waterWheel2
+    uniqueID: 1682569583
     locked: 0
   - name: FrontEnvironment
     uniqueID: 2691197681

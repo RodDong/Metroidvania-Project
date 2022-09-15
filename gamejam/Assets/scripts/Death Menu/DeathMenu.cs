@@ -10,11 +10,33 @@ public class DeathMenu : MonoBehaviour, IDataManager
     [SerializeField] GameObject player;
     [SerializeField] GameObject wall;
     [SerializeField] CinemachineBrain cinemachineBrain;
+    [SerializeField] BgmManager bgmManager;
+    [SerializeField] AudioSource bossMusicController;
+    [SerializeField] AudioSource backgroundMusic1;
+    [SerializeField] AudioSource backgroundMusic2;
+    [SerializeField] AudioSource deathMusic;
+    private SpawnEnemy[] enemySpawnControllers;
     private EdgeCollider2D[] wallLists;
 
     private void Start() {
         wallLists = wall.GetComponents<EdgeCollider2D>();
+        enemySpawnControllers = GameObject.FindObjectsOfType<SpawnEnemy>();
     }
+
+    private void Update() {
+        if (player.GetComponent<Health>().health <= 0) {
+            if (bossMusicController.isPlaying) {
+                bossMusicController.Stop();
+            }
+            if (backgroundMusic1.isPlaying) {
+                backgroundMusic1.Stop();
+            }
+            if (backgroundMusic2.isPlaying) {
+                backgroundMusic2.Stop();
+            }
+        }
+    }
+
     public void Resume() {
         // change blend mode to cut
         cinemachineBrain.m_DefaultBlend.m_Style = CinemachineBlendDefinition.Style.Cut;
@@ -26,8 +48,23 @@ public class DeathMenu : MonoBehaviour, IDataManager
             wallLists[i].isTrigger = true;
         }
 
+        // resume music
+        if (deathMusic.isPlaying) {
+            deathMusic.Stop();
+        }
+        bgmManager.backgroundMusic1.time = 0f;
+        bgmManager.backgroundMusic2.time = 0f;
+        bgmManager.timer = 0f;
+        bgmManager.backgroundMusic1.Play();
+
         // reset player isdetected to false
         player.GetComponent<PlayerStatus>().isDetected = false;
+
+        foreach (SpawnEnemy enemySpawner in enemySpawnControllers) {
+            // To reset isClear after player died, uncomment this:
+            // enemySpawner.isClear = false;
+            enemySpawner.ResetEnemies();
+        }
 
         deathMenu.SetActive(false);
         DataManager.instance.LoadGame();

@@ -5,10 +5,9 @@ using TMPro;
 
 public class Toad : MonoBehaviour
 {
-    StateMachine<Toad> stateMachine;
+    [HideInInspector] public StateMachine<Toad> stateMachine;
     public Animator animator;
-
-    public TMP_Text debugText;
+    public AudioSource audioPlayer;
     [HideInInspector] public EnemyDamage enemyHealth;
 
     int maxHP = 250;
@@ -37,12 +36,6 @@ public class Toad : MonoBehaviour
     float repulseForce = 5f;
 
     [SerializeField]
-    GameObject ranger;
-
-    [SerializeField]
-    GameObject melee;
-
-    [SerializeField]
     public Collider2D coll;
     [SerializeField]
     public Collider2D tongueCol;
@@ -50,11 +43,19 @@ public class Toad : MonoBehaviour
     [SerializeField]
     Rigidbody2D rb;
 
-    // [SerializeField]
-    // List<Transform> rangerSummonPositionList = new List<Transform>();
-
-    // [SerializeField]
-    // List<Transform> meleeSummonPositionList = new List<Transform>();
+    [SerializeField]
+    public AudioSource bossMusicController;
+    [SerializeField]
+    public BgmManager backgroundMusicController;
+    [SerializeField]
+    public GameObject portal;
+    [SerializeField]
+    public GameObject portalText;
+    [SerializeField]
+    public GameObject bossDefeatMenu;
+    [SerializeField]
+    public EnemyGatorSummoner bossSummonGators;
+    [SerializeField] public FishmanBone ToadBone;
 
     public bool isRising, isFalling;
 
@@ -158,26 +159,16 @@ if (hp < 1/2):
         }*/
 
         float playerDistance = PlayerDistance();
-
         // Stage 01
         if (enemyHealth.getHP() >= maxHP / 2)
         {
-            if((playerDistance <= attackRange || playerDistance <= detectRange) && playerMovement.makeSound == true){
+            if ((playerDistance <= attackRange || playerDistance <= detectRange) && playerMovement.makeSound == true)
+            {
                 player.GetComponent<PlayerStatus>().isDetected = true;
             }
             if (playerDistance <= attackRange && playerMovement.makeSound == true)
             {
-                if ((gameObject.transform.eulerAngles.y > 90 && player.transform.position.x >= transform.position.x)
-                || (gameObject.transform.eulerAngles.y < 90 && player.transform.position.x <= transform.position.x))
-                {
-                    invokeAttack();
-                }
-                else
-                {
-
-                    Invoke("invokeAttack", 1f);
-                }
-
+                stateMachine.ChangeState(ToadAttack.Instance);
             }
             else if (playerDistance <= detectRange && canJump && playerMovement.makeSound == true)
             {
@@ -193,16 +184,7 @@ if (hp < 1/2):
         {
             if (playerDistance <= attackRange && playerMovement.makeSound == true)
             {
-                if ((gameObject.transform.eulerAngles.y > 90 && player.transform.position.x >= transform.position.x)
-                || (gameObject.transform.eulerAngles.y < 90 && player.transform.position.x <= transform.position.x))
-                {
-                    invokeAttack();
-                }
-                else
-                {
-
-                    Invoke("invokeAttack", 1f);
-                }
+                stateMachine.ChangeState(ToadAttack.Instance);
             }
             else if (playerDistance <= detectRange && canJump && playerMovement.makeSound == true)
             {
@@ -261,9 +243,8 @@ if (hp < 1/2):
 
     public void Jump()
     {
-        Debug.Log("Is Rising!");
-
         isRising = true;
+        isFalling = false;
         coll.enabled = false;
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
@@ -273,7 +254,6 @@ if (hp < 1/2):
     /// </summary>
     public void TitanFall()
     {
-        Debug.Log("Is Falling!");
         isRising = false;
         isFalling = true;
 
@@ -290,9 +270,8 @@ if (hp < 1/2):
     {
         Vector2 dir = landingPoint - transform.position;
         RaycastHit2D info = Physics2D.Raycast(transform.position, dir, dir.magnitude, 1 << LayerMask.NameToLayer("Ground") | 1 << LayerMask.NameToLayer("PlatformWithoutPlayerCollision") | 1 << LayerMask.NameToLayer("Platform"));
-        if (info.collider == null && dir.magnitude <= 3f)// || !info.collider.CompareTag("ground"))
+        if ((info.collider != null && dir.magnitude <= 3f) || landingPoint.y > transform.position.y)// || !info.collider.CompareTag("ground"))
         {
-            Debug.Log("Enable Collider! " + transform.position + landingPoint);
             coll.enabled = true;
         }
     }
@@ -311,7 +290,6 @@ if (hp < 1/2):
         }
         else if (other.collider.CompareTag("player") && isFalling)
         {
-            Debug.Log("Fall on player! Add force" + transform.right * repulseForce);
             playerMovement.playerRepulse(transform.right * repulseForce);
             isFalling = false;
             canJump = false;
@@ -319,16 +297,26 @@ if (hp < 1/2):
         }
     }
 
-    public void Flip()
+    // flip the toad to face the player
+    // returns true if flip happened and false if no flipping is necessary
+    public bool Flip()
     {
+        Vector3 targetEulerAngle;
         if (player.transform.position.x <= transform.position.x)
         {
-            transform.eulerAngles = new Vector3(0, 0, 0);
+            targetEulerAngle = new Vector3(0, 0, 0);
         }
         else
         {
-            transform.eulerAngles = new Vector3(0, 180, 0);
+            targetEulerAngle = new Vector3(0, 180, 0);
         }
+        if (transform.eulerAngles == targetEulerAngle) {
+            return false;
+        } else {
+            transform.eulerAngles = targetEulerAngle;
+            return true;
+        }
+        
     }
 
     void SetCanJump2True()
@@ -336,14 +324,9 @@ if (hp < 1/2):
         canJump = true;
     }
 
-    void disableTongue()
+    public void disableTongue()
     {
         tongueCol.enabled = false;
-    }
-
-    void invokeAttack()
-    {
-        stateMachine.ChangeState(ToadAttack.Instance);
     }
 
 }

@@ -12,6 +12,13 @@ public class CheckPointSL : MonoBehaviour, IDataManager
     [HideInInspector] public Vector3 playerPosition;
     private bool onFire;
     private bool attackSaved;
+    private Health playerHealth;
+    private PotionManager playerPotion;
+
+    private void Start() {
+        playerHealth = player.GetComponent<Health>();
+        playerPotion = player.GetComponent<PotionManager>();
+    }
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.transform.tag == "player") {
@@ -30,6 +37,21 @@ public class CheckPointSL : MonoBehaviour, IDataManager
         playerPosition = gameObject.transform.position;
         if (onFire && Input.GetKeyDown(KeyCode.X) && activateSL) {
             saveMenu.GetComponent<Animator>().SetTrigger("start");
+
+            playerHealth.health = playerHealth.maxhealth;
+            for (int i = 0; i < playerHealth.hearts.Count; i++) {
+                Animator heartAnimator = playerHealth.hearts[i].GetComponent<Animator>();
+                heartAnimator.Play("soul_full");
+            }
+
+            playerPotion.potionCount = playerPotion.potionMaxCount;
+
+            DataManager.instance.SaveGame();
+        }
+
+        if (!attackSaved && player.GetComponent<movement>().canAttack) {
+            player.GetComponent<movement>().position = new Vector3(-10.32f, -5.26f, 0);
+            attackSaved = true;
             DataManager.instance.SaveGame();
         }
     }
@@ -45,9 +67,11 @@ public class CheckPointSL : MonoBehaviour, IDataManager
             GameObject.FindGameObjectWithTag("tutorial").SetActive(!data.canAttack);
         }
         player.GetComponent<PotionManager>().potionMaxCount = data.potionMaxCount;
+        player.GetComponent<PotionManager>().potionCount = data.potionMaxCount;
         if (data.activeCamera) {
             data.activeCamera.enabled = true;
         }
+        Invoke("ResetCam", 1f);
     }
 
     public void SaveData(ref GameData data) {
@@ -60,5 +84,9 @@ public class CheckPointSL : MonoBehaviour, IDataManager
         }
         data.potionMaxCount = player.GetComponent<PotionManager>().potionMaxCount;
         data.activeCamera = cinemachineBrain.ActiveVirtualCamera.VirtualCameraGameObject.GetComponent<CinemachineVirtualCamera>();
+    }
+
+    private void ResetCam() {
+        cinemachineBrain.m_DefaultBlend.m_Style = CinemachineBlendDefinition.Style.EaseInOut;
     }
 }

@@ -8,14 +8,17 @@ public class EnemyDamage : EnemyBase
     GameObject enemyParent;
     [SerializeField]
     float deathDuration;
-    [SerializeField]
     GameObject player;
-    [HideInInspector] public float originHP;
+    [SerializeField]
+    public bool canDestroy;
+    [HideInInspector] public int originHP;
     Color c;
     Renderer spriteRenderer;
+    public bool isDead;
 
     private void Start()
     {
+        player = GameObject.FindGameObjectWithTag("player");
         spriteRenderer = this.gameObject.GetComponent<Renderer>();
         if (spriteRenderer != null)
         {
@@ -49,20 +52,28 @@ public class EnemyDamage : EnemyBase
 
     private void ProcessDeath()
     {
-        if (this.getHP() <= 0)
+        if (this.getHP() <= 0 && !isDead)
         {
-            if (this.gameObject.tag != "enemy_mouse" && this.gameObject.tag!="Boss1")
+            if (this.gameObject.tag != "enemy_mouse" && this.gameObject.tag!="Boss1" && this.gameObject.tag != "boss2" && this.gameObject.tag != "boss3")
             {
                 gameObject.GetComponent<Animator>().SetTrigger("death");
             }
+            if (GetComponent<FishManAI>() != null) {
+                GetComponent<FishManAI>().enabled = false;
+            }
             Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), player.GetComponent<Collider2D>());
             Invoke("disableEnemy", deathDuration);
+            isDead = true;
         }
     }
 
-    private void disableEnemy()
+    public void disableEnemy()
     {
-        enemyParent.gameObject.SetActive(false);
+        if (!canDestroy) {
+            enemyParent.gameObject.SetActive(false);
+        } else {
+            GameObject.Destroy(enemyParent);
+        }
     }
 
     private void resetColor()

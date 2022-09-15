@@ -30,12 +30,11 @@ public class movement : MonoBehaviour
     [HideInInspector] public Collider2D attackCollider;
     public Animator attackAnimator;
     float jump_init_v = 20f;
-    [SerializeField]
     Rigidbody2D rb;
     // FSM components
     private State currentState;
-    private PlayerAudio playerAudio;
-    private AudioClip attackSound;
+    [HideInInspector] public PlayerAudio playerAudio;
+    [HideInInspector] public AudioClip attackSound;
 
     //Game initialization
     void Start()
@@ -85,11 +84,18 @@ public class movement : MonoBehaviour
         attacking = false;
         position = rb.transform.position;
         rb.freezeRotation = true;
-        processAttack();
         processInput();
         if (rb.velocity.y < -3)
         {
             isFalling = true;
+        } else {
+            isFalling = false;
+        }
+        if (isFalling) {
+            canJump = false;
+        }
+        if (rb.velocity.y < -10) {
+            rb.velocity = new Vector2(rb.velocity.x, -10);
         }
     }
 
@@ -129,12 +135,12 @@ public class movement : MonoBehaviour
             if (isFalling)
             {
                 makeSound = true;
-                isFalling = false;
                 audioSource.PlayOneShot(playerAudio.landing);
                 Invoke("disableSound", 0.1f);
             }
         }
     }
+
 
     //process movements via inputs 
     void processInput()
@@ -168,21 +174,6 @@ public class movement : MonoBehaviour
             }
 
             isRight = true;
-        }
-    }
-
-    //Process left mouse click for player attack
-    void processAttack()
-    {
-        if (coolDown > 0)
-        {
-            playerDamage = 10;
-            attackSound = playerAudio.swing1;
-        }
-        if (attackAnimator.GetCurrentAnimatorStateInfo(0).IsName("attackAnimation1"))
-        {
-            playerDamage = 15;
-            attackSound = playerAudio.swing2;
         }
     }
 
@@ -230,6 +221,8 @@ public class IdleState : State
         if (Input.GetKeyDown(KeyCode.J) && player.coolDown <= 0 && player.canAttack)
         {
             // move to attack 1
+            player.playerDamage = 10;
+            player.attackSound = player.playerAudio.swing1;
             player.attackAnimator.Play("attackAnimation");
             player.duration = 0.25f;
             player.transition = 0.5f;
@@ -246,6 +239,8 @@ public class AttackState1 : State
     {
         if (Input.GetKeyDown(KeyCode.J) && player.transition > 0 && player.duration <= 0)
         {
+            player.playerDamage = 15;
+            player.attackSound = player.playerAudio.swing2;
             player.duration = 0.25f;
             player.enableAttackCollider();
             player.cdSlider.value = 0f;
