@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 9350850708285357}
   - component: {fileID: 9350850708285358}
   - component: {fileID: 9350850708285359}
-  - component: {fileID: 9350850708285356}
   - component: {fileID: 9350850708285347}
+  - component: {fileID: 9350850708285356}
   - component: {fileID: 386804770}
   m_Layer: 16
   m_Name: Devil
@@ -108,20 +108,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &9350850708285356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9350850708285352}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4bd2a5cca92a5948817bfb1c4f8fb73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  danmaku_prefab: {fileID: 2218884716626152978, guid: efb7cb90ec21e694c8c09c7dc43304fc, type: 3}
-  fires: {fileID: 0}
 --- !u!61 &9350850708285347
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -148,6 +134,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 11.139164, y: 15.597972}
   m_EdgeRadius: 0
+--- !u!114 &9350850708285356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9350850708285352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4bd2a5cca92a5948817bfb1c4f8fb73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  danmaku_prefab: {fileID: 2218884716626152978, guid: efb7cb90ec21e694c8c09c7dc43304fc, type: 3}
+  fires: {fileID: 0}
 --- !u!114 &386804770
 MonoBehaviour:
   m_ObjectHideFlags: 0

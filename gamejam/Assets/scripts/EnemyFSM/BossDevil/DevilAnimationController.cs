@@ -1,18 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class DevilAnimationController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    private bool hasPlayed;
+    [SerializeField] CinemachineVirtualCamera bossCM;
+    [SerializeField] GameObject devil;
+    [SerializeField] Animator devilAnimator;
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (!hasPlayed && other.tag == "player") {
+            ProcessAnimation();
+            hasPlayed = true;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void ProcessAnimation() {
+        bossCM.Follow = null;
+        bossCM.GetComponent<Animator>().Play("CamMove");
+        devilAnimator.Play("intro");
+        Invoke("EndAnimation", 4.5f);
+    }
+
+    private void EndAnimation() {
+        devil.transform.parent = null;
+        devil.transform.eulerAngles = new Vector3(0, 0, 0);
+        Destroy(devilAnimator.gameObject);
+        devil.GetComponent<SpriteRenderer>().enabled = true;
+        devil.GetComponent<BoxCollider2D>().enabled = true;
+        devil.GetComponent<Devil>().enabled = true;
+        devil.GetComponent<EnemyDamage>().enabled = true;
     }
 }
