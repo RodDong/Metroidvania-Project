@@ -104,6 +104,8 @@ public class Devil : MonoBehaviour
         private bool hasRecord = false;
         private Vector3 targetPos;
         private float tangent;
+        private float cosine;
+        private float sine;
         public override void Execute(Devil enemy)
         {
             // in-state logic
@@ -112,20 +114,20 @@ public class Devil : MonoBehaviour
                 float xDiff = enemy.transform.position.x - enemy.target.transform.position.x;
                 float yDiff = enemy.transform.position.y - enemy.target.transform.position.y;
                 tangent = yDiff / xDiff;
+                float radian = Mathf.Atan2(yDiff, xDiff);
                 float degrees = Mathf.Atan2(yDiff, xDiff) * Mathf.Rad2Deg;
+                cosine = Mathf.Cos(radian);
+                sine = Mathf.Sin(radian);
                 enemy.transform.eulerAngles = new Vector3(0, 0, degrees);
                 targetPos = enemy.transform.position;
+                targetPos -= 10 * new Vector3(xDiff / Mathf.Sqrt(xDiff * xDiff + yDiff * yDiff), yDiff / Mathf.Sqrt(xDiff * xDiff + yDiff * yDiff), 0);
 
                 if (xDiff > 0) {
-                    targetPos.x -= 10;
-                    targetPos.y -= 10 * tangent;
                 } else {
                     Vector3 temp = enemy.transform.localScale;
                     temp.x *= -1;
                     enemy.transform.localScale = temp;
                     enemy.isFacingRight = !enemy.isFacingRight;
-                    targetPos.x += 10;
-                    targetPos.y += 10 * tangent;
                 }
 
                 hasRecord = true;
