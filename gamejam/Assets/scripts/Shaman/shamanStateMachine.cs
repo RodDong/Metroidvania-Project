@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 public class shamanStateMachine : MonoBehaviour
 {
-    private ShamanState curState;
+    [HideInInspector]public ShamanState curState;
     [HideInInspector] public Animator animator;
     [SerializeField] public shamanDetection shamanDetect;
     [HideInInspector] public AnimatorStateInfo shamanAnimatorInfo;
@@ -19,6 +19,10 @@ public class shamanStateMachine : MonoBehaviour
     [SerializeField] GameObject exit1, exit2;
     [SerializeField] GameObject portal, enemyCreator;
     [SerializeField] public GameObject bossDefeatMenu;
+    [SerializeField] public GameObject spawnEnemyDetector;
+    [SerializeField] public FishmanBone shamanBone;
+    [SerializeField] public AudioSource shamanMusic, backGroundMusic, ambient;
+    [HideInInspector] public bool hasDead;
     private float waveCD = 3.0f;
     private float shardsCD = 5.0f;
     private int fullHP = 300;
@@ -231,10 +235,23 @@ public class shamanRainIce : ShamanState{
 
 public class shamanDeath : ShamanState{
     public override void Execute(shamanStateMachine shaman){
-        shaman.animator.Play("Death");
-        shaman.bossDefeatMenu.SetActive(true);
+        if (!shaman.hasDead) {
+            shaman.hasDead = true;
+            shaman.animator.Play("Death");
+            shaman.bossDefeatMenu.SetActive(true);
+            shaman.spawnEnemyDetector.SetActive(false);
+            ResetFishman();
+            shaman.shamanMusic.Stop();
+            shaman.ambient.PlayDelayed(1.0f);
+        }
     }
     public override string getStateName(){
         return "shamanDeath";
+    }
+    public void ResetFishman() {
+        GameObject[] fishmanArray = GameObject.FindGameObjectsWithTag("fishman");
+        foreach (var fishman in fishmanArray) {
+            fishman.GetComponent<EnemyDamage>().disableEnemy();
+        }
     }
 }

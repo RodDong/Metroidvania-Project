@@ -29,9 +29,6 @@ public class SpawnEnemy : MonoBehaviour
             isClear = true;
             ResetEnemies();
         }
-        // if(Input.GetKeyDown(KeyCode.Q)) {
-        //     clearArea();
-        // }
 
         wallControl();
     }
@@ -78,6 +75,21 @@ public class SpawnEnemy : MonoBehaviour
             if (enemyList[i].GetComponent<Gator>() != null) {
                 enemyList[i].GetComponent<Gator>().enabled = true;
             }
+            if (enemyList[i].GetComponent<Toad>() != null){
+                foreach(GameObject meleeGator in enemyList[i].GetComponent<Toad>().bossSummonGators.meleeGators){
+                    meleeGator.GetComponent<EnemyDamage>().setHP(30);
+                    meleeGator.GetComponent<EnemyDamage>().isDead = false;
+                }
+                foreach(GameObject ranger in enemyList[i].GetComponent<Toad>().bossSummonGators.rangerGators){
+                    ranger.GetComponent<EnemyDamage>().setHP(25);
+                    ranger.GetComponent<EnemyDamage>().isDead = false;
+                }
+                enemyList[i].GetComponent<Toad>().bossSummonGators.DisableAll();
+                enemyList[i].GetComponent<Toad>().stateMachine.SetCurrentState(ToadIdle.Instance);
+                enemyList[i].GetComponent<Toad>().ToadBone.ResetBones();
+                enemyList[i].transform.localPosition = new Vector3(128.52f, -6.29f, 1);
+            }
+            
             enemyList[i].SetActive(false);
             enemyList[i].GetComponent<EnemyDamage>().setHP(enemyHPList[i]);
             enemyList[i].GetComponent<EnemyDamage>().isDead = false;

@@ -10,7 +10,7 @@ public class EnemyGatorSummoner : MonoBehaviour
     bool hasSummonMelees;
     bool hasSummonRangers;
     private void Update() {
-        if (enemyHealth.getHP() <= 3 * enemyHealth.originHP / 4 && !hasSummonRangers) {
+        if (enemyHealth.getHP() <= 3 * enemyHealth.originHP / 4 && !hasSummonRangers && enemyHealth.getHP()>0) {
             for (int i = 0; i < meleeGators.Count; i++) {
                 // TODO: add summon animation && disable enemy AI during animation
                 rangerGators[i].SetActive(true);
@@ -18,7 +18,7 @@ public class EnemyGatorSummoner : MonoBehaviour
             hasSummonRangers = true;
         }
 
-        if (enemyHealth.getHP() <= enemyHealth.originHP / 2 && !hasSummonMelees) {
+        if (enemyHealth.getHP() <= enemyHealth.originHP / 2 && !hasSummonMelees && enemyHealth.getHP()>0) {
             for (int i = 0; i < meleeGators.Count; i++) {
                 meleeGators[i].SetActive(true);
             }
@@ -33,5 +33,7 @@ public class EnemyGatorSummoner : MonoBehaviour
         for (int i = 0; i < rangerGators.Count; i++) {
             rangerGators[i].SetActive(false);
         }
+        hasSummonMelees = false;
+        hasSummonRangers = false;
     }
 }

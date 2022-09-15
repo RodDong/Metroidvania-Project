@@ -14,7 +14,7 @@ public class Map2EnemyController : MonoBehaviour
     private void Start() {
         for (int i = 0; i < enemiesOfScene.transform.childCount; i++) {
             GameObject enemy = enemiesOfScene.transform.GetChild(i).gameObject;
-            if (enemy.GetComponent<FishManAI>()) {
+            if (enemy.GetComponent<EnemyDamage>()) {
                 fishmanList.Add(enemy);
                 fishmanHPList.Add(enemy.GetComponent<EnemyDamage>().getHP());
                 fishmanPosList.Add(enemy.transform);
@@ -29,6 +29,11 @@ public class Map2EnemyController : MonoBehaviour
             isClear = true;
             ResetEnemies();
             for (int i = 0; i < fishmanList.Count; i++) {
+                if (fishmanList[i].GetComponent<shamanStateMachine>() != null){
+                    fishmanList[i].GetComponent<shamanStateMachine>().curState = new shamanIdle();
+                    fishmanList[i].GetComponent<shamanStateMachine>().shamanBone.ResetBones();
+                    fishmanList[i].SetActive(false);
+                }
                 fishmanList[i].GetComponent<FishmanBone>().ResetBones();
             }
         }

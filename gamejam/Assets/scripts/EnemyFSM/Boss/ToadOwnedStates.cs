@@ -137,9 +137,9 @@ public class ToadDeath : IState<Toad>
     {
         enemy.animator.Play("Death");
         enemy.bossMusicController.Stop();
-        enemy.backgroundMusicController.backgroundMusic1.Play();
         enemy.bossSummonGators.DisableAll();
         enemy.portal.SetActive(true);
+        enemy.portalText.SetActive(true);
         enemy.bossDefeatMenu.SetActive(true);
     }
 
@@ -149,7 +149,10 @@ public class ToadDeath : IState<Toad>
 
     public void Exit(Toad enemy)
     {
-
+        enemy.backgroundMusicController.backgroundMusic1.time = 0f;
+        enemy.backgroundMusicController.backgroundMusic2.time = 0f;
+        enemy.backgroundMusicController.timer = 0f;
+        enemy.backgroundMusicController.backgroundMusic1.Play();
     }
 }
 

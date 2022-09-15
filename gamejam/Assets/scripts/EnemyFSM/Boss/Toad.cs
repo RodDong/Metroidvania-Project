@@ -5,7 +5,7 @@ using TMPro;
 
 public class Toad : MonoBehaviour
 {
-    StateMachine<Toad> stateMachine;
+    [HideInInspector] public StateMachine<Toad> stateMachine;
     public Animator animator;
     public AudioSource audioPlayer;
     [HideInInspector] public EnemyDamage enemyHealth;
@@ -36,12 +36,6 @@ public class Toad : MonoBehaviour
     float repulseForce = 5f;
 
     [SerializeField]
-    GameObject ranger;
-
-    [SerializeField]
-    GameObject melee;
-
-    [SerializeField]
     public Collider2D coll;
     [SerializeField]
     public Collider2D tongueCol;
@@ -56,9 +50,12 @@ public class Toad : MonoBehaviour
     [SerializeField]
     public GameObject portal;
     [SerializeField]
+    public GameObject portalText;
+    [SerializeField]
     public GameObject bossDefeatMenu;
     [SerializeField]
     public EnemyGatorSummoner bossSummonGators;
+    [SerializeField] public FishmanBone ToadBone;
 
     public bool isRising, isFalling;
 
@@ -94,6 +91,10 @@ public class Toad : MonoBehaviour
 
     void Update()
     {
+        if(transform.position.y<-10.35f){
+            transform.position = new Vector3(transform.position.x, -6.35f, transform.position.z);
+        }
+
         stateMachine.StateMachineUpdate();
         if (enemyHealth.getHP() <= 3 * maxHP / 4 && !hasSummonRangers)
         {

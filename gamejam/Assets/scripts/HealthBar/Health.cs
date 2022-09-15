@@ -49,8 +49,6 @@ public class Health : MonoBehaviour
         deathMenu.SetActive(true);
         Time.timeScale = 0f;
         audioSource.PlayOneShot(deathSound);
-        bgmManager.backgroundMusic1.Stop();
-        bgmManager.backgroundMusic2.Stop();
     }
 
     public void TakeDamage() {

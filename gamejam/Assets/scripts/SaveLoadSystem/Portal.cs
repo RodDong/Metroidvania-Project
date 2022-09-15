@@ -23,6 +23,7 @@ public class Portal : MonoBehaviour, IDataManager
     private void Update() {
         if (isOnPortal && Input.GetKeyDown(KeyCode.X)) {
             player.GetComponent<movement>().position = new Vector3(-36.7f, -19.2f, 0);
+            player.GetComponent<PotionManager>().potionMaxCount = 3;
             DataManager.instance.SaveGame();
             SceneManager.LoadScene("Map2");
         }
@@ -31,5 +32,6 @@ public class Portal : MonoBehaviour, IDataManager
     public void LoadData(GameData data) {}
 
     public void SaveData(ref GameData data) {
+        data.potionMaxCount = 3;
     }
 }

@@ -13,6 +13,9 @@ public class GatorBossAnimatorController : MonoBehaviour
     [SerializeField] AudioSource bossMusicController;
     private bool hasWatched;
     private bool start;
+    private void Start() {
+        player = GameObject.FindGameObjectWithTag("player");
+    }
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "player" && !enemyManager.isClear && !hasWatched) {
             backgroundMusicController.backgroundMusic1.time = 0f;
@@ -21,6 +24,14 @@ public class GatorBossAnimatorController : MonoBehaviour
             backgroundMusicController.backgroundMusic2.Stop();
             ProcessAnimation();
             hasWatched = true;
+        }else if (other.tag == "player" && !bossMusicController.isPlaying){
+            backgroundMusicController.backgroundMusic1.time = 0f;
+            backgroundMusicController.backgroundMusic1.Stop();
+            backgroundMusicController.backgroundMusic2.time = 0f;
+            backgroundMusicController.backgroundMusic2.Stop();
+            player.GetComponent<PlayerStatus>().isDetected = true;
+            bossMusicController.time = 0f;
+            bossMusicController.Play();
         }
     }
 
@@ -54,6 +65,7 @@ public class GatorBossAnimatorController : MonoBehaviour
         player.GetComponent<movement>().enabled = true;
         bossMusicController.time = 0f;
         bossMusicController.Play();
+        player.GetComponent<PlayerStatus>().isDetected = true;
         enabled = false;
     }
 }
