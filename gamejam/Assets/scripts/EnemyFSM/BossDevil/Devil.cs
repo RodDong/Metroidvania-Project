@@ -137,7 +137,9 @@ public class Devil : MonoBehaviour
             }
 
             var step = enemy.rushSpeed * Time.deltaTime;
-            enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, targetPos, step);
+            if (targetPos.x != float.NaN && targetPos.y != float.NaN) {
+                enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, targetPos, step);
+            }
 
             // transitions
             if (Vector3.Distance(enemy.transform.position, targetPos) < 0.5f) {

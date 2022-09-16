@@ -5,7 +5,7 @@ using UnityEngine;
 public class Danmuku : MonoBehaviour
 {
     private GameObject target;
-    private float speed = 8.0f;
+    private float speed = 6.0f;
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("player");
