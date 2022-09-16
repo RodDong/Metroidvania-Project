@@ -618,7 +618,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.7766632, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1645,7 +1645,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 367540014}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.465781, y: -4.7308097, z: -20}
+  m_LocalPosition: {x: -8.472474, y: -4.7308297, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10002,6 +10002,10 @@ PrefabInstance:
     - target: {fileID: 9350850708285352, guid: 84a4223df843f104eb0d593dc36806b2, type: 3}
       propertyPath: m_Name
       value: Devil
+      objectReference: {fileID: 0}
+    - target: {fileID: 9350850708285352, guid: 84a4223df843f104eb0d593dc36806b2, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9350850708285352, guid: 84a4223df843f104eb0d593dc36806b2, type: 3}
       propertyPath: m_IsActive

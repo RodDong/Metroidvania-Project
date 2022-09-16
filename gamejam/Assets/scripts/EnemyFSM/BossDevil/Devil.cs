@@ -111,6 +111,7 @@ public class Devil : MonoBehaviour
         public override void Execute(Devil enemy)
         {
             // in-state logic
+            enemy.gameObject.layer = LayerMask.NameToLayer("Mouse");
             enemy.animator.Play("rush");
             if (!hasRecord) {
                 float xDiff = enemy.transform.position.x - enemy.target.transform.position.x;
@@ -141,10 +142,12 @@ public class Devil : MonoBehaviour
             // transitions
             if (Vector3.Distance(enemy.transform.position, targetPos) < 0.5f) {
                 enemy.transform.eulerAngles = Vector3.zero;
+                enemy.gameObject.layer = LayerMask.NameToLayer("Default");
                 enemy.ChangeState(new FollowState());
             }
 
             if (enemy.gameObject.GetComponent<EnemyDamage>().isDead) {
+                enemy.gameObject.layer = LayerMask.NameToLayer("Default");
                 enemy.ChangeState(new DeathState());
             }
         }
