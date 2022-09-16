@@ -46,7 +46,7 @@ public class Toad : MonoBehaviour
     [SerializeField]
     public AudioSource bossMusicController;
     [SerializeField]
-    public BgmManager backgroundMusicController;
+        public BgmManager backgroundMusicController;
     [SerializeField]
     public GameObject portal;
     [SerializeField]

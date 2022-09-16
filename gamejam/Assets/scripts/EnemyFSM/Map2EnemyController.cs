@@ -29,11 +29,7 @@ public class Map2EnemyController : MonoBehaviour
             isClear = true;
             ResetEnemies();
             for (int i = 0; i < fishmanList.Count; i++) {
-                if (fishmanList[i].GetComponent<shamanStateMachine>() != null){
-                    fishmanList[i].GetComponent<shamanStateMachine>().curState = new shamanIdle();
-                    fishmanList[i].GetComponent<shamanStateMachine>().shamanBone.ResetBones();
-                    fishmanList[i].SetActive(false);
-                }
+                
                 fishmanList[i].GetComponent<FishmanBone>().ResetBones();
             }
         }
@@ -43,7 +39,7 @@ public class Map2EnemyController : MonoBehaviour
         if (other.tag == "player" && !isClear) {
             ResetEnemies();
             for (int i = 0; i < fishmanList.Count; i++) {
-                if (!fishmanList[i].activeSelf) {
+                if (!fishmanList[i].activeSelf && fishmanList[i].GetComponent<FishManAI>() != null) {
                     fishmanList[i].GetComponent<FishManAI>().enabled = true;
                     fishmanList[i].SetActive(true);
                 }
@@ -53,10 +49,18 @@ public class Map2EnemyController : MonoBehaviour
 
     public void ResetEnemies() {
         for (int i = 0; i < fishmanList.Count; i++) {
-                fishmanList[i].GetComponent<EnemyDamage>().setHP(fishmanHPList[i]);
-                fishmanList[i].GetComponent<EnemyDamage>().isDead = false;
-                fishmanList[i].GetComponent<Transform>().transform.position = fishmanPosList[i].position;
-                fishmanList[i].GetComponent<Transform>().transform.rotation = fishmanPosList[i].rotation;
+            // if (fishmanList[i].GetComponent<shamanStateMachine>() != null){
+            //     fishmanList[i].GetComponent<shamanStateMachine>().curState = new shamanIdle();
+            //     fishmanList[i].GetComponent<shamanStateMachine>().shamanBone.ResetBones();
+            //     fishmanList[i].GetComponent<EnemyDamage>().setHP(fishmanList[i].GetComponent<shamanStateMachine>().fullHP);
+            //     fishmanList[i].transform.position = new Vector3(3.75f, 23.9f, 1f);
+            //     fishmanList[i].GetComponent<shamanStateMachine>().shamanMusic.Stop();   
+            //     fishmanList[i].SetActive(false);
+            // }
+            fishmanList[i].GetComponent<EnemyDamage>().setHP(fishmanHPList[i]);
+            fishmanList[i].GetComponent<EnemyDamage>().isDead = false;
+            fishmanList[i].GetComponent<Transform>().transform.position = fishmanPosList[i].position;
+            fishmanList[i].GetComponent<Transform>().transform.rotation = fishmanPosList[i].rotation;
         }
     }
 }

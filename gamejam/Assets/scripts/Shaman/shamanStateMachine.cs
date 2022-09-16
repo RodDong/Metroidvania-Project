@@ -25,7 +25,7 @@ public class shamanStateMachine : MonoBehaviour
     [HideInInspector] public bool hasDead;
     private float waveCD = 3.0f;
     private float shardsCD = 5.0f;
-    private int fullHP = 300;
+    public int fullHP = 300;
     Quaternion faceRight = new Quaternion();
     Quaternion faceLeft = new Quaternion();
     Vector3 originPos;
@@ -153,6 +153,8 @@ public abstract class ShamanState{
 
 public class shamanIdle : ShamanState{
     public override void Execute(shamanStateMachine shaman){
+        shaman.icePlatform1.SetActive(false);
+        shaman.icePlatform2.SetActive(false);
         shaman.waveInstantiated = false;
         shaman.animator.Play("Idle");
 
@@ -235,6 +237,8 @@ public class shamanRainIce : ShamanState{
 
 public class shamanDeath : ShamanState{
     public override void Execute(shamanStateMachine shaman){
+        shaman.icePlatform1.SetActive(false);
+        shaman.icePlatform2.SetActive(false);
         if (!shaman.hasDead) {
             shaman.hasDead = true;
             shaman.animator.Play("Death");

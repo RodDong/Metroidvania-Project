@@ -13,6 +13,7 @@ public class DeathMenuMap2 : MonoBehaviour, IDataManager
     [SerializeField] AudioSource bossMusicController;
     [SerializeField] AudioSource deathMusic;
     [SerializeField] GameObject waterWheel;
+    [SerializeField] GameObject iceplatform1, iceplatform2;
     private Map2EnemyController[] enemySpawnControllers;
     private BossController bosscontroller;
 
@@ -43,7 +44,7 @@ public class DeathMenuMap2 : MonoBehaviour, IDataManager
         cinemachineBrain.m_DefaultBlend.m_Style = CinemachineBlendDefinition.Style.Cut;
         // reset player health
         player.GetComponent<Health>().resetHealth();
-
+        player.GetComponent<PotionManager>().potionCount = player.GetComponent<PotionManager>().potionMaxCount;
         // resume music
         if (deathMusic.isPlaying) {
             deathMusic.Stop();
@@ -57,10 +58,13 @@ public class DeathMenuMap2 : MonoBehaviour, IDataManager
         foreach (Map2EnemyController enemySpawner in enemySpawnControllers) {
             // To reset isClear after player died, uncomment this:
             // enemySpawner.isClear = false;
+            iceplatform1.SetActive(false);
+            iceplatform2.SetActive(false);
             enemySpawner.ResetEnemies();
         }
-
         bosscontroller.ResetBoss();
+
+        waterWheel.GetComponent<waterWheel>().angle = Vector3.zero;
 
         deathMenu.SetActive(false);
         DataManager.instance.LoadGame();
