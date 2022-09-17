@@ -17,9 +17,11 @@ public class BossController : MonoBehaviour
     public void ResetBoss() {
         boss.GetComponent<EnemyDamage>().setHP(bossHP);
         boss.GetComponent<EnemyDamage>().isDead = false;
-        boss.GetComponent<Transform>().transform.position = bossPos.position;
-        boss.GetComponent<Transform>().transform.rotation = bossPos.rotation;
+        boss.transform.localPosition = new Vector3(3.75f, 23.9f, 1f);
+        boss.transform.rotation = bossPos.rotation;
         boss.GetComponent<shamanStateMachine>().shamanMusic.Stop();
+        boss.GetComponent<shamanStateMachine>().curState = new shamanIdle();
+        boss.GetComponent<shamanStateMachine>().shamanBone.ResetBones();
         boss.SetActive(false);
     }
 }

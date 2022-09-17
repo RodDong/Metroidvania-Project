@@ -46,7 +46,7 @@ public class Toad : MonoBehaviour
     [SerializeField]
     public AudioSource bossMusicController;
     [SerializeField]
-    public BgmManager backgroundMusicController;
+        public BgmManager backgroundMusicController;
     [SerializeField]
     public GameObject portal;
     [SerializeField]
@@ -91,6 +91,10 @@ public class Toad : MonoBehaviour
 
     void Update()
     {
+        if(transform.position.y<-10.35f){
+            transform.position = new Vector3(transform.position.x, -6.35f, transform.position.z);
+        }
+
         stateMachine.StateMachineUpdate();
         if (enemyHealth.getHP() <= 3 * maxHP / 4 && !hasSummonRangers)
         {

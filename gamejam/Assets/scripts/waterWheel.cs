@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class waterWheel : MonoBehaviour
 {
-    Vector3 angle;
+    public Vector3 angle;
     [SerializeField] public float speed;
     void Start()
     {
